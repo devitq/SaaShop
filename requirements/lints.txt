@@ -1,0 +1,13 @@
+black==23.9.1
+flake8==6.1.0
+flake8-import-order==0.18.2
+flake8-quotes==3.3.2
+pep8-naming==0.13.3
+flake8-bugbear==23.9.16
+flake8-builtins==2.1.0
+flake8-comprehensions==3.14.0
+flake8-bandit==4.1.1 
+flake8-eradicate==1.5.0
+flake8-dunder-all==0.3.0
+flake8-print==5.0.0
+flake8-commas==2.1.0

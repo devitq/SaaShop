@@ -1,0 +1,23 @@
+{% load static i18n %}
+<header>
+  <nav style="margin-top: 3px; zoom: 90%;" class="navbar navbar-expand-md bg-body-tertiary rounded d-flex flex-wrap nav-zoom" aria-label="SaaShopnavbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url "homepage:homepage" %}">
+        <img src="{% static "img/saas.png" %}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+          SaaShop
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#SaaShop" aria-controls="SaaShop" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {% with request.resolver_match.view_name as view_name %}
+      <div class="collapse navbar-collapse justify-content-end flex-nowrap" id="SaaShop">
+        <ul class="nav nav-pills nav-fill">
+          <li class="nav-item"><a href="{% url "homepage:homepage" %}" {% if view_name == "homepage:homepage" %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "Home" %}</a></li>
+          <li class="nav-item"><a href="{% url "about:about" %}" {% if view_name == "about:about" %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "About" %}</a></li>
+          <li class="nav-item"><a href="{% url "catalog:item_list" %}" {% if view_name == "catalog:item_list" %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "Item list" %}</a></li>
+        </ul>
+      </div>
+      {% endwith %}
+    </div>
+  </nav>
+</header>

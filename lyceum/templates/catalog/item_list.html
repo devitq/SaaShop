@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block main %}
+{% load static i18n %}
+<script src="{% static "js/anime.min.js" %}"></script>
+<script src="{% static "js/scrollreveal.min.js" %}"></script>
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">SaaShop</h1>
+      <p class="lead text-body-secondary">Здесь вы можете посмотреть наши работы и выбрать нужные вам</p>
+      <p>
+        <a href="{% url "homepage:homepage" %}" class="btn btn-primary my-2">{% translate "Home" %}</a>
+        <a href="{% url "about:about" %}" class="btn btn-secondary my-2">{% translate "About" %}</a>
+      </p>
+    </div>
+  </div>
+</section>
+  
+<div class="album py-5 bg-body-tertiary">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      {% for i in '123456789'|make_list %}
+      <a href="{% url "catalog:item_detail" item_id=i %}", style="text-decoration: none;">
+      <div class="col">
+        <div class="card shadow-sm item_card is-revealing">
+          <img class="bd-placeholder-img card-img-top" width="100%" height="300" src="{% static "img/kitten.webp" %}">
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button role="link" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button role="link" type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/animation_setup.min.js' %}"></script>
+{% endblock main %}

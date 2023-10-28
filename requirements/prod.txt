@@ -1,0 +1,7 @@
+Django~=4.2.5
+python-dotenv==1.0.0
+transliterate==1.10.2
+sorl.thumbnail==12.10.0
+django-cleanup==8.0.0
+Pillow==10.1.0
+django-tinymce==3.6.1

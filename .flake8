@@ -1,0 +1,13 @@
+[flake8]
+exclude =
+    migrations,
+    __pycache__,
+    venv
+import-order-style=google
+application-import-names = 
+    catalog,
+    core,
+    about,
+    homepage,
+    lyceum
+inline-quotes = "
