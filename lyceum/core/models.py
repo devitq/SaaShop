@@ -12,13 +12,13 @@ autodiscover()
 
 
 class CoreModel(models.Model):
-    is_published = models.BooleanField("опубликовано", default=True)
     name = models.CharField(
         "название",
         max_length=150,
         unique=True,
         help_text="Не больше 150 символов",
     )
+    is_published = models.BooleanField("опубликовано", default=True)
 
     class Meta:
         abstract = True

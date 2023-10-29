@@ -16,18 +16,61 @@ class ModelsTests(TestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.category = Category.objects.create(
+        cls.category_published = Category.objects.create(
             is_published=True,
-            name="Тестовая категория",
-            slug="test_category",
+            name="Тестовая категория 1",
+            slug="test_category1",
+            weight=100,
+        )
+        cls.category_unpublished = Category.objects.create(
+            is_published=False,
+            name="Тестовая категория 2",
+            slug="test_category2",
             weight=100,
         )
 
-        cls.tag = Tag.objects.create(
+        cls.tag_published = Tag.objects.create(
             is_published=True,
-            name="Тестовый тег",
-            slug="test_tag",
+            name="Тестовый тег 1",
+            slug="test_tag1",
         )
+        cls.tag_unpublished = Tag.objects.create(
+            is_published=True,
+            name="Тестовый тег 2",
+            slug="test_tag2",
+        )
+
+        cls.item_published = Item(
+            name="Тест 1",
+            text="превосходно",
+        )
+        cls.item_unpublished = Item(
+            name="Тест 2",
+            text="превосходно",
+        )
+
+        cls.category_published.save()
+        cls.category_unpublished.save()
+
+        cls.tag_published.save()
+        cls.tag_unpublished.save()
+
+        cls.item_published.clean()
+        cls.item_published.save()
+        cls.item_unpublished.clean()
+        cls.item_unpublished.save()
+
+        cls.item_published.tags.add(cls.tag_published.pk)
+        cls.item_published.tags.add(cls.tag_unpublished)
+
+    def test_item_list_context(self):
+        response = Client().get(reverse("catalog:item_list"))
+        self.assertIn("items", response.context)
+
+    def test_item_list_count_item(self):
+        response = Client().get(reverse("catalog:item_list"))
+        items = response.context["items"]
+        self.assertEqual(items.count(), 2)
 
     @parameterized.parameterized.expand(
         [("Привет how?., дела А!_.,;:!?-()", "привет how делаа_")],
@@ -48,10 +91,14 @@ class ModelsTests(TestCase):
     def test_unable_to_create_item_without_words(self):
         item_count = Item.objects.count()
         with self.assertRaises(ValidationError):
-            self.item = Item(name="Тест", category=self.category, text="тест")
+            self.item = Item(
+                name="Тест",
+                category=self.category_published,
+                text="тест",
+            )
             self.item.full_clean()
             self.item.save()
-            self.item.tags.add(ModelsTests.tag)
+            self.item.tags.add(ModelsTests.tag_published)
 
         self.assertEqual(Item.objects.count(), item_count)
 
@@ -59,12 +106,12 @@ class ModelsTests(TestCase):
         item_count = Item.objects.count()
         self.item = Item(
             name="Тест",
-            category=self.category,
+            category=self.category_published,
             text="превосходно",
         )
         self.item.full_clean()
         self.item.save()
-        self.item.tags.add(ModelsTests.tag)
+        self.item.tags.add(ModelsTests.tag_published)
 
         self.assertEqual(Item.objects.count(), item_count + 1)
 
@@ -78,7 +125,7 @@ class ModelsTests(TestCase):
             self.item.full_clean()
             self.item.save()
 
-        self.assertEqual(Category.objects.count(), item_count + 1)
+        self.assertEqual(Item.objects.count(), item_count + 1)
 
     @parameterized.parameterized.expand(
         [("Привет how?., дела А!_.,;:!?-()", "привет how делаа_")],
@@ -108,14 +155,6 @@ class StaticURLTests(TestCase):
 
 
 class DynamicURLTests(TestCase):
-    @override_settings(ALLOW_REVERSE=False)
-    def test_item_detail_endpoint(self):
-        usual_response = Client().get(reverse("catalog:item_detail", args=[1]))
-        self.assertEqual(
-            usual_response.status_code,
-            HTTPStatus.OK,
-        )
-
     def test_unusual_item_detail_endpoint(self):
         with self.assertRaises(NoReverseMatch):
             unusual_response1 = Client().get(

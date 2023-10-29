@@ -20,9 +20,13 @@ class CatalogItemAdmin(admin.ModelAdmin):
     list_display = [
         Item.name.field.name,
         Item.is_published.field.name,
+        Item.is_on_main.field.name,
         "preview",
     ]
-    list_editable = [Item.is_published.field.name]
+    list_editable = [
+        Item.is_published.field.name,
+        Item.is_on_main.field.name,
+    ]
     list_display_links = [Item.name.field.name]
     filter_horizontal = [Item.tags.field.name]
     inlines = [

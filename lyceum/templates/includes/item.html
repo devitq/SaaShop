@@ -1,0 +1,36 @@
+<a href="{% url "catalog:item_detail" item_id=item.id %}">
+    <div class="col height100">
+        <div class="card h-100 shadow-sm item_card is-revealing">
+            {% comment %} {% if item.main_image %}
+                {{ item.main_image.image_in_template }}
+            {% else %}
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Изображение отсутствует</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
+            {% endif %} {% endcomment %}
+            <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">{{ item.text }}</p>
+                {% if item.category.name %}
+                <h5>Категория:</h5>
+                <p class="card-text">
+                    <span class="badge rounded-pill text-bg-warning">{{ item.category.name }}</span>
+                </p>
+                {% endif %}
+                <h5>Теги:</h5>
+                <p>
+                    {% for tag in item.tags.all %}
+                    <span class="badge rounded-pill text-bg-warning">{{ tag.name }}</span>
+                    {% empty %}
+                    отсутствуют
+                    {% endfor %}
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button role="link" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <button role="link" type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                <small class="text-body-secondary">9 mins</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>

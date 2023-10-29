@@ -15,7 +15,7 @@ from tinymce.models import HTMLField
 from catalog.validators import ValidateMustContain
 from core.models import AddUniqueName, CoreModel
 
-__all__ = ()
+__all__ = ("Category", "Item", "ItemImages", "MainImage", "Tag")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -100,7 +100,68 @@ class MainImage(models.Model):
         verbose_name_plural = "основные изображения"
 
 
+class ItemManager(models.Manager):
+    def homepage(self):
+        return (
+            self.get_queryset()
+            .filter(is_on_main=True)
+            .select_related("category")
+            .prefetch_related(
+                models.Prefetch(
+                    "tags",
+                    queryset=Tag.objects.filter(is_published=True).only(
+                        "name",
+                    ),
+                ),
+            )
+            .only("id", "name", "text", "category__name")
+        )
+
+    def item_list(self):
+        return (
+            self.get_queryset()
+            .select_related("category")
+            .prefetch_related(
+                models.Prefetch(
+                    "tags",
+                    queryset=Tag.objects.filter(is_published=True).only(
+                        "name",
+                    ),
+                ),
+            )
+            .filter(is_published=True)
+            .only("id", "name", "text", "category__name")
+            .order_by("category__name")
+        )
+
+    def item_detail(self):
+        return (
+            self.get_queryset()
+            .select_related("category")
+            .select_related("main_image")
+            .prefetch_related(
+                models.Prefetch(
+                    "tags",
+                    queryset=Tag.objects.filter(is_published=True).only(
+                        "name",
+                    ),
+                ),
+            )
+            .filter(is_published=True)
+            .only(
+                "id",
+                "name",
+                "text",
+                "category__name",
+                "main_image__main_image",
+            )
+        )
+
+
 class Item(CoreModel):
+    objects = ItemManager()
+
+    is_on_main = models.BooleanField("отображать на главной", default=False)
     text = HTMLField(
         "текст",
         validators=[ValidateMustContain("превосходно", "роскошно")],
@@ -131,6 +192,7 @@ class Item(CoreModel):
     )
 
     class Meta:
+        ordering = ("name", "id")
         verbose_name = "товар"
         verbose_name_plural = "товары"
 

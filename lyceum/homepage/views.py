@@ -3,14 +3,20 @@ from http import HTTPStatus
 from django.http import HttpResponse
 from django.shortcuts import render
 
+import catalog.models
+
 __all__ = ()
 
 
 def home(response):
+    items = catalog.models.Item.objects.homepage()
+    context = {
+        "items": items,
+    }
     return render(
         request=response,
         template_name="homepage/main.html",
-        context={},
+        context=context,
     )
 
 
