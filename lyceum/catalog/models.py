@@ -104,8 +104,12 @@ class ItemManager(models.Manager):
     def homepage(self):
         return (
             self.get_queryset()
-            .filter(is_on_main=True)
             .select_related("category")
+            .filter(
+                is_on_main=True,
+                is_published=True,
+                category__is_published=True,
+            )
             .prefetch_related(
                 models.Prefetch(
                     "tags",
@@ -129,7 +133,7 @@ class ItemManager(models.Manager):
                     ),
                 ),
             )
-            .filter(is_published=True)
+            .filter(is_published=True, category__is_published=True)
             .only("id", "name", "text", "category__name")
             .order_by("category__name")
         )
@@ -147,7 +151,16 @@ class ItemManager(models.Manager):
                     ),
                 ),
             )
-            .filter(is_published=True)
+            .prefetch_related(
+                models.Prefetch(
+                    "images",
+                    queryset=ItemImages.objects.only(
+                        "image",
+                        "item_id",
+                    ),
+                ),
+            )
+            .filter(is_published=True, category__is_published=True)
             .only(
                 "id",
                 "name",
@@ -173,14 +186,16 @@ class Item(CoreModel):
         Tag,
         verbose_name="теги",
         blank=True,
+        related_query_name="tag",
         help_text="Выберите теги(необязательно)",
     )
     category = models.ForeignKey(
         Category,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         null=True,
         verbose_name="категория",
         blank=True,
+        related_query_name="category",
         help_text="Выберите категорию(необязательно)",
     )
     main_image = models.OneToOneField(
@@ -202,6 +217,7 @@ class ItemImages(models.Model):
         Item,
         on_delete=models.SET_NULL,
         null=True,
+        related_query_name="images",
         verbose_name="товар",
         related_name="images",
     )
@@ -210,6 +226,18 @@ class ItemImages(models.Model):
         upload_to=get_file_path_for_images,
         null=True,
     )
+
+    def get_thumbnail(
+        self,
+        thumb_height=300,
+        thumb_width=300,
+        thumb_quality=51,
+    ):
+        return sorl.thumbnail.get_thumbnail(
+            self.main_image,
+            f"{thumb_width}x{thumb_height}",
+            quality=thumb_quality,
+        )
 
     class Meta:
         verbose_name = "фотография для товаров"

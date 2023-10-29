@@ -8,7 +8,7 @@
             {% endif %} {% endcomment %}
             <div class="card-body">
                 <h5 class="card-title">{{ item.name }}</h5>
-                <p class="card-text">{{ item.text }}</p>
+                <p class="card-text">{{ item.text|striptags|truncatewords:10 }}</p>
                 {% if item.category.name %}
                 <h5>Категория:</h5>
                 <p class="card-text">

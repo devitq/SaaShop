@@ -1,1 +1,239 @@
-[{"model": "catalog.tag", "pk": 1, "fields": {"is_published": true, "name": "Бытовая техника", "unique_name": "bytovajatehnika", "slug": "but_tech"}}, {"model": "catalog.tag", "pk": 2, "fields": {"is_published": true, "name": "Для дома", "unique_name": "dljadoma", "slug": "for_home"}}, {"model": "catalog.tag", "pk": 3, "fields": {"is_published": true, "name": "Для детей", "unique_name": "dljadetej", "slug": "for_kids"}}, {"model": "catalog.tag", "pk": 4, "fields": {"is_published": true, "name": "Для взрослых", "unique_name": "dljavzroslyh", "slug": "for_adluts"}}, {"model": "catalog.tag", "pk": 5, "fields": {"is_published": true, "name": "Для подростков", "unique_name": "dljapodrostkov", "slug": "for_teens"}}, {"model": "catalog.category", "pk": 1, "fields": {"is_published": true, "name": "Электроника", "unique_name": "elektronika", "slug": "electronics", "weight": 100}}, {"model": "catalog.category", "pk": 2, "fields": {"is_published": true, "name": "Развлечения", "unique_name": "razvlechenija", "slug": "toys", "weight": 100}}, {"model": "catalog.mainimage", "pk": 3, "fields": {"main_image": "images/item/main/2023.10.23/replit.png"}}, {"model": "catalog.mainimage", "pk": 5, "fields": {"main_image": "images/item/main/2023.10.24/replit.png"}}, {"model": "catalog.item", "pk": 1, "fields": {"is_published": true, "name": "Пылесос", "text": "превосходно сделанный пылесос, высосет всю пыль", "category": 1, "main_image": null, "tags": [1, 2]}}, {"model": "catalog.item", "pk": 2, "fields": {"is_published": true, "name": "Набор карандашей", "text": "Превосходно сделанные карандаши", "category": 2, "main_image": null, "tags": [3, 4]}}, {"model": "catalog.item", "pk": 3, "fields": {"is_published": true, "name": "Набор Lego Duplo", "text": "Роскошно выполненный набор для самых маленьких", "category": 2, "main_image": null, "tags": [3]}}, {"model": "catalog.item", "pk": 4, "fields": {"is_published": true, "name": "Тостер", "text": "Роскошно сделанный тостер", "category": 1, "main_image": null, "tags": [1, 2]}}, {"model": "catalog.item", "pk": 5, "fields": {"is_published": true, "name": "Набор Lego Technic", "text": "Превосходно сделанный набор для подростков и взрослых", "category": 2, "main_image": null, "tags": [2, 4, 5]}}, {"model": "catalog.item", "pk": 9, "fields": {"is_published": true, "name": "Привет", "text": "<p>Превосходно&nbsp;</p>", "category": 2, "main_image": 5, "tags": []}}, {"model": "catalog.item", "pk": 10, "fields": {"is_published": true, "name": "sdasd", "text": "<p>превосходно</p>", "category": null, "main_image": null, "tags": []}}]
+[
+{
+  "model": "catalog.tag",
+  "pk": 1,
+  "fields": {
+    "name": "Бытовая техника",
+    "is_published": true,
+    "unique_name": "bytovajatehnika",
+    "slug": "but_tech"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 2,
+  "fields": {
+    "name": "Для дома",
+    "is_published": true,
+    "unique_name": "dljadoma",
+    "slug": "for_home"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 3,
+  "fields": {
+    "name": "Для детей",
+    "is_published": true,
+    "unique_name": "dljadetej",
+    "slug": "for_kids"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 4,
+  "fields": {
+    "name": "Для взрослых",
+    "is_published": true,
+    "unique_name": "dljavzroslyh",
+    "slug": "for_adluts"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 5,
+  "fields": {
+    "name": "Для подростков",
+    "is_published": true,
+    "unique_name": "dljapodrostkov",
+    "slug": "for_teens"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 1,
+  "fields": {
+    "name": "Электроника",
+    "is_published": true,
+    "unique_name": "elektronika",
+    "slug": "electronics",
+    "weight": 100
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 2,
+  "fields": {
+    "name": "Развлечения",
+    "is_published": true,
+    "unique_name": "razvlechenija",
+    "slug": "toys",
+    "weight": 100
+  }
+},
+{
+  "model": "catalog.mainimage",
+  "pk": 9,
+  "fields": {
+    "main_image": "main_image/2023.10.25/0a438144-e372-4fea-9d37-2cc605697cd5.png"
+  }
+},
+{
+  "model": "catalog.mainimage",
+  "pk": 11,
+  "fields": {
+    "main_image": "main_image/2023.10.28/6c889e3c-7979-428f-ac88-86722dc8cd55.jpg"
+  }
+},
+{
+  "model": "catalog.mainimage",
+  "pk": 12,
+  "fields": {
+    "main_image": "main_image/2023.10.28/321c45c7-261f-49f8-9a67-000fd20795e9.png"
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 1,
+  "fields": {
+    "name": "Пылесос",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "превосходно сделанный пылесос, высосет всю пыль",
+    "category": 1,
+    "main_image": null,
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 2,
+  "fields": {
+    "name": "Набор карандашей",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "<p>Превосходно сделанные карандаши</p>",
+    "category": 2,
+    "main_image": null,
+    "tags": [
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 3,
+  "fields": {
+    "name": "Набор Lego Duplo",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "<p>Роскошно выполненный набор для самых маленьких&nbsp;</p>\r\n<p>Роскошно выполненный набор для самых маленьких</p>\r\n<p>Роскошно выполненный набор для самых маленьких</p>\r\n<p>Роскошно выполненный набор для самых маленьких</p>",
+    "category": 2,
+    "main_image": null,
+    "tags": [
+      3
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 4,
+  "fields": {
+    "name": "Тостер",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "<p>Роскошно сделанный тостер</p>",
+    "category": 1,
+    "main_image": 11,
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 5,
+  "fields": {
+    "name": "Набор Lego Technic",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "Превосходно сделанный набор для подростков и взрослых",
+    "category": 2,
+    "main_image": null,
+    "tags": [
+      2,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 14,
+  "fields": {
+    "name": "Привет товар",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "<p>привет превосходно</p>",
+    "category": null,
+    "main_image": null,
+    "tags": []
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 15,
+  "fields": {
+    "name": "Привет",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "<p>превосходно</p>",
+    "category": 2,
+    "main_image": 12,
+    "tags": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "catalog.itemimages",
+  "pk": 6,
+  "fields": {
+    "item": 15,
+    "image": "images/2023.10.29/3c1fac72-d729-4318-982a-f274c0cd37d1.png"
+  }
+},
+{
+  "model": "catalog.itemimages",
+  "pk": 7,
+  "fields": {
+    "item": 15,
+    "image": "images/2023.10.29/e40fea50-06e7-455a-a9c0-08969332de3e.png"
+  }
+},
+{
+  "model": "catalog.itemimages",
+  "pk": 8,
+  "fields": {
+    "item": 15,
+    "image": "images/2023.10.29/01757a29-bf30-462f-bb6d-9f9bbed1d03b.png"
+  }
+},
+{
+  "model": "catalog.itemimages",
+  "pk": 9,
+  "fields": {
+    "item": 15,
+    "image": "images/2023.10.29/a7681fb6-35b6-42fc-ab8e-80aee9d5fa51.png"
+  }
+}
+]
