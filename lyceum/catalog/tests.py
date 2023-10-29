@@ -1,8 +1,6 @@
 from http import HTTPStatus
 
 from django.core.exceptions import ValidationError
-from django.db.models import QuerySet
-from django.shortcuts import get_object_or_404
 from django.test import Client, override_settings, TestCase
 from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
@@ -143,14 +141,12 @@ class ModelsTests(TestCase):
 
     def test_getting_right_context(self):
         response = Client().get(reverse("catalog:item_list"))
-        self.assertIn("categories", response.context)
-        self.assertIsInstance(response.context["categories"], QuerySet)
+        self.assertIn("items", response.context)
 
     def test_item_count(self):
         response = Client().get(reverse("catalog:item_list"))
-        categories = response.context["categories"]
-        for category in categories:
-            self.assertEqual(len(category.item.all()), 3)
+        items = response.context["items"]
+        self.assertEqual(items.count(), 3)
 
     def test_item_categories(self):
         response = Client().get(reverse("catalog:item_list"))
