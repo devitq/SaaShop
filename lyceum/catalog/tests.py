@@ -78,8 +78,7 @@ class ModelsTests(TestCase):
 
     def test_item_count(self):
         response = Client().get(reverse("catalog:item_list"))
-        items = response.context["items"]
-        self.assertEqual(len(items.all()), 3)
+        self.assertEqual(len(response.context["items"]), 3)
 
     def test_item_categories(self):
         response = Client().get(reverse("catalog:item_list"))
