@@ -67,6 +67,12 @@ class ModelsTests(TestCase):
             text="превосходно",
             category=cls.published_category,
         )
+        cls.pub_item_not_in_main = Item(
+            is_published=True,
+            name="Товар не на главной",
+            text="превосходно",
+            category=cls.published_category,
+        )
 
         cls.published_category.save()
         cls.unpublished_category.save()
@@ -83,6 +89,9 @@ class ModelsTests(TestCase):
         cls.pub_item_right_tag.save()
         cls.pub_item_wrong_tag.clean()
         cls.pub_item_wrong_tag.save()
+
+        cls.pub_item_not_in_main.clean()
+        cls.pub_item_not_in_main.save()
 
         cls.pub_item_right_tag.tags.add(cls.published_tag.pk)
         cls.pub_item_wrong_tag.tags.add(cls.unpublished_tag.pk)
@@ -132,6 +141,16 @@ class ModelsTests(TestCase):
         items = response.context["items"]
         self.assertNotIn(
             self.unpub_item,
+            items,
+        )
+
+    def test_item_not_on_main(self):
+        response = Client().get(
+            reverse("homepage:homepage"),
+        )
+        items = response.context["items"]
+        self.assertNotIn(
+            self.pub_item_not_in_main,
             items,
         )
 
