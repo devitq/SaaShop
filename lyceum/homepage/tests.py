@@ -13,109 +13,81 @@ class ModelsTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.published_category = Category(
+        cls.published_category = Category.objects.create(
             is_published=True,
             name="Опубликованная категория",
             slug="published_category",
             weight=100,
         )
-        cls.unpublished_category = Category(
+        cls.unpublished_category = Category.objects.create(
             is_published=False,
             name="Неопубликованная категория",
             slug="unpublished_category",
             weight=100,
         )
-
-        cls.published_tag = Tag(
+        cls.published_tag = Tag.objects.create(
             is_published=True,
             name="Опубликованный тэг",
             slug="published_tag",
         )
-        cls.unpublished_tag = Tag(
+        cls.unpublished_tag = Tag.objects.create(
             is_published=False,
             name="Неопубликованный тэг",
             slug="unpublished_tag",
         )
-
-        cls.pub_item_right_cat = Item(
+        cls.pub_item_right_cat = Item.objects.create(
             is_published=True,
             name="Товар с опубликованной категорией",
             text="превосходно",
             category=cls.published_category,
         )
-        cls.pub_item_wrong_cat = Item(
+        cls.pub_item_wrong_cat = Item.objects.create(
             is_published=True,
             name="Товар с неопубликованной категорией",
             text="превосходно",
             category=cls.unpublished_category,
         )
-        cls.pub_item_right_tag = Item(
+        cls.pub_item_right_tag = Item.objects.create(
             is_published=True,
             name="Товар с опубликованным тэгом",
             text="превосходно",
             category=cls.published_category,
         )
-        cls.pub_item_wrong_tag = Item(
+        cls.pub_item_wrong_tag = Item.objects.create(
             is_published=True,
             name="Товар с неопубликованным тэгом",
             text="превосходно",
             category=cls.published_category,
         )
-        cls.unpub_item = Item(
+        cls.unpub_item = Item.objects.create(
             is_published=False,
             name="Неопубликованный товар",
             text="превосходно",
             category=cls.published_category,
         )
-        cls.pub_item_not_in_main = Item(
+        cls.pub_item_not_in_main = Item.objects.create(
             is_published=True,
             name="Товар не на главной",
             text="превосходно",
             category=cls.published_category,
         )
-
-        cls.published_category.save()
-        cls.unpublished_category.save()
-
-        cls.published_tag.save()
-        cls.unpublished_tag.save()
-
-        cls.pub_item_right_cat.clean()
-        cls.pub_item_right_cat.save()
-        cls.pub_item_wrong_cat.clean()
-        cls.pub_item_wrong_cat.save()
-
-        cls.pub_item_right_tag.clean()
-        cls.pub_item_right_tag.save()
-        cls.pub_item_wrong_tag.clean()
-        cls.pub_item_wrong_tag.save()
-
-        cls.pub_item_not_in_main.clean()
-        cls.pub_item_not_in_main.save()
-
         cls.pub_item_right_tag.tags.add(cls.published_tag.pk)
         cls.pub_item_wrong_tag.tags.add(cls.unpublished_tag.pk)
 
-        cls.unpub_item.clean()
-        cls.unpub_item.save()
-
     def test_getting_right_context(self):
-        response = Client().get(
-            reverse("homepage:homepage"),
-        )
+        client = Client()
+        response = client.get(reverse("homepage:homepage"))
         self.assertIn("items", response.context)
 
     def test_item_count(self):
-        response = Client().get(
-            reverse("homepage:homepage"),
-        )
+        client = Client()
+        response = client.get(reverse("homepage:homepage"))
         items = response.context["items"]
         self.assertEqual(items.count(), 0)
 
     def test_item_categories(self):
-        response = Client().get(
-            reverse("homepage:homepage"),
-        )
+        client = Client()
+        response = client.get(reverse("homepage:homepage"))
         items = response.context["items"]
         for item in items:
             self.assertNotEqual(
@@ -124,9 +96,8 @@ class ModelsTests(TestCase):
             )
 
     def test_item_tags(self):
-        response = Client().get(
-            reverse("homepage:homepage"),
-        )
+        client = Client()
+        response = client.get(reverse("homepage:homepage"))
         items = response.context["items"]
         for item in items:
             self.assertNotIn(
@@ -135,24 +106,16 @@ class ModelsTests(TestCase):
             )
 
     def test_unpublished_items(self):
-        response = Client().get(
-            reverse("homepage:homepage"),
-        )
+        client = Client()
+        response = client.get(reverse("homepage:homepage"))
         items = response.context["items"]
-        self.assertNotIn(
-            self.unpub_item,
-            items,
-        )
+        self.assertNotIn(self.unpub_item, items)
 
     def test_item_not_on_main(self):
-        response = Client().get(
-            reverse("homepage:homepage"),
-        )
+        client = Client()
+        response = client.get(reverse("homepage:homepage"))
         items = response.context["items"]
-        self.assertNotIn(
-            self.pub_item_not_in_main,
-            items,
-        )
+        self.assertNotIn(self.pub_item_not_in_main, items)
 
 
 class RussianReverseTests(TestCase):
