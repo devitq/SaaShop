@@ -71,19 +71,16 @@ class ModelsTests(TestCase):
         cls.pub_item_wrong_tag.tags.add(cls.unpublished_tag.pk)
 
     def test_getting_right_context(self):
-        client = Client()
-        response = client.get(reverse("catalog:item_list"))
+        response = Client().get(reverse("catalog:item_list"))
         self.assertIn("items", response.context)
 
     def test_item_count(self):
-        client = Client()
-        response = client.get(reverse("catalog:item_list"))
+        response = Client().get(reverse("catalog:item_list"))
         items = response.context["items"]
         self.assertEqual(items.count(), 3)
 
     def test_item_categories(self):
-        client = Client()
-        response = client.get(reverse("catalog:item_list"))
+        response = Client().get(reverse("catalog:item_list"))
         items = response.context["items"]
         for item in items:
             self.assertNotEqual(
@@ -92,8 +89,7 @@ class ModelsTests(TestCase):
             )
 
     def test_item_tags(self):
-        client = Client()
-        response = client.get(reverse("catalog:item_list"))
+        response = Client().get(reverse("catalog:item_list"))
         items = response.context["items"]
         for item in items:
             self.assertNotIn(
@@ -102,21 +98,18 @@ class ModelsTests(TestCase):
             )
 
     def test_unpublished_items(self):
-        client = Client()
-        response = client.get(reverse("catalog:item_list"))
+        response = Client().get(reverse("catalog:item_list"))
         items = response.context["items"]
         self.assertNotIn(self.unpub_item, items)
 
     def test_could_reach_published_item(self):
-        client = Client()
-        response = client.get(
+        response = Client().get(
             reverse("catalog:item_detail", args=[self.pub_item_right_cat.pk]),
         )
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_couldnt_reach_unpublished_item(self):
-        client = Client()
-        response = client.get(
+        response = Client().get(
             reverse("catalog:item_detail", args=[self.unpub_item.pk]),
         )
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)

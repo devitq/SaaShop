@@ -71,23 +71,27 @@ class ModelsTests(TestCase):
             text="превосходно",
             category=cls.published_category,
         )
+        cls.pub_item_in_main = Item.objects.create(
+            is_on_main=True,
+            is_published=True,
+            name="Товар на главной",
+            text="превосходно",
+            category=cls.published_category,
+        )
         cls.pub_item_right_tag.tags.add(cls.published_tag.pk)
         cls.pub_item_wrong_tag.tags.add(cls.unpublished_tag.pk)
 
     def test_getting_right_context(self):
-        client = Client()
-        response = client.get(reverse("homepage:homepage"))
+        response = Client().get(reverse("homepage:homepage"))
         self.assertIn("items", response.context)
 
     def test_item_count(self):
-        client = Client()
-        response = client.get(reverse("homepage:homepage"))
+        response = Client().get(reverse("homepage:homepage"))
         items = response.context["items"]
-        self.assertEqual(items.count(), 0)
+        self.assertEqual(items.count(), 1)
 
     def test_item_categories(self):
-        client = Client()
-        response = client.get(reverse("homepage:homepage"))
+        response = Client().get(reverse("homepage:homepage"))
         items = response.context["items"]
         for item in items:
             self.assertNotEqual(
@@ -96,8 +100,7 @@ class ModelsTests(TestCase):
             )
 
     def test_item_tags(self):
-        client = Client()
-        response = client.get(reverse("homepage:homepage"))
+        response = Client().get(reverse("homepage:homepage"))
         items = response.context["items"]
         for item in items:
             self.assertNotIn(
@@ -106,14 +109,12 @@ class ModelsTests(TestCase):
             )
 
     def test_unpublished_items(self):
-        client = Client()
-        response = client.get(reverse("homepage:homepage"))
+        response = Client().get(reverse("homepage:homepage"))
         items = response.context["items"]
         self.assertNotIn(self.unpub_item, items)
 
     def test_item_not_on_main(self):
-        client = Client()
-        response = client.get(reverse("homepage:homepage"))
+        response = Client().get(reverse("homepage:homepage"))
         items = response.context["items"]
         self.assertNotIn(self.pub_item_not_in_main, items)
 
