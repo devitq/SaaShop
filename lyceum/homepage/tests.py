@@ -92,20 +92,20 @@ class ModelsTests(TestCase):
 
     def test_getting_right_context(self):
         response = Client().get(
-            reverse("catalog:item_list"),
+            reverse("homepage:homepage"),
         )
         self.assertIn("items", response.context)
 
     def test_item_count(self):
         response = Client().get(
-            reverse("catalog:item_list"),
+            reverse("homepage:homepage"),
         )
         items = response.context["items"]
-        self.assertEqual(items.count(), 3)
+        self.assertEqual(items.count(), 0)
 
     def test_item_categories(self):
         response = Client().get(
-            reverse("catalog:item_list"),
+            reverse("homepage:homepage"),
         )
         items = response.context["items"]
         for item in items:
@@ -116,7 +116,7 @@ class ModelsTests(TestCase):
 
     def test_item_tags(self):
         response = Client().get(
-            reverse("catalog:item_list"),
+            reverse("homepage:homepage"),
         )
         items = response.context["items"]
         for item in items:
@@ -127,36 +127,12 @@ class ModelsTests(TestCase):
 
     def test_unpublished_items(self):
         response = Client().get(
-            reverse("catalog:item_list"),
+            reverse("homepage:homepage"),
         )
         items = response.context["items"]
         self.assertNotIn(
             self.unpub_item,
             items,
-        )
-
-    def test_could_reach_published_item(self):
-        response = Client().get(
-            reverse(
-                "catalog:item_detail",
-                args=[self.pub_item_right_cat.pk],
-            ),
-        )
-        self.assertEqual(
-            response.status_code,
-            HTTPStatus.OK.value,
-        )
-
-    def test_couldnt_reach_unpublished_item(self):
-        response = Client().get(
-            reverse(
-                "catalog:item_detail",
-                args=[self.unpub_item.pk],
-            ),
-        )
-        self.assertEqual(
-            response.status_code,
-            HTTPStatus.NOT_FOUND.value,
         )
 
 
