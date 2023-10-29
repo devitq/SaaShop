@@ -30,7 +30,6 @@
         отсутствуют
         {% endfor %}
     </p>
-    {% if item.images %}
     <h6>Изображения:</h6>
     <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for image in item.images.all %}
@@ -41,9 +40,10 @@
         </div>
     </div>
     {% endthumbnail %}
+    {% empty %}
+    <p>Отсутствуют</p>
     {% endfor %}
     </div>
-    {% endif %}
 </div>
 <script src="{% static 'js/animation_setup.min.js' %}"></script>
 {% endblock %}

@@ -101,7 +101,7 @@ class MainImage(models.Model):
 
 
 class ItemManager(models.Manager):
-    def homepage(self):
+    def on_main(self):
         return (
             self.get_queryset()
             .select_related("category")
@@ -119,9 +119,10 @@ class ItemManager(models.Manager):
                 ),
             )
             .only("id", "name", "text", "category__name")
+            .defer("is_published", "is_on_main")
         )
 
-    def item_list(self):
+    def published(self):
         return (
             self.get_queryset()
             .select_related("category")
@@ -135,6 +136,7 @@ class ItemManager(models.Manager):
             )
             .filter(is_published=True, category__is_published=True)
             .only("id", "name", "text", "category__name")
+            .defer("is_published", "is_on_main")
             .order_by("category__name")
         )
 
@@ -168,6 +170,7 @@ class ItemManager(models.Manager):
                 "category__name",
                 "main_image__main_image",
             )
+            .defer("is_published", "is_on_main")
         )
 
 
@@ -195,6 +198,7 @@ class Item(CoreModel):
         null=True,
         verbose_name="категория",
         blank=True,
+        related_name="item",
         related_query_name="category",
         help_text="Выберите категорию(необязательно)",
     )

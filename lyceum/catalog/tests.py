@@ -1,6 +1,8 @@
 from http import HTTPStatus
 
 from django.core.exceptions import ValidationError
+from django.db.models import QuerySet
+from django.shortcuts import get_object_or_404
 from django.test import Client, override_settings, TestCase
 from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
@@ -9,6 +11,75 @@ import parameterized
 from catalog.models import Category, Item, Tag
 
 __all__ = ("DynamicURLTests", "ModelsTests", "StaticURLTests")
+
+
+class ItemManagerTestCase(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.published_category = Category.objects.create(
+            is_published=True,
+            name="Опубликованная категория",
+            slug="published_category",
+            weight=100,
+        )
+
+        cls.published_tag = Tag.objects.create(
+            is_published=True,
+            name="Опубликованный тэг",
+            slug="published_tag",
+        )
+
+        cls.item_with_all_fields = Item.objects.create(
+            is_published=True,
+            is_on_main=True,
+            name="Товар со всеми полями",
+            text="превосходно",
+            category=cls.published_category,
+            main_image=None,
+        )
+        cls.item_with_all_fields.tags.add(cls.published_tag)
+
+    def test_published_method_fields(self):
+        items = Item.objects.published()
+
+        for item in items:
+            self.assertIsNotNone(item.id)
+            self.assertIsNotNone(item.name)
+            self.assertIsNotNone(item.text)
+            self.assertIsNotNone(item.category_id)
+            self.assertIsNotNone(item.category.id)
+            self.assertIsNotNone(item.category.name)
+            self.assertIsNotNone(item.is_published)
+            self.assertEqual(len(item.tags.all()), 1)
+
+            self.assertIsNone(item.main_image)
+            self.assertEqual(len(item.images.all()), 0)
+
+    def test_on_main_method_fields(self):
+        items = Item.objects.on_main()
+
+        for item in items:
+            self.assertIsNotNone(item.id)
+            self.assertIsNotNone(item.name)
+            self.assertIsNotNone(item.text)
+            self.assertIsNotNone(item.category_id)
+            self.assertIsNotNone(item.category.id)
+            self.assertIsNotNone(item.category.name)
+            self.assertIsNotNone(item.is_published)
+            self.assertEqual(len(item.tags.all()), 1)
+
+            self.assertIsNone(item.main_image)
+            self.assertEqual(len(item.images.all()), 0)
+
+    def test_item_detail_method_fields(self):
+        item = get_object_or_404(Item.objects.item_detail(), pk=1)
+        self.assertIsNotNone(item.id)
+        self.assertIsNotNone(item.name)
+        self.assertIsNotNone(item.text)
+        self.assertIsNotNone(item.category.name)
+
+        self.assertIsNone(item.main_image)
+        self.assertEqual(len(item.tags.all()), 1)
 
 
 class ModelsTests(TestCase):
@@ -72,35 +143,40 @@ class ModelsTests(TestCase):
 
     def test_getting_right_context(self):
         response = Client().get(reverse("catalog:item_list"))
-        self.assertIn("items", response.context)
+        self.assertIn("categories", response.context)
+        self.assertIsInstance(response.context["categories"], QuerySet)
 
     def test_item_count(self):
         response = Client().get(reverse("catalog:item_list"))
-        items = response.context["items"]
-        self.assertEqual(items.count(), 3)
+        categories = response.context["categories"]
+        for category in categories:
+            self.assertEqual(len(category.item.all()), 3)
 
     def test_item_categories(self):
         response = Client().get(reverse("catalog:item_list"))
-        items = response.context["items"]
-        for item in items:
-            self.assertNotEqual(
-                item.category,
-                self.unpublished_category,
-            )
+        categories = response.context["categories"].all()
+        for category in categories:
+            for item in category.item.all():
+                self.assertNotEqual(
+                    item.category,
+                    self.unpublished_category,
+                )
 
     def test_item_tags(self):
         response = Client().get(reverse("catalog:item_list"))
-        items = response.context["items"]
-        for item in items:
-            self.assertNotIn(
-                self.unpublished_tag,
-                item.tags.all(),
-            )
+        categories = response.context["categories"].all()
+        for category in categories:
+            for item in category.item.all():
+                self.assertNotIn(
+                    self.unpublished_tag,
+                    item.tags.all(),
+                )
 
     def test_unpublished_items(self):
         response = Client().get(reverse("catalog:item_list"))
-        items = response.context["items"]
-        self.assertNotIn(self.unpub_item, items)
+        categories = response.context["categories"].all()
+        for category in categories:
+            self.assertNotIn(self.unpub_item, category.item.all())
 
     def test_could_reach_published_item(self):
         response = Client().get(

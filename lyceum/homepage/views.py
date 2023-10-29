@@ -9,7 +9,7 @@ __all__ = ()
 
 
 def home(response):
-    items = catalog.models.Item.objects.homepage()
+    items = catalog.models.Item.objects.on_main()
     context = {
         "items": items,
     }
