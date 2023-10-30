@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 18:18+0300\n"
+"POT-Creation-Date: 2023-10-30 18:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,13 +28,13 @@ msgstr "Английский"
 msgid "Russian"
 msgstr "Русский"
 
-#: .\templates\about\about.html:5 .\templates\catalog\item_list.html:11
+#: .\templates\about\about.html:5 .\templates\catalog\item_list.html:13
 #: .\templates\homepage\main.html:28 .\templates\includes\footer.html:13
 #: .\templates\includes\header.html:16
 msgid "About"
 msgstr "О проекте"
 
-#: .\templates\catalog\item_list.html:10 .\templates\includes\header.html:15
+#: .\templates\catalog\item_list.html:12 .\templates\includes\header.html:15
 msgid "Home"
 msgstr "Главная"
 
@@ -46,3 +46,7 @@ msgstr "Список товаров"
 #: .\templates\includes\footer.html:21
 msgid "all rights reserved"
 msgstr "все права защищены"
+
+#: .\templates\includes\header.html:19
+msgid "Admin"
+msgstr "Админ панель"
