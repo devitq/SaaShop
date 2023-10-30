@@ -15,14 +15,19 @@
     </div>
   </div>
 </section>
-
-{% regroup items by category as category_list %}
-{% for category in category_list %}
 <div class="album py-4 bg-body-tertiary">
   <div class="container">
-    <h2>{{ category.grouper }}</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-      {% for item in category.list %}
+      {% for item in items %}
+      {% ifchanged %}
+            </div>
+          </div>
+        </div>
+        <div class="album py-4 bg-body-tertiary">
+          <div class="container">
+            <h2>{{ item.category }}</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% endifchanged %}
         {% include "includes/item_card.html" %}
       {% empty %}
         <p>Карточки отсутствуют</p>
@@ -30,6 +35,5 @@
     </div>
   </div>
 </div>
-{% endfor %}
 <script src="{% static 'js/animation_setup.min.js' %}"></script>
 {% endblock main %}

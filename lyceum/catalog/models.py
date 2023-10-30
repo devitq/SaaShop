@@ -118,8 +118,12 @@ class ItemManager(models.Manager):
                     ),
                 ),
             )
-            .only("id", "name", "text", "category__name")
-            .defer("is_published", "is_on_main")
+            .only(
+                Item.id.field.name,
+                Item.name.field.name,
+                Item.text.field.name,
+                f"category__{Category.name.field.name}",
+            )
         )
 
     def published(self):
@@ -135,9 +139,13 @@ class ItemManager(models.Manager):
                 ),
             )
             .filter(is_published=True, category__is_published=True)
-            .only("id", "name", "text", "category__name")
-            .defer("is_published", "is_on_main")
-            .order_by("category__name")
+            .only(
+                Item.id.field.name,
+                Item.name.field.name,
+                Item.text.field.name,
+                f"category__{Category.name.field.name}",
+            )
+            .order_by(f"category__{Category.name.field.name}")
         )
 
     def item_detail(self):
@@ -149,7 +157,7 @@ class ItemManager(models.Manager):
                 models.Prefetch(
                     "tags",
                     queryset=Tag.objects.filter(is_published=True).only(
-                        "name",
+                        Tag.name.field.name,
                     ),
                 ),
             )
@@ -164,13 +172,12 @@ class ItemManager(models.Manager):
             )
             .filter(is_published=True, category__is_published=True)
             .only(
-                "id",
-                "name",
-                "text",
-                "category__name",
-                "main_image__main_image",
+                Item.id.field.name,
+                Item.name.field.name,
+                Item.text.field.name,
+                f"category__{Category.name.field.name}",
+                f"main_image__{MainImage.main_image.field.name}",
             )
-            .defer("is_published", "is_on_main")
         )
 
 

@@ -238,6 +238,13 @@ class ModelsTests(TestCase):
         cls.pub_item_right_tag.tags.add(cls.published_tag.pk)
         cls.pub_item_wrong_tag.tags.add(cls.unpublished_tag.pk)
 
+    def test_getting_prefetched(self):
+        response = Client().get(reverse("catalog:item_list"))
+
+        items = response.context["items"]
+        for item in items:
+            self.assertIn("tags", item.__dict__["_prefetched_objects_cache"])
+
     def test_getting_right_context(self):
         response = Client().get(reverse("catalog:item_list"))
         self.assertIn("items", response.context)
