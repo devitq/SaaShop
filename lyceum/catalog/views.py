@@ -1,4 +1,8 @@
+from datetime import timedelta
+
+from django.db import models
 from django.shortcuts import get_object_or_404, render
+from django.utils import timezone
 
 import catalog.models
 
@@ -9,6 +13,75 @@ def item_list(response):
     items = catalog.models.Item.objects.published()
     context = {
         "items": items,
+        "title": "Все товары",
+    }
+    return render(
+        request=response,
+        template_name="catalog/item_list.html",
+        context=context,
+    )
+
+
+def new_item_list(response):
+    one_week_ago = timezone.now() - timedelta(days=7)
+    ids = (
+        catalog.models.Item.objects.published()
+        .filter(created_at__gte=one_week_ago)
+        .values_list("id", flat=True)
+        .order_by("?")[:5]
+    )
+    if ids:
+        items = (
+            catalog.models.Item.objects.published()
+            .filter(id__in=ids)
+            .order_by("category", "name")
+        )
+    else:
+        items = None
+    context = {
+        "items": items,
+        "title": "Новинки",
+    }
+    return render(
+        request=response,
+        template_name="catalog/item_list.html",
+        context=context,
+    )
+
+
+def friday_item_list(response):
+    ids = (
+        catalog.models.Item.objects.published()
+        .filter(updated_at__week_day=6)
+        .values_list("id", flat=True)
+        .order_by("-updated_at")[:5]
+    )
+    if ids:
+        items = (
+            catalog.models.Item.objects.published()
+            .filter(id__in=ids)
+            .order_by("category", "name")
+        )
+    else:
+        items = None
+    context = {
+        "items": items,
+        "title": "Пятница",
+    }
+    return render(
+        request=response,
+        template_name="catalog/item_list.html",
+        context=context,
+    )
+
+
+def unverified_item_list(response):
+    items = catalog.models.Item.objects.published().filter(
+        created_at=models.F("updated_at"),
+    )
+    context = {
+        "items": items,
+        "title": "Непроверенное",
     }
     return render(
         request=response,

@@ -192,6 +192,16 @@ class Item(CoreModel):
             'Описание должно содержать слово "превосходно" или "роскошно"'
         ),
     )
+    created_at = models.DateTimeField(
+        "дата создания (UTC)",
+        auto_now_add=True,
+        editable=False,
+    )
+    updated_at = models.DateTimeField(
+        "дата последнего изменения (UTC)",
+        auto_now=True,
+        editable=False,
+    )
     tags = models.ManyToManyField(
         Tag,
         verbose_name="теги",

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "catalog.apps.CatalogConfig",
     "homepage.apps.HomepageConfig",
     "core.apps.CoreConfig",
+    "download.apps.DownloadConfig",
 ]
 
 

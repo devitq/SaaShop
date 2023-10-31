@@ -372,6 +372,20 @@ class StaticURLTests(TestCase):
 
 
 class DynamicURLTests(TestCase):
+    @parameterized.parameterized.expand(
+        [
+            ("catalog:item_list",),
+            ("catalog:new_item_list",),
+            ("catalog:friday_item_list"),
+            ("catalog:unverified_item_list",),
+        ],
+    )
+    def test_catalog_item_endpoint(self, url):
+        response = Client().get(
+            reverse(url),
+        )
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+
     def test_unusual_item_detail_endpoint(self):
         with self.assertRaises(NoReverseMatch):
             unusual_response1 = Client().get(

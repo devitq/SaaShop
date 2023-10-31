@@ -22,6 +22,8 @@ class CatalogItemAdmin(admin.ModelAdmin):
         Item.is_published.field.name,
         Item.is_on_main.field.name,
         "preview",
+        Item.created_at.field.name,
+        Item.updated_at.field.name,
     ]
     list_editable = [
         Item.is_published.field.name,
@@ -32,7 +34,11 @@ class CatalogItemAdmin(admin.ModelAdmin):
     inlines = [
         ImagesInline,
     ]
-    readonly_fields = ["preview"]
+    readonly_fields = [
+        "preview",
+        Item.created_at.field.name,
+        Item.updated_at.field.name,
+    ]
     formfield_overrides = {
         models.TextField: {"widget": AdminTinyMCE},
     }

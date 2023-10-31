@@ -11,6 +11,7 @@ urlpatterns = [
     path("", include("homepage.urls")),
     path("about/", include("about.urls")),
     path("catalog/", include("catalog.urls")),
+    path("download/", include("download.urls")),
     path("admin/", admin.site.urls),
     path("tinymce/", include("tinymce.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

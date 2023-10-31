@@ -17,16 +17,13 @@
 </section>
 <div class="album py-4 bg-body-tertiary">
   <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <h1>{{ title }}</h1>
+    <div>
       {% for item in items %}
       {% ifchanged %}
-            </div>
-          </div>
         </div>
-        <div class="album py-4 bg-body-tertiary">
-          <div class="container">
-            <h2>{{ item.category }}</h2>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+        <h2>{{ item.category }}</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
       {% endifchanged %}
         {% include "includes/item_card.html" %}
       {% empty %}
