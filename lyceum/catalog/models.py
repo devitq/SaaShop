@@ -201,13 +201,13 @@ class Item(CoreModel):
     )
     created_at = models.DateTimeField(
         "дата создания (UTC)",
+        null=True,
         auto_now_add=True,
-        editable=False,
     )
     updated_at = models.DateTimeField(
         "дата последнего изменения (UTC)",
+        null=True,
         auto_now=True,
-        editable=False,
     )
     tags = models.ManyToManyField(
         Tag,
