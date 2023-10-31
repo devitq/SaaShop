@@ -73,6 +73,13 @@ class MainImage(models.Model):
         upload_to=get_file_path_for_main_image,
     )
 
+    def get_image_300x300(self):
+        return sorl.thumbnail.get_thumbnail(
+            self.main_image,
+            "300x300",
+            quolity=51,
+        )
+
     def get_thumbnail(
         self,
         thumb_height=300,
@@ -88,7 +95,7 @@ class MainImage(models.Model):
     def image_tmb(self):
         if self.main_image:
             return mark_safe(
-                f"<img src='{self.get_thumbnail().url}' width='300'",
+                f"<img src='{self.get_image_300x300().url}' width='300'",
             )
         return "Изображение отсутствует"
 
