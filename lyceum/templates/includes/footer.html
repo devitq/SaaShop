@@ -4,16 +4,16 @@
     <div class="container">
         <div class="site-footer-inner">
             <div class="brand footer-brand">
-                <a href="{% url "homepage:homepage" %}">
+                <a href="{% url 'homepage:homepage' %}">
                     <img width="32px" height="32px" class="header-logo-image" src="{% static 'img/saas.png' %}" alt="Logo">
                 </a>
             </div>
             <ul class="footer-links list-reset">
                 <li>
-                    <a href="{% url "about:about" %}">{% translate "About" %}</a>
+                    <a href="{% url 'about:about' %}">{% translate "About" %}</a>
                 </li>
                 <li>
-                    <a href="{% url "catalog:item_list" %}">{% translate "Item list" %}</a>
+                    <a href="{% url 'catalog:item_list' %}">{% translate "Item list" %}</a>
                 </li>
             </ul>
             <ul class="footer-social-links list-reset">

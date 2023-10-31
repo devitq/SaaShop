@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block main %}
 {% load static i18n %}
-<script src="{% static "js/anime.min.js" %}"></script>
-<script src="{% static "js/scrollreveal.min.js" %}"></script>
+<script src="{% static 'js/anime.min.js' %}"></script>
+<script src="{% static 'js/scrollreveal.min.js' %}"></script>
 <div class="body-wrap">
     <header class="site-header">
         <div class="container">
@@ -52,7 +52,7 @@
                         <div class="feature text-center is-revealing">
                             <div class="feature-inner">
                                 <div class="feature-icon">
-                                    <img src="{% static 'landing/images/feature-icon-01.svg' %}" alt="Feature 01">
+                                    <img src="{% static 'landing/img/feature-icon-01.svg' %}" alt="Feature 01">
                                 </div>
                                 <h4 class="feature-title mt-24">Be Productive</h4>
                                 <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
@@ -61,7 +61,7 @@
                         <div class="feature text-center is-revealing">
                             <div class="feature-inner">
                                 <div class="feature-icon">
-                                    <img src="{% static 'landing/images/feature-icon-02.svg' %}" alt="Feature 02">
+                                    <img src="{% static 'landing/img/feature-icon-02.svg' %}" alt="Feature 02">
                                 </div>
                                 <h4 class="feature-title mt-24">Be Productive</h4>
                                 <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
@@ -70,7 +70,7 @@
                         <div class="feature text-center is-revealing">
                             <div class="feature-inner">
                                 <div class="feature-icon">
-                                    <img src="{% static 'landing/images/feature-icon-03.svg' %}" alt="Feature 03">
+                                    <img src="{% static 'landing/img/feature-icon-03.svg' %}" alt="Feature 03">
                                 </div>
                                 <h4 class="feature-title mt-24">Be Productive</h4>
                                 <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
@@ -79,7 +79,7 @@
                         <div class="feature text-center is-revealing">
                             <div class="feature-inner">
                                 <div class="feature-icon">
-                                    <img src="{% static 'landing/images/feature-icon-04.svg' %}" alt="Feature 04">
+                                    <img src="{% static 'landing/img/feature-icon-04.svg' %}" alt="Feature 04">
                                 </div>
                                 <h4 class="feature-title mt-24">Be Productive</h4>
                                 <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
@@ -88,7 +88,7 @@
                         <div class="feature text-center is-revealing">
                             <div class="feature-inner">
                                 <div class="feature-icon">
-                                    <img src="{% static 'landing/images/feature-icon-05.svg' %}" alt="Feature 05">
+                                    <img src="{% static 'landing/img/feature-icon-05.svg' %}" alt="Feature 05">
                                 </div>
                                 <h4 class="feature-title mt-24">Be Productive</h4>
                                 <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
@@ -97,7 +97,7 @@
                         <div class="feature text-center is-revealing">
                             <div class="feature-inner">
                                 <div class="feature-icon">
-                                    <img src="{% static 'landing/images/feature-icon-06.svg' %}" alt="Feature 06">
+                                    <img src="{% static 'landing/img/feature-icon-06.svg' %}" alt="Feature 06">
                                 </div>
                                 <h4 class="feature-title mt-24">Be Productive</h4>
                                 <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
@@ -162,6 +162,7 @@
 </div>
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
+      <h1>Лучшие товары</h1>
       <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for item in items %}
           {% include "includes/item_card.html" %}
