@@ -62,7 +62,7 @@ Linting requirements installation
 
 # Prod run
 Add following code to lyceum/settings.py file:
-```python
+```
 SECURE_HSTS_SECONDS = True
 
 SECURE_SSL_REDIRECT = True
@@ -70,4 +70,8 @@ SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 
 CSRF_COOKIE_SECURE = True
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+SECURE_HSTS_PRELOAD = True
 ```

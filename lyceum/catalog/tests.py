@@ -1,3 +1,4 @@
+from datetime import timedelta
 from http import HTTPStatus
 
 from django.core.exceptions import ValidationError
@@ -5,6 +6,8 @@ from django.db.models import QuerySet
 from django.test import Client, override_settings, TestCase
 from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
+from django.utils import timezone
+from freezegun import freeze_time
 import parameterized
 
 from catalog.models import Category, Item, Tag
@@ -238,9 +241,51 @@ class ModelsTests(TestCase):
         cls.pub_item_right_tag.tags.add(cls.published_tag.pk)
         cls.pub_item_wrong_tag.tags.add(cls.unpublished_tag.pk)
 
+        with freeze_time(timezone.now() - timedelta(days=8)):
+            cls.old_item = Item.objects.create(
+                is_published=True,
+                name="Старый товар",
+                text="Превосходно стар",
+                category=cls.published_category,
+            )
+
+        with freeze_time("2009-10-23"):
+            cls.friday_item = Item.objects.create(
+                is_published=True,
+                name="Пятничный товар",
+                text="Превосходно пятничнен",
+                category=cls.published_category,
+            )
+
+        cls.changed_item = Item.objects.create(
+            is_published=True,
+            name="Изменённый товар",
+            text="Превосходно изменён",
+            category=cls.published_category,
+        )
+        with freeze_time(timezone.now() - timedelta(seconds=1)):
+            cls.changed_item.name = "Изменили изменённый товар"
+            cls.changed_item.save()
+
+    def test_new_item_list(self):
+        response = Client().get(reverse("catalog:new_item_list"))
+
+        items = response.context["items"]
+        self.assertNotIn(self.old_item, items)
+
+    def test_friday_item_list(self):
+        response = Client().get(reverse("catalog:new_item_list"))
+
+        items = response.context["items"]
+        self.assertNotIn(self.friday_item, items)
+
+    def test_unverified_item_list(self):
+        response = Client().get(reverse("catalog:unverified_item_list"))
+        items = response.context["items"]
+        self.assertNotIn(self.changed_item, items)
+
     def test_getting_prefetched(self):
         response = Client().get(reverse("catalog:item_list"))
-
         items = response.context["items"]
         for item in items:
             self.assertIn("tags", item.__dict__["_prefetched_objects_cache"])
@@ -252,7 +297,7 @@ class ModelsTests(TestCase):
 
     def test_item_count(self):
         response = Client().get(reverse("catalog:item_list"))
-        self.assertEqual(len(response.context["items"]), 3)
+        self.assertEqual(len(response.context["items"]), 6)
 
     def test_item_categories(self):
         response = Client().get(reverse("catalog:item_list"))
