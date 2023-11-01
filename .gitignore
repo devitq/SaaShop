@@ -140,3 +140,4 @@ __pycache__/
 .idea/
 cache
 *django.mo
+.space
