@@ -141,3 +141,4 @@ __pycache__/
 cache
 *django.mo
 .space
+static/
