@@ -1,6 +1,6 @@
 <a href="{% url 'catalog:item_detail' item_id=item.id %}">
     <div class="col height100">
-        <div class="card h-100 shadow-sm item_card is-revealing">
+        <div class="card h-100 shadow-sm item_card is-revealing zoomable-card">
             {% comment %} {% if item.main_image %}
                 {{ item.main_image.image_in_template }}
             {% else %}
