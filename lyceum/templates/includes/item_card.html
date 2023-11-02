@@ -5,9 +5,9 @@
         {% else %}
             <svg class="bd-placeholder-img card-img-top" width="100%" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Изображение отсутствует</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>
         {% endif %} {% endcomment %}
-        <a href="{% url 'catalog:item_detail' item_id=item.id %}"></a>
-            <div class="card-body">
-                <h5 class="card-title">{{ item.name }}</h5>
+        <div class="card-body">
+            <a href="{% url 'catalog:item_detail' item_id=item.id %}">
+                <h5 class="card-title text-white">{{ item.name }}</h5>
                 <p class="card-text">{{ item.text|truncatewords_html:10|striptags }}</p>
                 {% if item.category.name %}
                 <h5>Категория:</h5>
@@ -23,15 +23,15 @@
                     отсутствуют
                     {% endfor %}
                 </p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        {% if user.is_superuser %}
-                        <a href="{% url 'admin:catalog_item_change' item.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">Редактировать</button></a>
-                        {% endif %}
-                    </div>
-                <small class="text-body-secondary">9 mins</small>
+            </a>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    {% if user.is_superuser %}
+                    <a href="{% url 'admin:catalog_item_change' item.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">Редактировать</button></a>
+                    {% endif %}
                 </div>
+            <small class="text-body-secondary">9 mins</small>
             </div>
-        </a>
+        </div>
     </div>
 </div>

@@ -10,6 +10,7 @@ urlpatterns = [
     path("download/", include("download.urls")),
     path("admin/", admin.site.urls),
     path("tinymce/", include("tinymce.urls")),
+    path("i18n/", include("django.conf.urls.i18n")),
 ]
 
 if settings.DEBUG:

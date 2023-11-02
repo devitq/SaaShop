@@ -123,7 +123,9 @@ class ItemManager(models.Manager):
             .prefetch_related(
                 models.Prefetch(
                     "tags",
-                    queryset=Tag.objects.filter(is_published=True).only(
+                    queryset=Tag.objects.filter(is_published=True)
+                    .order_by(Tag.name.field.name)
+                    .only(
                         "name",
                     ),
                 ),
@@ -143,7 +145,9 @@ class ItemManager(models.Manager):
             .prefetch_related(
                 models.Prefetch(
                     "tags",
-                    queryset=Tag.objects.filter(is_published=True).only(
+                    queryset=Tag.objects.filter(is_published=True)
+                    .order_by(Tag.name.field.name)
+                    .only(
                         "name",
                     ),
                 ),
@@ -166,8 +170,10 @@ class ItemManager(models.Manager):
             .prefetch_related(
                 models.Prefetch(
                     "tags",
-                    queryset=Tag.objects.filter(is_published=True).only(
-                        Tag.name.field.name,
+                    queryset=Tag.objects.filter(is_published=True)
+                    .order_by(Tag.name.field.name)
+                    .only(
+                        "name",
                     ),
                 ),
             )
