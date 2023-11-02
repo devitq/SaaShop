@@ -33,7 +33,7 @@ prod-run:
   stage: running
   image: python:3.10
   variables:
-    DJANGO_DEBUG: False
+    DJANGO_DEBUG: "False"
   script:
     - pip install -r requirements/prod.txt
     - cd lyceum
