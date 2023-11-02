@@ -31,6 +31,13 @@ ALLOW_REVERSE = os.getenv("DJANGO_ALLOW_REVERSE", "true").lower() in (
     "y",
 )
 
+USE_LOCAL_MEDIA = os.getenv("USE_LOCAL_MEDIA", "true").lower() in (
+    "true",
+    "1",
+    "yes",
+    "y",
+)
+
 INSTALLED_APPS = [
     # Main apps
     "django.contrib.admin",
