@@ -6,6 +6,10 @@ from catalog.models import Category, Item, ItemImages, MainImage, Tag
 
 __all__ = ()
 
+admin.site.site_header = "Админ панель SaaShop"
+admin.site.site_title = "Админ панель SaaShop"
+admin.site.index_title = "Админ панель SaaShop"
+
 
 class ImagesInline(admin.TabularInline):
     model = ItemImages
@@ -14,6 +18,10 @@ class ImagesInline(admin.TabularInline):
 
 class MainImageAdmin(admin.ModelAdmin):
     list_display = (MainImage.image_tmb,)
+
+
+class ItemImagesAdmin(admin.ModelAdmin):
+    list_display = (ItemImages.image_tmb,)
 
 
 class CatalogItemAdmin(admin.ModelAdmin):
@@ -60,4 +68,4 @@ admin.site.register(Item, CatalogItemAdmin)
 admin.site.register(Tag, AutoGenSlug)
 admin.site.register(Category, AutoGenSlug)
 admin.site.register(MainImage, MainImageAdmin)
-admin.site.register(ItemImages)
+admin.site.register(ItemImages, ItemImagesAdmin)

@@ -102,6 +102,9 @@ class MainImage(models.Model):
     image_tmb.short_description = "превью"
     image_tmb.allow_tags = True
 
+    def __str__(self) -> str:
+        return f"Главное изображение №{self.id}"
+
     class Meta:
         verbose_name = "основное изображение"
         verbose_name_plural = "основные изображения"
@@ -262,10 +265,23 @@ class ItemImages(models.Model):
         thumb_quality=51,
     ):
         return sorl.thumbnail.get_thumbnail(
-            self.main_image,
+            self.image,
             f"{thumb_width}x{thumb_height}",
             quality=thumb_quality,
         )
+
+    def image_tmb(self):
+        if self.image:
+            return mark_safe(
+                f"<img src='{self.get_thumbnail().url}' width='300'",
+            )
+        return "Изображение отсутствует"
+
+    image_tmb.short_description = "превью"
+    image_tmb.allow_tags = True
+
+    def __str__(self) -> str:
+        return f"Изображение товара №{self.id}"
 
     class Meta:
         verbose_name = "фотография для товаров"

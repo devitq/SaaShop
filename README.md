@@ -1,6 +1,14 @@
 # SaaShop
 
-[![Pipeline Status](https://gitlab.crja72.ru/django_2023/students/201154-itq-dev-47231/badges/main/pipeline.svg)](https://gitlab.crja72.ru/django_2023/students/201154-itq-dev-47231/-/pipelines)
+[![Pipeline Status](https://gitlab.crja72.ru/django_2023/students/201154-itq-dev-course-967/badges/main/pipeline.svg)](https://gitlab.crja72.ru/django_2023/students/201154-itq-dev-course-967/-/pipelines)
+
+## Cloning project
+
+Run this git command
+
+```cmd
+> git clone git@gitlab.crja72.ru:django_2023/students/201154-itq-dev-course-967.git
+```
 
 ## Creating translations
 
@@ -77,32 +85,30 @@ Test requirements installation
 > pip install -r requirements/test.txt
 ```
 
-Linting requirements installation
+## Preparing database
+
+### Applying migrations
 
 ```cmd
-> pip install -r requirements/lints.txt
+> python manage.py migrate
+```
+
+### Loading fixtures
+
+```cmd
+> python manage.py loaddata fixtures/data.json
+```
+
+## Collecting static
+
+Run this command:
+
+```cmd
+> python manage.py collectstatic
 ```
 
 ## Dev run
 
 ```cmd
 > python manage.py runserver
-```
-
-## Prod run
-
-Add following code to lyceum/settings.py file:
-
-```python
-SECURE_HSTS_SECONDS = True
-
-SECURE_SSL_REDIRECT = True
-
-SESSION_COOKIE_SECURE = True
-
-CSRF_COOKIE_SECURE = True
-
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
-SECURE_HSTS_PRELOAD = True
 ```

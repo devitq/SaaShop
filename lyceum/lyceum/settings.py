@@ -3,6 +3,16 @@ from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
+import sentry_sdk
+
+sentry_sdk.init(
+    dsn=(
+        "https://38f01932ee1648b37247a241cb06f10e@o4506155887558656."
+        "ingest.sentry.io/4506155889262592"
+    ),
+    traces_sample_rate=1.0,
+    profiles_sample_rate=1.0,
+)
 
 load_dotenv(override=False)
 
@@ -82,13 +92,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "lyceum.wsgi.application"
 
+DB_NAME = os.getenv("DB_NAME", "sqlite")
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    },
-}
+if DB_NAME == "sqlite":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        },
+    }
+elif DB_NAME == "postgresql":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("POSTGRE_DB_NAME", "postgres"),
+            "USER": os.getenv("POSTGRE_DB_USER", "default"),
+            "PASSWORD": os.getenv("POSTGRE_DB_PASSWORD", "password"),
+            "HOST": os.getenv("POSTGRE_DB_HOST", "localhost"),
+            "PORT": os.getenv("POSTGRE_DB_PORT", "5432"),
+        },
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -131,13 +154,15 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = "static/"
+STATIC_URL = os.getenv("STATIC_URL", "static/")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static_dev",
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
@@ -148,3 +173,23 @@ LOCALE_PATHS = [
 ]
 
 THUMBNAIL_PRESERVE_FORMAT = True
+
+DEPLOYING_ON_HTTPS = os.getenv("DEPLOYING_ON_HTTPS", "false").lower() in (
+    "true",
+    "1",
+    "yes",
+    "y",
+)
+
+if DEPLOYING_ON_HTTPS:
+    SECURE_HSTS_SECONDS = True
+
+    SECURE_SSL_REDIRECT = True
+
+    SESSION_COOKIE_SECURE = True
+
+    CSRF_COOKIE_SECURE = True
+
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+    SECURE_HSTS_PRELOAD = True
