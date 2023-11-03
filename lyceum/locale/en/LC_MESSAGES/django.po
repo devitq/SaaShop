@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-03 15:33+0300\n"
+"POT-Creation-Date: 2023-11-03 19:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,12 +30,12 @@ msgstr "SaaShop Admin Panel"
 msgid "saashop_admin_panel_index_title"
 msgstr "SaaShop Admin Panel"
 
-#: .\catalog\admin.py:59 .\catalog\models.py:101 .\catalog\models.py:285
+#: .\catalog\admin.py:59 .\catalog\models.py:101 .\catalog\models.py:290
 #: .\templates\catalog\item.html:23
 msgid "no_image"
 msgstr "No image"
 
-#: .\catalog\admin.py:61 .\catalog\models.py:103 .\catalog\models.py:287
+#: .\catalog\admin.py:61 .\catalog\models.py:103 .\catalog\models.py:292
 msgid "preview"
 msgstr "preview"
 
@@ -51,7 +51,7 @@ msgstr "slug"
 msgid "tag_models"
 msgstr "tag"
 
-#: .\catalog\models.py:50 .\catalog\models.py:224
+#: .\catalog\models.py:50 .\catalog\models.py:229
 msgid "tags_models"
 msgstr "tags"
 
@@ -59,7 +59,7 @@ msgstr "tags"
 msgid "weight_models"
 msgstr "weight"
 
-#: .\catalog\models.py:67 .\catalog\models.py:233
+#: .\catalog\models.py:67 .\catalog\models.py:238
 msgid "category_models"
 msgstr "category"
 
@@ -67,11 +67,11 @@ msgstr "category"
 msgid "categories_models"
 msgstr "categories"
 
-#: .\catalog\models.py:73 .\catalog\models.py:263
+#: .\catalog\models.py:73 .\catalog\models.py:268
 msgid "image_models"
 msgstr "image"
 
-#: .\catalog\models.py:110 .\catalog\models.py:241
+#: .\catalog\models.py:110 .\catalog\models.py:246
 msgid "main_image_models"
 msgstr "main image"
 
@@ -87,41 +87,57 @@ msgstr "show on main"
 msgid "text_models"
 msgstr "text"
 
-#: .\catalog\models.py:209
+#: .\catalog\models.py:215
 msgid "text_should_contain"
 msgstr "Text should contain 'превосходно' или 'роскошно'"
 
-#: .\catalog\models.py:213
+#: .\catalog\models.py:218
 msgid "created_at_utc_models"
 msgstr "created at (UTC)"
 
-#: .\catalog\models.py:218
+#: .\catalog\models.py:223
 msgid "updated_at_utc_models"
 msgstr "updated at (UTC)"
 
-#: .\catalog\models.py:227
+#: .\catalog\models.py:232
 msgid "choose_tags_non_required"
 msgstr "Select tags(optional)"
 
-#: .\catalog\models.py:237
+#: .\catalog\models.py:242
 msgid "choose_category_non_required"
 msgstr "Select category(optional)"
 
-#: .\catalog\models.py:249 .\catalog\models.py:259
+#: .\catalog\models.py:254 .\catalog\models.py:264
 msgid "item_models"
 msgstr "item"
 
-#: .\catalog\models.py:250
+#: .\catalog\models.py:255
 msgid "items_models"
 msgstr "items"
 
-#: .\catalog\models.py:294
+#: .\catalog\models.py:299
 msgid "item_image_models"
 msgstr "item image"
 
-#: .\catalog\models.py:295
+#: .\catalog\models.py:300
 msgid "item_images_models"
 msgstr "item images"
+
+#: .\catalog\views.py:17
+msgid "all_items"
+msgstr "All items"
+
+#: .\catalog\views.py:44
+msgid "new_items"
+msgstr "New items"
+
+#: .\catalog\views.py:70
+msgid "friday"
+msgstr "Friday"
+
+#: .\catalog\views.py:85
+msgid "unverified"
+msgstr "Unverified"
 
 #: .\core\models.py:17
 msgid "title_models"
@@ -163,7 +179,7 @@ msgstr "About"
 
 #: .\templates\about\about.html:6
 msgid "about_text"
-msgstr ""
+msgstr "The world's best catalog of ready-made IT solutions for your business."
 
 #: .\templates\catalog\item.html:31 .\templates\includes\item_card.html:18
 msgid "category"
@@ -190,7 +206,7 @@ msgstr "Here you can view our works and choose the ones you need"
 msgid "home"
 msgstr "Home"
 
-#: .\templates\catalog\item_list.html:30 .\templates\homepage\main.html:170
+#: .\templates\catalog\item_list.html:30 .\templates\homepage\main.html:171
 msgid "no_cards"
 msgstr "No items"
 
@@ -203,7 +219,7 @@ msgstr "The world's best catalog of ready-made IT solutions for your business."
 msgid "item_list"
 msgstr "Item list"
 
-#: .\templates\homepage\main.html:165
+#: .\templates\homepage\main.html:166
 msgid "landing_item_list"
 msgstr "Best items"
 

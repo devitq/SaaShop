@@ -3,6 +3,7 @@ from datetime import timedelta
 from django.db import models
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 import catalog.models
 
@@ -13,7 +14,7 @@ def item_list(response):
     items = catalog.models.Item.objects.published()
     context = {
         "items": items,
-        "title": "Все товары",
+        "title": _("all_items"),
     }
     return render(
         request=response,
@@ -40,7 +41,7 @@ def new_item_list(response):
         items = None
     context = {
         "items": items,
-        "title": "Новинки",
+        "title": _("new_items"),
     }
     return render(
         request=response,
@@ -66,7 +67,7 @@ def friday_item_list(response):
         items = None
     context = {
         "items": items,
-        "title": "Пятница",
+        "title": _("friday"),
     }
     return render(
         request=response,
@@ -81,7 +82,7 @@ def unverified_item_list(response):
     )
     context = {
         "items": items,
-        "title": "Непроверенное",
+        "title": _("unverified"),
     }
     return render(
         request=response,
