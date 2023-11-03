@@ -39,6 +39,11 @@ USE_LOCAL_MEDIA = os.getenv("USE_LOCAL_MEDIA", "true").lower() in (
 )
 
 INSTALLED_APPS = [
+    # Other
+    "sorl.thumbnail",
+    "django_cleanup.apps.CleanupConfig",
+    "tinymce",
+    "modeltranslation",
     # Main apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -46,10 +51,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # Other
-    "sorl.thumbnail",
-    "django_cleanup.apps.CleanupConfig",
-    "tinymce",
     # Our apps
     "about.apps.AboutConfig",
     "catalog.apps.CatalogConfig",
@@ -148,12 +149,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = "ru"
+LANGUAGE_CODE = "en"
 
-LANGUAGES = [
+LANGUAGES = (
     ("en", _("English")),
     ("ru", _("Russian")),
-]
+)
+
+MODELTRANSLATION_PREPOPULATE_LANGUAGE = "en"
 
 TIME_ZONE = "UTC"
 

@@ -24,8 +24,8 @@
                 <div class="hero-inner">
                     <div class="hero-copy">
                         <h1 class="hero-title mt-0">SaaShop</h1>
-                        <p class="hero-paragraph">Лучший в мире каталог готовых IT решений для вашего бизнеса.</p>
-                        <div class="hero-cta"><a class="button button-primary" href="{% url "catalog:item_list" %}">{% translate "Item list" %}</a><a class="button" href="{% url "about:about" %}">{% translate "About" %}</a></div>
+                        <p class="hero-paragraph">{% translate "landing_lead_text" %}</p>
+                        <div class="hero-cta"><a class="button button-primary" href="{% url "catalog:item_list" %}">{% translate "item_list" %}</a><a class="button" href="{% url "about:about" %}">{% translate "about" %}</a></div>
                     </div>
                     <div class="hero-figure anime-element">
                         <svg width="528" height="396" viewBox="0 0 528 396">
@@ -162,12 +162,12 @@
 </div>
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
-      <h1>Лучшие товары</h1>
+      <h1>{% translate "landing_item_list" %}</h1>
       <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for item in items %}
           {% include "includes/item_card.html" %}
         {% empty %}
-          <p>Карточки отсутствуют</p>
+          <p>{% translate "no_cards" %}</p>
         {% endfor %}
       </div>
     </div>

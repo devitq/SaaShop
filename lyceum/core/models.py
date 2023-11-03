@@ -2,6 +2,7 @@ import re
 
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from transliterate import translit
 from transliterate.discover import autodiscover
 
@@ -13,12 +14,12 @@ autodiscover()
 
 class CoreModel(models.Model):
     name = models.CharField(
-        "название",
+        _("title_models"),
         max_length=150,
         unique=True,
-        help_text="Не больше 150 символов",
+        help_text=_("no_more_than_150"),
     )
-    is_published = models.BooleanField("опубликовано", default=True)
+    is_published = models.BooleanField(_("published_models"), default=True)
 
     class Meta:
         abstract = True
@@ -29,11 +30,11 @@ class CoreModel(models.Model):
 
 class AddUniqueName(models.Model):
     unique_name = models.CharField(
-        "уникальное название",
+        _("unique_name_models"),
         max_length=150,
         unique=True,
         editable=False,
-        help_text="Сгенерированное название для унификации",
+        help_text=_("generated_name_for_unique"),
         null=True,
     )
 
@@ -60,7 +61,7 @@ class AddUniqueName(models.Model):
             > 0
         ):
             raise ValidationError(
-                "Элемент с таким же похожим именем уже существует",
+                _("item_with_similar_name_exist"),
             )
 
     class Meta:

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block main %}
-{% load thumbnail static %}
+{% load thumbnail static i18n %}
 <script src="{% static 'js/anime.min.js' %}"></script>
 <script src="{% static 'js/scrollreveal.min.js' %}"></script>
 <section class="py-5">
@@ -20,7 +20,7 @@
             {% empty %}
             <div class="col-md-6">
                 <svg height="300px" width="300px" class="card-img-top mb-5 mb-md-0 rounded" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Изображение отсутствует</title>
+                    <title>{% translate "no_image" %}</title>
                     <rect width="100%" height="100%" fill="#55595c"></rect>
                 </svg>
             </div>
@@ -28,13 +28,13 @@
             <div class="col-md-6">
                 <h1 class="display-5 fw-bolder no-margin-top">{{ item.name }}</h1>
                 <p class="lead">{{ item.text|safe }}</p>
-                <h6>Категория:</h6>
+                <h6>{% translate "category" %}:</h6>
                 <span class="badge rounded-pill text-bg-warning">{{ item.category.name }}</span>
-                <h6>Теги:</h6>
+                <h6>{% translate "tags" %}:</h6>
                 {% for tag in item.tags.all %}
                 <span class="badge rounded-pill text-bg-warning">{{ tag.name }}</span>
                 {% empty %}
-                отсутствуют
+                {% translate "empty_plural" %}
                 {% endfor %}
             </div>
         </div>
@@ -42,7 +42,7 @@
 </section>
 <section class="py-3 bg-dark">
     <div class="container px-4 px-lg-5 mt-5">
-        <h2 class="fw-bolder mb-4">Картинки:</h2>
+        <h2 class="fw-bolder mb-4">{% translate "images" %}:</h2>
         <div class="row g-3 g-lg-4 g-md-3 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
             {% for image in item.images.all %}
             {% thumbnail image.image "300x300" as tmb_image %}
@@ -59,7 +59,7 @@
             {% endthumbnail %}
             {% empty %}
             </div>
-            <p class="margin-top-10px">Отсутствуют</p>
+            <p class="margin-top-10px">{% translate "empty_plural" %}</p>
             <div>
             {% endfor %}
         </div>

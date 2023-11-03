@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-30 18:18+0300\n"
+"POT-Creation-Date: 2023-11-03 15:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,33 +20,205 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\lyceum\settings.py:123
+#: .\catalog\admin.py:11
+msgid "saashop_admin_panel_header"
+msgstr "Админ панель SaaShop"
+
+#: .\catalog\admin.py:12
+msgid "saashop_admin_panel_title"
+msgstr "Админ панель SaaShop"
+
+#: .\catalog\admin.py:13
+msgid "saashop_admin_panel_index_title"
+msgstr "Админ панель SaaShop"
+
+#: .\catalog\admin.py:59 .\catalog\models.py:101 .\catalog\models.py:285
+#: .\templates\catalog\item.html:23
+msgid "no_image"
+msgstr "Изображение отсутствует"
+
+#: .\catalog\admin.py:61 .\catalog\models.py:103 .\catalog\models.py:287
+msgid "preview"
+msgstr "превью"
+
+#: .\catalog\apps.py:10
+msgid "catalog_app"
+msgstr "Каталог"
+
+#: .\catalog\models.py:42 .\catalog\models.py:55
+msgid "slug_models"
+msgstr "слаг"
+
+#: .\catalog\models.py:49
+msgid "tag_models"
+msgstr "тег"
+
+#: .\catalog\models.py:50 .\catalog\models.py:224
+msgid "tags_models"
+msgstr "теги"
+
+#: .\catalog\models.py:61
+msgid "weight_models"
+msgstr "вес"
+
+#: .\catalog\models.py:67 .\catalog\models.py:233
+msgid "category_models"
+msgstr "категория"
+
+#: .\catalog\models.py:68
+msgid "categories_models"
+msgstr "категории"
+
+#: .\catalog\models.py:73 .\catalog\models.py:263
+msgid "image_models"
+msgstr "изображение"
+
+#: .\catalog\models.py:110 .\catalog\models.py:241
+msgid "main_image_models"
+msgstr "главное изображение"
+
+#: .\catalog\models.py:111
+msgid "main_images_models"
+msgstr "главные изображения"
+
+#: .\catalog\models.py:204
+msgid "show_on_main_models"
+msgstr "отображать на главной"
+
+#: .\catalog\models.py:206
+msgid "text_models"
+msgstr "текст"
+
+#: .\catalog\models.py:209
+msgid "text_should_contain"
+msgstr "Текст должен содержать слово 'превосходно' или 'роскошно'"
+
+#: .\catalog\models.py:213
+msgid "created_at_utc_models"
+msgstr "дата создания (UTC)"
+
+#: .\catalog\models.py:218
+msgid "updated_at_utc_models"
+msgstr "дата изменения (UTC)"
+
+#: .\catalog\models.py:227
+msgid "choose_tags_non_required"
+msgstr "Выберите теги(необязательно)"
+
+#: .\catalog\models.py:237
+msgid "choose_category_non_required"
+msgstr "Выберите категорию(необязательно)"
+
+#: .\catalog\models.py:249 .\catalog\models.py:259
+msgid "item_models"
+msgstr "товар"
+
+#: .\catalog\models.py:250
+msgid "items_models"
+msgstr "товары"
+
+#: .\catalog\models.py:294
+msgid "item_image_models"
+msgstr "изображение товара"
+
+#: .\catalog\models.py:295
+msgid "item_images_models"
+msgstr "изображения товара"
+
+#: .\core\models.py:17
+msgid "title_models"
+msgstr "название"
+
+#: .\core\models.py:20
+msgid "no_more_than_150"
+msgstr "Не больше 150 символов"
+
+#: .\core\models.py:22
+msgid "published_models"
+msgstr "опубликовано"
+
+#: .\core\models.py:33
+msgid "unique_name_models"
+msgstr "уникальное имя"
+
+#: .\core\models.py:37
+msgid "generated_name_for_unique"
+msgstr "Сгенерированное имя для унификации"
+
+#: .\core\models.py:64
+msgid "item_with_similar_name_exist"
+msgstr "Элемент с похожим именем уже существуетя"
+
+#: .\lyceum\settings.py:155
 msgid "English"
 msgstr "Английский"
 
-#: .\lyceum\settings.py:124
+#: .\lyceum\settings.py:156
 msgid "Russian"
 msgstr "Русский"
 
 #: .\templates\about\about.html:5 .\templates\catalog\item_list.html:13
 #: .\templates\homepage\main.html:28 .\templates\includes\footer.html:13
 #: .\templates\includes\header.html:16
-msgid "About"
+msgid "about"
 msgstr "О проекте"
 
+#: .\templates\about\about.html:6
+msgid "about_text"
+msgstr ""
+
+#: .\templates\catalog\item.html:31 .\templates\includes\item_card.html:18
+msgid "category"
+msgstr "Категория"
+
+#: .\templates\catalog\item.html:33 .\templates\includes\item_card.html:23
+msgid "tags"
+msgstr "Теги"
+
+#: .\templates\catalog\item.html:37 .\templates\catalog\item.html:62
+#: .\templates\includes\item_card.html:28
+msgid "empty_plural"
+msgstr "Отсутствуют"
+
+#: .\templates\catalog\item.html:45
+msgid "images"
+msgstr "Изображения"
+
+#: .\templates\catalog\item_list.html:10
+msgid "item_list_lead_text"
+msgstr ""
+"Здесь вы можете ознакомиться с нашими работами и подобрать себе то, что вам "
+"нужно"
+
 #: .\templates\catalog\item_list.html:12 .\templates\includes\header.html:15
-msgid "Home"
+msgid "home"
 msgstr "Главная"
+
+#: .\templates\catalog\item_list.html:30 .\templates\homepage\main.html:170
+msgid "no_cards"
+msgstr "Товары отсутствуют"
+
+#: .\templates\homepage\main.html:27
+msgid "landing_lead_text"
+msgstr "Лучший в мире каталог готовых ИТ-решений для вашего бизнеса."
 
 #: .\templates\homepage\main.html:28 .\templates\includes\footer.html:16
 #: .\templates\includes\header.html:17
-msgid "Item list"
+msgid "item_list"
 msgstr "Список товаров"
 
+#: .\templates\homepage\main.html:165
+msgid "landing_item_list"
+msgstr "Лучшие товары"
+
 #: .\templates\includes\footer.html:21
-msgid "all rights reserved"
+msgid "all_rights_reserved"
 msgstr "все права защищены"
 
 #: .\templates\includes\header.html:19
-msgid "Admin"
+msgid "admin_panel"
 msgstr "Админ панель"
+
+#: .\templates\includes\item_card.html:35
+msgid "edit"
+msgstr "Редактировать"

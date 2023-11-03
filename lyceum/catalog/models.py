@@ -8,6 +8,7 @@ from django.core.validators import (
 )
 from django.db import models
 from django.utils.html import mark_safe
+from django.utils.translation import gettext_lazy as _
 import django_cleanup
 import sorl.thumbnail
 from tinymce.models import HTMLField
@@ -38,38 +39,38 @@ def get_file_path_for_images(instance, filename):
 
 class Tag(CoreModel, AddUniqueName):
     slug = models.SlugField(
-        "слаг",
+        _("slug_models"),
         max_length=200,
         unique=True,
         help_text="a-z, 0-9, _, -",
     )
 
     class Meta:
-        verbose_name = "тег"
-        verbose_name_plural = "теги"
+        verbose_name = _("tag_models")
+        verbose_name_plural = _("tags_models")
 
 
 class Category(CoreModel, AddUniqueName):
     slug = models.SlugField(
-        "слаг",
+        _("slug_models"),
         max_length=200,
         unique=True,
         help_text="a-z, 0-9, _, -",
     )
     weight = models.PositiveSmallIntegerField(
-        "вес",
+        _("weight_models"),
         default=100,
         validators=[MinValueValidator(1), MaxValueValidator(32767)],
     )
 
     class Meta:
-        verbose_name = "категория"
-        verbose_name_plural = "категории"
+        verbose_name = _("category_models")
+        verbose_name_plural = _("categories_models")
 
 
 class MainImage(models.Model):
     main_image = models.ImageField(
-        "основное изображение",
+        _("image_models"),
         upload_to=get_file_path_for_main_image,
     )
 
@@ -97,17 +98,17 @@ class MainImage(models.Model):
             return mark_safe(
                 f"<img src='{self.get_image_300x300().url}' width='300'",
             )
-        return "Изображение отсутствует"
+        return _("no_image")
 
-    image_tmb.short_description = "превью"
+    image_tmb.short_description = _("preview")
     image_tmb.allow_tags = True
 
     def __str__(self) -> str:
         return f"Главное изображение №{self.id}"
 
     class Meta:
-        verbose_name = "основное изображение"
-        verbose_name_plural = "основные изображения"
+        verbose_name = _("main_image_models")
+        verbose_name_plural = _("main_images_models")
 
 
 class ItemManager(models.Manager):
@@ -200,44 +201,49 @@ class ItemManager(models.Manager):
 class Item(CoreModel):
     objects = ItemManager()
 
-    is_on_main = models.BooleanField("отображать на главной", default=False)
+    is_on_main = models.BooleanField(_("show_on_main_models"), default=False)
     text = HTMLField(
-        "текст",
-        validators=[ValidateMustContain("превосходно", "роскошно")],
-        help_text=(
-            'Описание должно содержать слово "превосходно" или "роскошно"'
-        ),
+        _("text_models"),
+        validators=[
+            ValidateMustContain(
+                "превосходно",
+                "роскошно",
+                "perfect",
+                "luxurious",
+            ),
+        ],
+        help_text=(_("text_should_contain")),
     )
     created_at = models.DateTimeField(
-        "дата создания (UTC)",
+        _("created_at_utc_models"),
         null=True,
         auto_now_add=True,
     )
     updated_at = models.DateTimeField(
-        "дата последнего изменения (UTC)",
+        _("updated_at_utc_models"),
         null=True,
         auto_now=True,
     )
     tags = models.ManyToManyField(
         Tag,
-        verbose_name="теги",
+        verbose_name=_("tags_models"),
         blank=True,
         related_query_name="tag",
-        help_text="Выберите теги(необязательно)",
+        help_text=_("choose_tags_non_required"),
     )
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
         null=True,
-        verbose_name="категория",
+        verbose_name=_("category_models"),
         blank=True,
         related_name="item",
         related_query_name="category",
-        help_text="Выберите категорию(необязательно)",
+        help_text=_("choose_category_non_required"),
     )
     main_image = models.OneToOneField(
         MainImage,
-        verbose_name="основное изображение",
+        verbose_name=_("main_image_models"),
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -245,8 +251,8 @@ class Item(CoreModel):
 
     class Meta:
         ordering = ("name", "id")
-        verbose_name = "товар"
-        verbose_name_plural = "товары"
+        verbose_name = _("item_models")
+        verbose_name_plural = _("items_models")
 
 
 class ItemImages(models.Model):
@@ -255,11 +261,11 @@ class ItemImages(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         related_query_name="images",
-        verbose_name="товар",
+        verbose_name=_("item_models"),
         related_name="images",
     )
     image = models.ImageField(
-        "изображение",
+        _("image_models"),
         upload_to=get_file_path_for_images,
         null=True,
     )
@@ -281,17 +287,17 @@ class ItemImages(models.Model):
             return mark_safe(
                 f"<img src='{self.get_thumbnail().url}' width='300'",
             )
-        return "Изображение отсутствует"
+        return _("no_image")
 
-    image_tmb.short_description = "превью"
+    image_tmb.short_description = _("preview")
     image_tmb.allow_tags = True
 
     def __str__(self) -> str:
         return f"Изображение товара №{self.id}"
 
     class Meta:
-        verbose_name = "фотография для товаров"
-        verbose_name_plural = "фотографии для товаров"
+        verbose_name = _("item_image_models")
+        verbose_name_plural = _("item_images_models")
 
 
 def sorl_delete(**kwargs):

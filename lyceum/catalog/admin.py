@@ -1,14 +1,16 @@
 from django.contrib import admin
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+from modeltranslation.admin import TranslationAdmin
 from tinymce.widgets import AdminTinyMCE
 
 from catalog.models import Category, Item, ItemImages, MainImage, Tag
 
 __all__ = ()
 
-admin.site.site_header = "Админ панель SaaShop"
-admin.site.site_title = "Админ панель SaaShop"
-admin.site.index_title = "Админ панель SaaShop"
+admin.site.site_header = _("saashop_admin_panel_header")
+admin.site.site_title = _("saashop_admin_panel_title")
+admin.site.index_title = _("saashop_admin_panel_index_title")
 
 
 class ImagesInline(admin.TabularInline):
@@ -24,7 +26,7 @@ class ItemImagesAdmin(admin.ModelAdmin):
     list_display = (ItemImages.image_tmb,)
 
 
-class CatalogItemAdmin(admin.ModelAdmin):
+class CatalogItemAdmin(TranslationAdmin):
     list_display = [
         Item.name.field.name,
         Item.is_published.field.name,
@@ -54,13 +56,13 @@ class CatalogItemAdmin(admin.ModelAdmin):
     def preview(self, obj):
         if obj.main_image:
             return obj.main_image.image_tmb()
-        return "Изображение отсутсвует"
+        return _("no_image")
 
-    preview.short_description = "превью"
+    preview.short_description = _("preview")
     preview.allow_tags = True
 
 
-class AutoGenSlug(admin.ModelAdmin):
+class AutoGenSlug(TranslationAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 

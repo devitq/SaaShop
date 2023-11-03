@@ -55,6 +55,8 @@ class ItemManagerTests(TestCase):
             "main_image_id",
             "is_published",
             "is_on_main",
+            "created_at",
+            "updated_at",
         ]
         tag_unnecessary_values = ["is_published", "unique_name", "slug"]
         category_unnecessary_values = [
@@ -100,6 +102,8 @@ class ItemManagerTests(TestCase):
             "main_image_id",
             "is_published",
             "is_on_main",
+            "created_at",
+            "updated_at",
         ]
         tag_unnecessary_values = ["is_published", "unique_name", "slug"]
         category_unnecessary_values = [
@@ -150,6 +154,8 @@ class ItemManagerTests(TestCase):
         item_unnecessary_values = [
             "is_published",
             "is_on_main",
+            "created_at",
+            "updated_at",
         ]
         tag_unnecessary_values = ["is_published", "unique_name", "slug"]
         category_unnecessary_values = [
