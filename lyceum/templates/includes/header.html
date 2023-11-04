@@ -15,6 +15,7 @@
           <li class="nav-item"><a href="{% url 'homepage:homepage' %}" {% if view_name == 'homepage:homepage' %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "home" %}</a></li>
           <li class="nav-item"><a href="{% url 'about:about' %}" {% if view_name == 'about:about' %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "about" %}</a></li>
           <li class="nav-item"><a href="{% url 'catalog:item_list' %}" {% if view_name == 'catalog:item_list' %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "item_list" %}</a></li>
+          <li class="nav-item"><a href="{% url 'feedback:feedback' %}" {% if view_name == 'feedback:feedback' %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "feedback" %}</a></li>
           {% if user.is_superuser %}
           <li class="nav-item"><a href="{% url 'admin:index' %}" class="nav-link">{% translate "admin_panel" %}</a></li>
           {% endif %}

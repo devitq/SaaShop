@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-03 19:05+0300\n"
+"POT-Creation-Date: 2023-11-04 20:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,12 +32,12 @@ msgstr "Админ панель SaaShop"
 msgid "saashop_admin_panel_index_title"
 msgstr "Админ панель SaaShop"
 
-#: .\catalog\admin.py:59 .\catalog\models.py:101 .\catalog\models.py:290
-#: .\templates\catalog\item.html:23
+#: .\catalog\admin.py:59 .\catalog\models.py:101 .\catalog\models.py:295
+#: .\templates\catalog\item.html:24
 msgid "no_image"
 msgstr "Изображение отсутствует"
 
-#: .\catalog\admin.py:61 .\catalog\models.py:103 .\catalog\models.py:292
+#: .\catalog\admin.py:61 .\catalog\models.py:103 .\catalog\models.py:297
 msgid "preview"
 msgstr "превью"
 
@@ -53,7 +53,7 @@ msgstr "слаг"
 msgid "tag_models"
 msgstr "тег"
 
-#: .\catalog\models.py:50 .\catalog\models.py:229
+#: .\catalog\models.py:50 .\catalog\models.py:234
 msgid "tags_models"
 msgstr "теги"
 
@@ -61,7 +61,7 @@ msgstr "теги"
 msgid "weight_models"
 msgstr "вес"
 
-#: .\catalog\models.py:67 .\catalog\models.py:238
+#: .\catalog\models.py:67 .\catalog\models.py:243
 msgid "category_models"
 msgstr "категория"
 
@@ -69,11 +69,11 @@ msgstr "категория"
 msgid "categories_models"
 msgstr "категории"
 
-#: .\catalog\models.py:73 .\catalog\models.py:268
+#: .\catalog\models.py:73 .\catalog\models.py:273
 msgid "image_models"
 msgstr "изображение"
 
-#: .\catalog\models.py:110 .\catalog\models.py:246
+#: .\catalog\models.py:110 .\catalog\models.py:251
 msgid "main_image_models"
 msgstr "главное изображение"
 
@@ -81,47 +81,47 @@ msgstr "главное изображение"
 msgid "main_images_models"
 msgstr "главные изображения"
 
-#: .\catalog\models.py:204
+#: .\catalog\models.py:209
 msgid "show_on_main_models"
 msgstr "отображать на главной"
 
-#: .\catalog\models.py:206
+#: .\catalog\models.py:211
 msgid "text_models"
 msgstr "текст"
 
-#: .\catalog\models.py:215
+#: .\catalog\models.py:220
 msgid "text_should_contain"
 msgstr "Текст должен содержать слово 'превосходно' или 'роскошно'"
 
-#: .\catalog\models.py:218
+#: .\catalog\models.py:223
 msgid "created_at_utc_models"
 msgstr "дата создания (UTC)"
 
-#: .\catalog\models.py:223
+#: .\catalog\models.py:228
 msgid "updated_at_utc_models"
 msgstr "дата изменения (UTC)"
 
-#: .\catalog\models.py:232
+#: .\catalog\models.py:237
 msgid "choose_tags_non_required"
 msgstr "Выберите теги(необязательно)"
 
-#: .\catalog\models.py:242
+#: .\catalog\models.py:247
 msgid "choose_category_non_required"
 msgstr "Выберите категорию(необязательно)"
 
-#: .\catalog\models.py:254 .\catalog\models.py:264
+#: .\catalog\models.py:259 .\catalog\models.py:269
 msgid "item_models"
 msgstr "товар"
 
-#: .\catalog\models.py:255
+#: .\catalog\models.py:260
 msgid "items_models"
 msgstr "товары"
 
-#: .\catalog\models.py:299
+#: .\catalog\models.py:304
 msgid "item_image_models"
 msgstr "изображение товара"
 
-#: .\catalog\models.py:300
+#: .\catalog\models.py:305
 msgid "item_images_models"
 msgstr "изображения товара"
 
@@ -165,11 +165,11 @@ msgstr "Сгенерированное имя для унификации"
 msgid "item_with_similar_name_exist"
 msgstr "Элемент с похожим именем уже существуетя"
 
-#: .\lyceum\settings.py:155
+#: .\lyceum\settings.py:193
 msgid "English"
 msgstr "Английский"
 
-#: .\lyceum\settings.py:156
+#: .\lyceum\settings.py:194
 msgid "Russian"
 msgstr "Русский"
 
@@ -183,20 +183,20 @@ msgstr "О проекте"
 msgid "about_text"
 msgstr "Лучший в мире каталог готовых ИТ-решений для вашего бизнеса."
 
-#: .\templates\catalog\item.html:31 .\templates\includes\item_card.html:18
+#: .\templates\catalog\item.html:33 .\templates\includes\item_card.html:18
 msgid "category"
 msgstr "Категория"
 
-#: .\templates\catalog\item.html:33 .\templates\includes\item_card.html:23
+#: .\templates\catalog\item.html:35 .\templates\includes\item_card.html:23
 msgid "tags"
 msgstr "Теги"
 
-#: .\templates\catalog\item.html:37 .\templates\catalog\item.html:62
+#: .\templates\catalog\item.html:39 .\templates\catalog\item.html:64
 #: .\templates\includes\item_card.html:28
 msgid "empty_plural"
 msgstr "Отсутствуют"
 
-#: .\templates\catalog\item.html:45
+#: .\templates\catalog\item.html:47
 msgid "images"
 msgstr "Изображения"
 
@@ -231,7 +231,11 @@ msgstr "Лучшие товары"
 msgid "all_rights_reserved"
 msgstr "все права защищены"
 
-#: .\templates\includes\header.html:19
+#: .\templates\includes\header.html:18
+msgid "feedback"
+msgstr "Обратная связь"
+
+#: .\templates\includes\header.html:20
 msgid "admin_panel"
 msgstr "Админ панель"
 

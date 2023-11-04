@@ -24,6 +24,8 @@ DEBUG = os.getenv("DJANGO_DEBUG", "true").lower() in ("true", "1", "yes", "y")
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(" ")
 
+MAIL = os.getenv("DJANGO_MAIL", "example@mail.com")
+
 ALLOW_REVERSE = os.getenv("DJANGO_ALLOW_REVERSE", "true").lower() in (
     "true",
     "1",
@@ -92,6 +94,7 @@ INSTALLED_APPS = [
     "homepage.apps.HomepageConfig",
     "core.apps.CoreConfig",
     "download.apps.DownloadConfig",
+    "feedback.apps.FeedbackConfig",
 ]
 
 
@@ -184,7 +187,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = "en"
+LANGUAGE_CODE = "ru"
 
 LANGUAGES = (
     ("en", _("English")),

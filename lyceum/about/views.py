@@ -3,9 +3,9 @@ from django.shortcuts import render
 __all__ = ()
 
 
-def description(response):
+def description(request):
     return render(
-        request=response,
+        request=request,
         template_name="about/about.html",
         context={},
     )
