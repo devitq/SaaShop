@@ -8,7 +8,7 @@
         <div class="row gx-4 gx-lg-5">
             {% thumbnail item.main_image.main_image "300x300" as main_image %}
             <div class="col-md-6">
-                <div class="card">
+                <div class="card item_card is-revealing mb-3">
                     <a href="{% url 'download:download' path=item.main_image.main_image %}">
                         <div class="badge bg-warning text-black position-absolute download_image">
                             <i class="fa-solid fa-download"></i>
@@ -19,13 +19,15 @@
             </div>
             {% empty %}
             <div class="col-md-6">
-                <svg height="300px" width="300px" class="card-img-top mb-5 mb-md-0 rounded" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>{% translate "no_image" %}</title>
-                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                </svg>
+                <div class="card item_card is-revealing mb-3">
+                    <svg height="300px" max-width="300px" class="card-img-top mb-md-0 rounded" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>{% translate "no_image" %}</title>
+                        <rect width="100%" height="100%" fill="#55595c"></rect>
+                    </svg>
+                </div>
             </div>
             {% endthumbnail %}
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <h1 class="display-5 fw-bolder no-margin-top">{{ item.name }}</h1>
                 <p class="lead">{{ item.text|safe }}</p>
                 <h6>{% translate "category" %}:</h6>

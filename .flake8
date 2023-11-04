@@ -9,5 +9,6 @@ application-import-names =
     core,
     about,
     homepage,
-    lyceum
+    lyceum,
+    download,
 inline-quotes = "

@@ -38,6 +38,41 @@ USE_LOCAL_MEDIA = os.getenv("USE_LOCAL_MEDIA", "true").lower() in (
     "y",
 )
 
+STORAGE_NAME = os.getenv("STORAGE_NAME", "default").lower()
+
+if STORAGE_NAME == "aws":
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
+
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
+
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", "")
+
+    AWS_SESSION_TOKEN = os.getenv("AWS_SESSION_TOKEN", "")
+
+    AWS_LOCATION = "media/"
+
+    AWS_S3_REGION_NAME = os.getenv("AWS_REGION", "")
+
+    AWS_S3_FILE_OVERWRITE = False
+
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+        },
+        "staticfiles": {
+            "BACKEND": (
+                "django.contrib.staticfiles.storage.StaticFilesStorage"
+            ),
+        },
+    }
+
+    MEDIA_ROOT = (
+        f"https://{AWS_STORAGE_BUCKET_NAME}{AWS_S3_REGION_NAME}"
+        ".s3.amazonaws.com/{AWS_LOCATION}"
+    )
+
+MEDIA_URL = "/media/"
+
 INSTALLED_APPS = [
     # Other
     "sorl.thumbnail",
@@ -175,8 +210,6 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
-MEDIA_URL = "/media/"
 
 LOCALE_PATHS = [
     BASE_DIR / "locale",

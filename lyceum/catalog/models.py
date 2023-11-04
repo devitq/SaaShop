@@ -115,7 +115,7 @@ class ItemManager(models.Manager):
     def on_main(self):
         return (
             self.get_queryset()
-            .select_related("category")
+            .select_related(Item.category.field.name)
             .filter(
                 is_on_main=True,
                 is_published=True,
@@ -123,11 +123,11 @@ class ItemManager(models.Manager):
             )
             .prefetch_related(
                 models.Prefetch(
-                    "tags",
+                    Item.tags.field.name,
                     queryset=Tag.objects.filter(is_published=True)
                     .order_by(Tag.name.field.name)
                     .only(
-                        "name",
+                        Tag.name.field.name,
                     ),
                 ),
             )
@@ -135,21 +135,21 @@ class ItemManager(models.Manager):
                 Item.id.field.name,
                 Item.name.field.name,
                 Item.text.field.name,
-                f"category__{Category.name.field.name}",
+                f"{Item.category.field.name}__{Category.name.field.name}",
             )
         )
 
     def published(self):
         return (
             self.get_queryset()
-            .select_related("category")
+            .select_related(Item.category.field.name)
             .prefetch_related(
                 models.Prefetch(
-                    "tags",
+                    Item.tags.field.name,
                     queryset=Tag.objects.filter(is_published=True)
                     .order_by(Tag.name.field.name)
                     .only(
-                        "name",
+                        Tag.name.field.name,
                     ),
                 ),
             )
@@ -158,23 +158,25 @@ class ItemManager(models.Manager):
                 Item.id.field.name,
                 Item.name.field.name,
                 Item.text.field.name,
-                f"category__{Category.name.field.name}",
+                f"{Item.category.field.name}__{Category.name.field.name}",
             )
-            .order_by(f"category__{Category.name.field.name}")
+            .order_by(
+                f"{Item.category.field.name}__{Category.name.field.name}",
+            )
         )
 
     def item_detail(self):
         return (
             self.get_queryset()
-            .select_related("category")
-            .select_related("main_image")
+            .select_related(Item.category.field.name)
+            .select_related(Item.main_image.field.name)
             .prefetch_related(
                 models.Prefetch(
-                    "tags",
+                    Item.tags.field.name,
                     queryset=Tag.objects.filter(is_published=True)
                     .order_by(Tag.name.field.name)
                     .only(
-                        "name",
+                        Tag.name.field.name,
                     ),
                 ),
             )
@@ -182,7 +184,7 @@ class ItemManager(models.Manager):
                 models.Prefetch(
                     "images",
                     queryset=ItemImages.objects.only(
-                        "image",
+                        ItemImages.image.field.name,
                         "item_id",
                     ),
                 ),
@@ -192,8 +194,11 @@ class ItemManager(models.Manager):
                 Item.id.field.name,
                 Item.name.field.name,
                 Item.text.field.name,
-                f"category__{Category.name.field.name}",
-                f"main_image__{MainImage.main_image.field.name}",
+                f"{Item.category.field.name}__{Category.name.field.name}",
+                (
+                    f"{Item.main_image.field.name}__"
+                    f"{MainImage.main_image.field.name}"
+                ),
             )
         )
 

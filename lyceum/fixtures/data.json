@@ -100,9 +100,9 @@
 },
 {
   "model": "catalog.mainimage",
-  "pk": 14,
+  "pk": 23,
   "fields": {
-    "main_image": "main_image/2023.11.03/1bf617cc-bd38-4d3d-a0b3-712248b79cd1.png"
+    "main_image": "main_image/2023.11.04/a2588f4e-91f2-462c-9dcd-1f515777ea76.png"
   }
 },
 {
@@ -231,9 +231,9 @@
     "text_en": "<p>This is perfect, PERFECT</p>",
     "text_ru": "<p>Это превосходно, ПРЕВОСХОДНО</p>",
     "created_at": "2023-11-03T12:46:59.038Z",
-    "updated_at": "2023-11-03T12:47:48.178Z",
+    "updated_at": "2023-11-04T15:42:10.743Z",
     "category": 4,
-    "main_image": 14,
+    "main_image": 23,
     "tags": [
       6,
       7,
@@ -245,66 +245,34 @@
 },
 {
   "model": "catalog.itemimages",
-  "pk": 10,
-  "fields": {
-    "item": null,
-    "image": "images/2023.11.02/e8283983-ff72-4595-b477-624af16a165e.png"
-  }
-},
-{
-  "model": "catalog.itemimages",
-  "pk": 11,
-  "fields": {
-    "item": null,
-    "image": "images/2023.11.02/de487052-c0ed-4fee-afda-6b78906c5fa0.png"
-  }
-},
-{
-  "model": "catalog.itemimages",
-  "pk": 12,
-  "fields": {
-    "item": null,
-    "image": "images/2023.11.02/51acea85-8202-4953-ba30-dbf93080babf.png"
-  }
-},
-{
-  "model": "catalog.itemimages",
-  "pk": 13,
-  "fields": {
-    "item": null,
-    "image": "images/2023.11.02/030930ed-e56f-4b4a-94fe-ee83c0ebfecc.png"
-  }
-},
-{
-  "model": "catalog.itemimages",
-  "pk": 14,
+  "pk": 26,
   "fields": {
     "item": 26,
-    "image": "images/2023.11.03/9fd1cc7c-11ff-4ae6-8a4b-3ead5b1a19e2.png"
+    "image": "images/2023.11.04/24508699-d797-49d9-bd84-5cf81525de0b.png"
   }
 },
 {
   "model": "catalog.itemimages",
-  "pk": 15,
+  "pk": 27,
   "fields": {
     "item": 26,
-    "image": "images/2023.11.03/65d13892-7740-41ef-9d39-8baa9f1f0bbe.png"
+    "image": "images/2023.11.04/1303ea0f-8691-4753-8e2e-601af8002a72.png"
   }
 },
 {
   "model": "catalog.itemimages",
-  "pk": 16,
+  "pk": 28,
   "fields": {
     "item": 26,
-    "image": "images/2023.11.03/1291b488-d68e-4fba-9ef0-2e9048819f21.png"
+    "image": "images/2023.11.04/c1363286-4b31-402e-975f-3ded5086858e.png"
   }
 },
 {
   "model": "catalog.itemimages",
-  "pk": 17,
+  "pk": 29,
   "fields": {
     "item": 26,
-    "image": "images/2023.11.03/39db9fd4-0a73-4a57-a015-f64148567bd7.png"
+    "image": "images/2023.11.04/bd5769c5-3c75-4c0a-8190-68873721cb2a.png"
   }
 }
 ]
