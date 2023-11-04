@@ -220,6 +220,10 @@ LOCALE_PATHS = [
 
 THUMBNAIL_PRESERVE_FORMAT = True
 
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+
+EMAIL_FILE_PATH = BASE_DIR / ""
+
 DEPLOYING_ON_HTTPS = os.getenv("DEPLOYING_ON_HTTPS", "false").lower() in (
     "true",
     "1",
