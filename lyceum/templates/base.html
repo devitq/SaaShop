@@ -18,9 +18,26 @@
     <link rel="stylesheet" href="{% static 'css/font_links.css' %}">
     <link rel="stylesheet" href="{% static 'fontawesome/css/fontawesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'fontawesome/css/solid.min.css' %}">
+    <script src="{% static 'js/toast.js' %}"></script>
     <title>SaaShop</title>
 </head>
 <body class="is-boxed has-animations">
+    {% if messages %}
+        <div class="toast-container toast-custom" aria-live="polite" aria-atomic="true">
+            {% for message in messages %}
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="{% static 'img/saas.png' %}" class="bd-placeholder-img rounded me-2" width="20" height="20">
+                        <strong class="me-auto">SaaShop</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
     {% include "includes/header.html" %}
     <main>
         {% block main %}{% endblock main %}

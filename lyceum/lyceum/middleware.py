@@ -37,5 +37,4 @@ class ReverseRussianMiddleware:
         def reverse_word(match):
             return match.group()[::-1]
 
-        res = re.sub(r"[а-яА-ЯёЁ]+", reverse_word, s)
-        return res
+        return re.sub(r"[а-яА-ЯёЁ]+", reverse_word, s)

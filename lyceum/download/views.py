@@ -1,5 +1,4 @@
 from http import HTTPStatus
-import os
 
 from django.conf import settings
 from django.http import FileResponse, HttpResponse, StreamingHttpResponse
@@ -8,13 +7,7 @@ __all__ = ()
 
 
 def download(request, path):
-    if settings.USE_LOCAL_MEDIA:
-        file_path = os.path.join(settings.MEDIA_ROOT, path)
-        if os.path.exists(file_path):
-            return FileResponse(open(file_path, "rb"), as_attachment=True)
-        else:
-            raise HttpResponse(status=HTTPStatus.NOT_FOUND)
-    else:
+    if settings.STORAGE_NAME == "aws":
         if settings.STORAGE_NAME == "aws":
             import boto3
 
@@ -37,3 +30,8 @@ def download(request, path):
                 "Content-Disposition"
             ] = f'attachment; filename="{path.split("/")[-1]}"'
             return response
+    file_path = settings.MEDIA_ROOT / path
+    if file_path.exists():
+        return FileResponse(open(file_path, "rb"), as_attachment=True)
+
+    return HttpResponse(status=HTTPStatus.NOT_FOUND)

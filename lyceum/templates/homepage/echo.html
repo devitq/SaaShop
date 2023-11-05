@@ -2,8 +2,8 @@
 {% block main %}
 
 <div class="container">
-    <h1>Обратная связь</h1>
-    <form method="post">
+    <h1>Эхо</h1>
+    <form method="post" action="{% url 'homepage:echo_submit' %}">
         {% csrf_token %}
         {% for field in form %}
             <div class="mb-3">

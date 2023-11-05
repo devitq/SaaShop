@@ -48,3 +48,16 @@ a {
 .margin-top-10px {
     margin-top: 10px;
 }
+
+label {
+    color: #FFFFFF;
+}
+
+.toast-custom {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.5rem;
+    min-height: 200px;
+    width: 250px;
+    z-index: 99999999999999;
+}

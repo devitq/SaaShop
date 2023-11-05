@@ -210,9 +210,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static_dev",
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = BASE_DIR / "static"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = BASE_DIR / "media"
 
 LOCALE_PATHS = [
     BASE_DIR / "locale",
@@ -222,7 +222,7 @@ THUMBNAIL_PRESERVE_FORMAT = True
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 
-EMAIL_FILE_PATH = BASE_DIR / ""
+EMAIL_FILE_PATH = BASE_DIR / "send_mail"
 
 DEPLOYING_ON_HTTPS = os.getenv("DEPLOYING_ON_HTTPS", "false").lower() in (
     "true",
