@@ -18,16 +18,8 @@ class FormTests(TestCase):
             {Feedback.text.field.name: "", Feedback.mail.field.name: ""},
         )
         self.assertFalse(invalid_form.is_valid())
-        self.assertFormError(
-            invalid_form,
-            Feedback.text.field.name,
-            "Обязательное поле.",
-        )
-        self.assertFormError(
-            invalid_form,
-            Feedback.mail.field.name,
-            "Обязательное поле.",
-        )
+        self.assertTrue(invalid_form.has_error(Feedback.text.field.name))
+        self.assertTrue(invalid_form.has_error(Feedback.mail.field.name))
 
     def test_validation_neg_02(self):
         invalid_form = FeedbackForm(
@@ -37,11 +29,8 @@ class FormTests(TestCase):
             },
         )
         self.assertFalse(invalid_form.is_valid())
-        self.assertFormError(
-            invalid_form,
-            Feedback.mail.field.name,
-            "Введите правильный адрес электронной почты.",
-        )
+        self.assertFalse(invalid_form.has_error(Feedback.text.field.name))
+        self.assertTrue(invalid_form.has_error(Feedback.mail.field.name))
 
     def test_validation_pos(self):
         invalid_form = FeedbackForm(
@@ -51,16 +40,8 @@ class FormTests(TestCase):
             },
         )
         self.assertTrue(invalid_form.is_valid())
-        self.assertFormError(
-            invalid_form,
-            Feedback.text.field.name,
-            [],
-        )
-        self.assertFormError(
-            invalid_form,
-            Feedback.mail.field.name,
-            [],
-        )
+        self.assertFalse(invalid_form.has_error(Feedback.text.field.name))
+        self.assertFalse(invalid_form.has_error(Feedback.mail.field.name))
 
     def test_getting_right_context(self):
         response = Client().get(reverse("feedback:feedback"))

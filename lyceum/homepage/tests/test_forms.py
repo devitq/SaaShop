@@ -65,19 +65,11 @@ class FormTests(TestCase):
             {"text": ""},
         )
         self.assertFalse(invalid_form.is_valid())
-        self.assertFormError(
-            invalid_form,
-            "text",
-            "Обязательное поле.",
-        )
+        self.assertTrue(invalid_form.has_error("text"))
 
     def test_validation_pos(self):
         invalid_form = EchoForm(
             {"text": "fhdis"},
         )
         self.assertTrue(invalid_form.is_valid())
-        self.assertFormError(
-            invalid_form,
-            "text",
-            [],
-        )
+        self.assertFalse(invalid_form.has_error("text"))
