@@ -33,7 +33,6 @@ def feedback(request):
         )
         messages.success(request, "Форма успешно отправлена")
         return redirect(reverse("feedback:feedback"))
-    messages.success(request, "Форма успешно отправлена")
     return render(
         request=request,
         template_name="feedback/feedback.html",
