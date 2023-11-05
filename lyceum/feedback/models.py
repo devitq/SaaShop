@@ -4,10 +4,10 @@ __all__ = ("Feedback",)
 
 
 class Feedback(models.Model):
+    mail = models.EmailField("почта")
     text = models.TextField("текст")
-    created_at = models.DateTimeField(
+    created_on = models.DateTimeField(
         "дата создания",
         null=True,
         auto_now_add=True,
     )
-    mail = models.EmailField("почта")

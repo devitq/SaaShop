@@ -15,24 +15,23 @@ def feedback(request):
     context = {
         "form": form,
     }
-    if form.is_valid():
-        text = form.cleaned_data.get("text")
-        created_at = form.cleaned_data.get("created_at")
-        mail = form.cleaned_data.get("mail")
-        Feedback.objects.create(
-            text=text,
-            created_at=created_at,
-            mail=mail,
-        )
-        send_mail(
-            "Новый фидбек",
-            text,
-            settings.MAIL,
-            [mail],
-            fail_silently=False,
-        )
-        messages.success(request, "Форма успешно отправлена")
-        return redirect(reverse("feedback:feedback"))
+    if request.method == "POST":
+        if form.is_valid():
+            text = form.cleaned_data.get("text")
+            mail = form.cleaned_data.get("mail")
+            Feedback.objects.create(
+                text=text,
+                mail=mail,
+            )
+            send_mail(
+                "Новый фидбек",
+                text,
+                settings.MAIL,
+                [mail],
+                fail_silently=False,
+            )
+            messages.success(request, "Форма успешно отправлена")
+            return redirect(reverse("feedback:feedback"))
     return render(
         request=request,
         template_name="feedback/feedback.html",

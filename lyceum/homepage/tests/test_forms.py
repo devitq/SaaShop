@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from django.test import Client, TestCase
 from django.urls import reverse
 
@@ -23,11 +25,59 @@ class FormTests(TestCase):
         self.assertEqual(help_text, "Введите какой-нибудь текст")
 
     def test_submit_echo(self):
-        form_data = {
-            "text": "Текст",
-        }
-
         Client().post(
             path=reverse("homepage:echo_submit"),
-            data=form_data,
+            data={"text": "Текст"},
+        )
+
+    def test_method_for_echo(self):
+        response_get = Client().get(reverse("homepage:echo"))
+        self.assertEqual(
+            response_get.status_code,
+            HTTPStatus.OK,
+        )
+        response_post = Client().post(
+            path=reverse("homepage:echo"),
+            data={"text": "Текст"},
+        )
+        self.assertEqual(
+            response_post.status_code,
+            HTTPStatus.METHOD_NOT_ALLOWED,
+        )
+
+    def test_method_for_echo_submit(self):
+        response_get = Client().get(reverse("homepage:echo_submit"))
+        self.assertEqual(
+            response_get.status_code,
+            HTTPStatus.METHOD_NOT_ALLOWED,
+        )
+        response_post = Client().post(
+            path=reverse("homepage:echo_submit"),
+            data={"text": "Текст"},
+        )
+        self.assertEqual(
+            response_post.status_code,
+            HTTPStatus.OK,
+        )
+
+    def test_validation_neg(self):
+        invalid_form = EchoForm(
+            {"text": ""},
+        )
+        self.assertFalse(invalid_form.is_valid())
+        self.assertFormError(
+            invalid_form,
+            "text",
+            "Обязательное поле.",
+        )
+
+    def test_validation_pos(self):
+        invalid_form = EchoForm(
+            {"text": "fhdis"},
+        )
+        self.assertTrue(invalid_form.is_valid())
+        self.assertFormError(
+            invalid_form,
+            "text",
+            [],
         )
