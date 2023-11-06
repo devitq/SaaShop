@@ -19,10 +19,7 @@ def feedback(request):
         if form.is_valid():
             text = form.cleaned_data.get("text")
             mail = form.cleaned_data.get("mail")
-            Feedback.objects.create(
-                text=text,
-                mail=mail,
-            )
+            form.save()
             send_mail(
                 "Новый фидбек",
                 text,

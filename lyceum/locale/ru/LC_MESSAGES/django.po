@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-06 12:09+0300\n"
+"POT-Creation-Date: 2023-11-06 13:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,7 +85,7 @@ msgstr "главные изображения"
 msgid "show_on_main_models"
 msgstr "отображать на главной"
 
-#: .\catalog\models.py:211 .\feedback\models.py:24
+#: .\catalog\models.py:211 .\feedback\models.py:31
 msgid "text_models"
 msgstr "текст"
 
@@ -93,7 +93,7 @@ msgstr "текст"
 msgid "text_should_contain"
 msgstr "Текст должен содержать слово 'превосходно' или 'роскошно'"
 
-#: .\catalog\models.py:223 .\feedback\models.py:26
+#: .\catalog\models.py:223 .\feedback\models.py:34
 msgid "created_at_utc_models"
 msgstr "дата создания (UTC)"
 
@@ -165,27 +165,36 @@ msgstr "Сгенерированное имя для унификации"
 msgid "item_with_similar_name_exist"
 msgstr "Элемент с похожим именем уже существуетя"
 
+#: .\feedback\apps.py:10 .\templates\feedback\feedback.html:21
+#: .\templates\includes\header.html:18
+msgid "feedback"
+msgstr "Обратная связь"
+
 #: .\feedback\models.py:18
 msgid "status_feedback_models"
 msgstr "статус обработки"
 
-#: .\feedback\models.py:23
+#: .\feedback\models.py:24
+msgid "name_models"
+msgstr "Имя"
+
+#: .\feedback\models.py:28
 msgid "mail_models"
 msgstr "почта"
 
-#: .\feedback\models.py:44
+#: .\feedback\models.py:43
 msgid "feedback_models"
 msgstr "обратная связь"
 
-#: .\feedback\models.py:45
+#: .\feedback\models.py:44
 msgid "feedbacks_models"
 msgstr "отзывы"
 
-#: .\feedback\models.py:59
+#: .\feedback\models.py:78
 msgid "status_log_models"
 msgstr "изменение статуса"
 
-#: .\feedback\models.py:60
+#: .\feedback\models.py:79
 msgid "status_logs_models"
 msgstr "изменения статуса"
 
@@ -237,10 +246,6 @@ msgstr "Главная"
 #: .\templates\catalog\item_list.html:30 .\templates\homepage\main.html:171
 msgid "no_cards"
 msgstr "Товары отсутствуют"
-
-#: .\templates\feedback\feedback.html:21 .\templates\includes\header.html:18
-msgid "feedback"
-msgstr "Обратная связь"
 
 #: .\templates\homepage\main.html:27
 msgid "landing_lead_text"

@@ -28,10 +28,12 @@ class FeedbackForm(forms.ModelForm):
         labels = {
             Feedback.mail.field.name: "Почта",
             Feedback.text.field.name: "Текст",
+            Feedback.name.field.name: "Имя",
         }
         help_texts = {
             Feedback.mail.field.name: "Почта, по которой мы свяжемся с вами",
             Feedback.text.field.name: "Ваш отзыв",
+            Feedback.name.field.name: "Ваше имя",
         }
         widgets = {
             Feedback.text.field.name: forms.Textarea(

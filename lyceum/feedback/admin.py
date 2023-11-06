@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 
 from feedback.models import Feedback, StatusLog
 
@@ -6,18 +7,6 @@ __all__ = ()
 
 
 class FeedbackAdmin(admin.ModelAdmin):
-    def save(self, *args, **kwargs):
-        if self.pk:
-            original_status = Feedback.objects.get(pk=self.pk).status
-            if original_status != self.status:
-                StatusLog.objects.create(
-                    user=self.user,
-                    feedback=self,
-                    from_status=original_status,
-                    to_status=self.status,
-                )
-        super().save(*args, **kwargs)
-
     def save_model(self, request, obj, form, change):
         original_status = None
 
@@ -30,10 +19,27 @@ class FeedbackAdmin(admin.ModelAdmin):
             StatusLog.objects.create(
                 user=request.user,
                 feedback=obj,
-                from_status=original_status,
-                to_status=obj.status,
+                From=original_status,
+                To=obj.status,
             )
 
 
+class StatusLogAdmin(admin.ModelAdmin):
+    list_display = [
+        "title",
+        StatusLog.From.field.name,
+        StatusLog.To.field.name,
+    ]
+    readonly_fields = [
+        StatusLog.From.field.name,
+        StatusLog.To.field.name,
+    ]
+
+    def title(self, obj):
+        return f'Изменение статуса для "{obj.feedback.__str__()}"'
+
+    title.short_description = _("title_models")
+
+
 admin.site.register(Feedback, FeedbackAdmin)
-admin.site.register(StatusLog)
+admin.site.register(StatusLog,  StatusLogAdmin)
