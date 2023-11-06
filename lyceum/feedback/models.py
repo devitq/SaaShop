@@ -37,7 +37,7 @@ class Feedback(models.Model):
     )
 
     def __str__(self) -> str:
-        return f"Обратная связь от {self.name}"
+        return f"Обратная связь от {self.name}, ID:{self.id}"
 
     class Meta:
         verbose_name = _("feedback_models")
@@ -53,17 +53,19 @@ class StatusLog(models.Model):
         Feedback,
         on_delete=models.CASCADE,
     )
-    From = models.CharField(
+    from_status = models.CharField(
         "из статуса",
         max_length=1,
         choices=Feedback.STATUS_CHOICES,
         editable=False,
+        db_column="from",
     )
-    To = models.CharField(
+    to_status = models.CharField(
         "в статус",
         max_length=1,
         choices=Feedback.STATUS_CHOICES,
         editable=False,
+        db_column="to",
     )
     timestamp = models.DateTimeField(
         auto_now_add=True,
@@ -71,7 +73,7 @@ class StatusLog(models.Model):
     )
 
     def __str__(self):
-        return f"Изменение статуса для {self.feedback_id}"
+        return f'Изменение статуса для "{self.feedback.__str__()}"'
 
     class Meta:
         verbose_name = _("status_log_models")

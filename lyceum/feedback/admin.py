@@ -19,20 +19,20 @@ class FeedbackAdmin(admin.ModelAdmin):
             StatusLog.objects.create(
                 user=request.user,
                 feedback=obj,
-                From=original_status,
-                To=obj.status,
+                from_status=original_status,
+                to_status=obj.status,
             )
 
 
 class StatusLogAdmin(admin.ModelAdmin):
     list_display = [
         "title",
-        StatusLog.From.field.name,
-        StatusLog.To.field.name,
+        StatusLog.from_status.field.name,
+        StatusLog.to_status.field.name,
     ]
     readonly_fields = [
-        StatusLog.From.field.name,
-        StatusLog.To.field.name,
+        StatusLog.from_status.field.name,
+        StatusLog.to_status.field.name,
     ]
 
     def title(self, obj):
