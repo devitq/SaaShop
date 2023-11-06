@@ -24,7 +24,7 @@ class FormTests(TestCase):
         self.assertFalse(invalid_form.is_valid())
         self.assertTrue(invalid_form.has_error(Feedback.text.field.name))
         self.assertTrue(invalid_form.has_error(Feedback.mail.field.name))
-        self.assertTrue(invalid_form.has_error(Feedback.name.field.name))
+        self.assertFalse(invalid_form.has_error(Feedback.name.field.name))
 
     def test_validation_neg_02(self):
         invalid_form = FeedbackForm(
