@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-PYTHONUNBUFFERED=true python manage.py runserver
+cd lyceum
+gunicorn lyceum.wsgi
