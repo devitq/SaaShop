@@ -21,6 +21,7 @@ pytest:
   stage: testing
   image: python:3.10
   script:
+    - apt-get update -y && apt-get install -y gettext 
     - pip install -r requirements/test.txt
     - pip install -r requirements/prod.txt
     - cd lyceum
@@ -36,7 +37,6 @@ prod-run:
   variables:
     DJANGO_DEBUG: "False"
   script:
-    - apt-get update -y && apt-get install -y gettext 
     - pip install -r requirements/prod.txt
     - cd lyceum
     - python manage.py migrate
