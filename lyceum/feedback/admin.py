@@ -42,4 +42,4 @@ class StatusLogAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Feedback, FeedbackAdmin)
-admin.site.register(StatusLog,  StatusLogAdmin)
+admin.site.register(StatusLog, StatusLogAdmin)

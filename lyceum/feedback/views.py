@@ -5,7 +5,6 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 
 from feedback.forms import FeedbackForm
-from feedback.models import Feedback
 
 __all__ = ()
 
