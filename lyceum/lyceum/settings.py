@@ -231,6 +231,8 @@ DEPLOYING_ON_HTTPS = os.getenv("DEPLOYING_ON_HTTPS", "false").lower() in (
     "y",
 )
 
+DEFAULT_CHARSET = "utf-8"
+
 if DEPLOYING_ON_HTTPS:
     SECURE_HSTS_SECONDS = True
 
