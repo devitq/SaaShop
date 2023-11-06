@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 20:16+0300\n"
+"POT-Creation-Date: 2023-11-06 12:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,7 +83,7 @@ msgstr "main images"
 msgid "show_on_main_models"
 msgstr "show on main"
 
-#: .\catalog\models.py:211
+#: .\catalog\models.py:211 .\feedback\models.py:24
 msgid "text_models"
 msgstr "text"
 
@@ -91,7 +91,7 @@ msgstr "text"
 msgid "text_should_contain"
 msgstr "Text should contain 'превосходно' или 'роскошно'"
 
-#: .\catalog\models.py:223
+#: .\catalog\models.py:223 .\feedback\models.py:26
 msgid "created_at_utc_models"
 msgstr "created at (UTC)"
 
@@ -163,6 +163,30 @@ msgstr "Generated name for unification"
 msgid "item_with_similar_name_exist"
 msgstr "An element with the same similar name already exists"
 
+#: .\feedback\models.py:18
+msgid "status_feedback_models"
+msgstr "processing status"
+
+#: .\feedback\models.py:23
+msgid "mail_models"
+msgstr "mail"
+
+#: .\feedback\models.py:44
+msgid "feedback_models"
+msgstr "feedback"
+
+#: .\feedback\models.py:45
+msgid "feedbacks_models"
+msgstr "feedbacks"
+
+#: .\feedback\models.py:59
+msgid "status_log_models"
+msgstr "status change"
+
+#: .\feedback\models.py:60
+msgid "status_logs_models"
+msgstr "status changes"
+
 #: .\lyceum\settings.py:193
 msgid "English"
 msgstr "English"
@@ -210,6 +234,10 @@ msgstr "Home"
 msgid "no_cards"
 msgstr "No items"
 
+#: .\templates\feedback\feedback.html:21 .\templates\includes\header.html:18
+msgid "feedback"
+msgstr "Feedback"
+
 #: .\templates\homepage\main.html:27
 msgid "landing_lead_text"
 msgstr "The world's best catalog of ready-made IT solutions for your business."
@@ -227,10 +255,6 @@ msgstr "Best items"
 msgid "all_rights_reserved"
 msgstr "all rights reserved"
 
-#: .\templates\includes\header.html:18
-msgid "feedback"
-msgstr "Feedback"
-
 #: .\templates\includes\header.html:20
 msgid "admin_panel"
 msgstr "Admin"
@@ -238,3 +262,6 @@ msgstr "Admin"
 #: .\templates\includes\item_card.html:35
 msgid "edit"
 msgstr "Edit"
+
+#~ msgid "statuses_log_models"
+#~ msgstr "tag"

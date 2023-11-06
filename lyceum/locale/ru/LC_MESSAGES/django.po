@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 20:16+0300\n"
+"POT-Creation-Date: 2023-11-06 12:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,7 +85,7 @@ msgstr "главные изображения"
 msgid "show_on_main_models"
 msgstr "отображать на главной"
 
-#: .\catalog\models.py:211
+#: .\catalog\models.py:211 .\feedback\models.py:24
 msgid "text_models"
 msgstr "текст"
 
@@ -93,7 +93,7 @@ msgstr "текст"
 msgid "text_should_contain"
 msgstr "Текст должен содержать слово 'превосходно' или 'роскошно'"
 
-#: .\catalog\models.py:223
+#: .\catalog\models.py:223 .\feedback\models.py:26
 msgid "created_at_utc_models"
 msgstr "дата создания (UTC)"
 
@@ -165,6 +165,30 @@ msgstr "Сгенерированное имя для унификации"
 msgid "item_with_similar_name_exist"
 msgstr "Элемент с похожим именем уже существуетя"
 
+#: .\feedback\models.py:18
+msgid "status_feedback_models"
+msgstr "статус обработки"
+
+#: .\feedback\models.py:23
+msgid "mail_models"
+msgstr "почта"
+
+#: .\feedback\models.py:44
+msgid "feedback_models"
+msgstr "обратная связь"
+
+#: .\feedback\models.py:45
+msgid "feedbacks_models"
+msgstr "отзывы"
+
+#: .\feedback\models.py:59
+msgid "status_log_models"
+msgstr "изменение статуса"
+
+#: .\feedback\models.py:60
+msgid "status_logs_models"
+msgstr "изменения статуса"
+
 #: .\lyceum\settings.py:193
 msgid "English"
 msgstr "Английский"
@@ -214,6 +238,10 @@ msgstr "Главная"
 msgid "no_cards"
 msgstr "Товары отсутствуют"
 
+#: .\templates\feedback\feedback.html:21 .\templates\includes\header.html:18
+msgid "feedback"
+msgstr "Обратная связь"
+
 #: .\templates\homepage\main.html:27
 msgid "landing_lead_text"
 msgstr "Лучший в мире каталог готовых ИТ-решений для вашего бизнеса."
@@ -231,10 +259,6 @@ msgstr "Лучшие товары"
 msgid "all_rights_reserved"
 msgstr "все права защищены"
 
-#: .\templates\includes\header.html:18
-msgid "feedback"
-msgstr "Обратная связь"
-
 #: .\templates\includes\header.html:20
 msgid "admin_panel"
 msgstr "Админ панель"
@@ -242,3 +266,6 @@ msgstr "Админ панель"
 #: .\templates\includes\item_card.html:35
 msgid "edit"
 msgstr "Редактировать"
+
+#~ msgid "statuses_log_models"
+#~ msgstr "изменения статуса"

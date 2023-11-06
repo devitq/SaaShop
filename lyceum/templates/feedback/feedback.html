@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block main %}
-{% load static %}
+{% load static i18n %}
 {% if messages %}
     <div class="toast-container toast-custom" aria-live="polite" aria-atomic="true">
         {% for message in messages %}
@@ -18,7 +18,7 @@
     </div>
 {% endif %}
 <div class="container">
-    <h1>Обратная связь</h1>
+    <h1>{% translate "feedback" %}</h1>
     <form method="post">
         {% csrf_token %}
         {% for field in form %}
