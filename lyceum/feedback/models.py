@@ -24,6 +24,7 @@ class Feedback(models.Model):
         _("name_models"),
         max_length=1478,
         null=True,
+        blank=True,
     )
     mail = models.EmailField(
         _("mail_models"),
