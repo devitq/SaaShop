@@ -3,7 +3,7 @@
   "model": "catalog.tag",
   "pk": 6,
   "fields": {
-    "name": "Appliances",
+    "name": "Бытовая техника",
     "name_en": "Appliances",
     "name_ru": "Бытовая техника",
     "is_published": true,
@@ -15,7 +15,7 @@
   "model": "catalog.tag",
   "pk": 7,
   "fields": {
-    "name": "For home",
+    "name": "Для дома",
     "name_en": "For home",
     "name_ru": "Для дома",
     "is_published": true,
@@ -27,7 +27,7 @@
   "model": "catalog.tag",
   "pk": 8,
   "fields": {
-    "name": "For kids",
+    "name": "Для детей",
     "name_en": "For kids",
     "name_ru": "Для детей",
     "is_published": true,
@@ -39,7 +39,7 @@
   "model": "catalog.tag",
   "pk": 9,
   "fields": {
-    "name": "For adults",
+    "name": "Для взрослых",
     "name_en": "For adults",
     "name_ru": "Для взрослых",
     "is_published": true,
@@ -51,7 +51,7 @@
   "model": "catalog.tag",
   "pk": 10,
   "fields": {
-    "name": "For teenagers",
+    "name": "Для подростков",
     "name_en": "For teenagers",
     "name_ru": "Для подростков",
     "is_published": true,
@@ -63,7 +63,7 @@
   "model": "catalog.category",
   "pk": 1,
   "fields": {
-    "name": "Electronics",
+    "name": "Электроника",
     "name_en": "Electronics",
     "name_ru": "Электроника",
     "is_published": true,
@@ -76,7 +76,7 @@
   "model": "catalog.category",
   "pk": 2,
   "fields": {
-    "name": "Entertainments",
+    "name": "Развлечения",
     "name_en": "Entertainments",
     "name_ru": "Развлечения",
     "is_published": true,
@@ -89,7 +89,7 @@
   "model": "catalog.category",
   "pk": 4,
   "fields": {
-    "name": "Empty",
+    "name": "Пустая",
     "name_en": "Empty",
     "name_ru": "Пустая",
     "is_published": true,
@@ -109,12 +109,12 @@
   "model": "catalog.item",
   "pk": 21,
   "fields": {
-    "name": "Vacuum cleaner",
+    "name": "Пылесос",
     "name_en": "Vacuum cleaner",
     "name_ru": "Пылесос",
     "is_published": true,
     "is_on_main": true,
-    "text": "<p>Perfect</p>",
+    "text": "<p>Превосходно</p>",
     "text_en": "<p>Perfect</p>",
     "text_ru": "<p>Превосходно</p>",
     "created_at": "2023-11-03T12:27:06.554Z",
@@ -131,12 +131,12 @@
   "model": "catalog.item",
   "pk": 22,
   "fields": {
-    "name": "A set of pencils",
+    "name": "Набор карандашей",
     "name_en": "A set of pencils",
     "name_ru": "Набор карандашей",
     "is_published": true,
     "is_on_main": true,
-    "text": "<p>Perfect</p>",
+    "text": "<p>Плохой набор, не роскошно</p>",
     "text_en": "<p>Perfect</p>",
     "text_ru": "<p>Плохой набор, не роскошно</p>",
     "created_at": "2023-11-03T12:38:57.766Z",
@@ -154,12 +154,12 @@
   "model": "catalog.item",
   "pk": 23,
   "fields": {
-    "name": "Lego Duplo Set",
+    "name": "Набор Lego Duplo",
     "name_en": "Lego Duplo Set",
     "name_ru": "Набор Lego Duplo",
     "is_published": true,
     "is_on_main": true,
-    "text": "<p>Perfect</p>",
+    "text": "<p>Превосходно</p>",
     "text_en": "<p>Perfect</p>",
     "text_ru": "<p>Превосходно</p>",
     "created_at": "2023-11-03T12:43:51.934Z",
@@ -176,12 +176,12 @@
   "model": "catalog.item",
   "pk": 24,
   "fields": {
-    "name": "Toaster",
+    "name": "Тостер",
     "name_en": "Toaster",
     "name_ru": "Тостер",
     "is_published": true,
     "is_on_main": true,
-    "text": "<p>Perfect</p>",
+    "text": "<p>Превосходно</p>",
     "text_en": "<p>Perfect</p>",
     "text_ru": "<p>Превосходно</p>",
     "created_at": "2023-11-03T12:44:40.001Z",
@@ -189,9 +189,9 @@
     "category": 1,
     "main_image": null,
     "tags": [
-      9,
       6,
-      7
+      7,
+      9
     ]
   }
 },
@@ -199,12 +199,12 @@
   "model": "catalog.item",
   "pk": 25,
   "fields": {
-    "name": "Lego Technic Set",
+    "name": "Набор Lego Technic",
     "name_en": "Lego Technic Set",
     "name_ru": "Набор Lego Technic",
     "is_published": true,
     "is_on_main": true,
-    "text": "<p>Perfect</p>",
+    "text": "<p>Превосходно</p>",
     "text_en": "<p>Perfect</p>",
     "text_ru": "<p>Превосходно</p>",
     "created_at": "2023-11-03T12:45:40.641Z",
@@ -222,12 +222,12 @@
   "model": "catalog.item",
   "pk": 26,
   "fields": {
-    "name": "Engish title",
+    "name": "Русский заголовок",
     "name_en": "Engish title",
     "name_ru": "Русский заголовок",
     "is_published": true,
     "is_on_main": true,
-    "text": "<p>This is perfect, PERFECT</p>",
+    "text": "<p>Это превосходно, ПРЕВОСХОДНО</p>",
     "text_en": "<p>This is perfect, PERFECT</p>",
     "text_ru": "<p>Это превосходно, ПРЕВОСХОДНО</p>",
     "created_at": "2023-11-03T12:46:59.038Z",
@@ -273,6 +273,39 @@
   "fields": {
     "item": 26,
     "image": "images/2023.11.04/bd5769c5-3c75-4c0a-8190-68873721cb2a.png"
+  }
+},
+{
+  "model": "feedback.feedback",
+  "pk": 1,
+  "fields": {
+    "status": "A",
+    "name": "ITQ",
+    "mail": "itq.dev@ya.ru",
+    "text": "Всё в целом хорошо, но",
+    "created_on": "2023-11-06T14:17:46.254Z"
+  }
+},
+{
+  "model": "feedback.statuslog",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "feedback": 1,
+    "from_status": "R",
+    "to": "P",
+    "timestamp": "2023-11-06T14:18:02.304Z"
+  }
+},
+{
+  "model": "feedback.statuslog",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "feedback": 1,
+    "from_status": "P",
+    "to": "A",
+    "timestamp": "2023-11-06T14:18:09.658Z"
   }
 }
 ]

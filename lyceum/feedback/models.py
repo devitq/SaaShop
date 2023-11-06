@@ -10,9 +10,9 @@ class Feedback(models.Model):
     PROCESSING = "P"
     ANSWERED = "A"
     STATUS_CHOICES = [
-        (RECEIVED, "получено"),
-        (PROCESSING, "в обработке"),
-        (ANSWERED, "ответ дан"),
+        (RECEIVED, _("received")),
+        (PROCESSING, _("processing")),
+        (ANSWERED, _("answered")),
     ]
     status = models.CharField(
         _("status_feedback_models"),
@@ -48,21 +48,23 @@ class Feedback(models.Model):
 class StatusLog(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        verbose_name=_("author"),
         on_delete=models.CASCADE,
     )
     feedback = models.ForeignKey(
         Feedback,
+        verbose_name=_("feedback_models"),
         on_delete=models.CASCADE,
     )
     from_status = models.CharField(
-        "из статуса",
+        _("from_status_models"),
         max_length=1,
         choices=Feedback.STATUS_CHOICES,
         editable=False,
         db_column="from",
     )
     to = models.CharField(
-        "в статус",
+        _("to_status_models"),
         max_length=1,
         choices=Feedback.STATUS_CHOICES,
         editable=False,

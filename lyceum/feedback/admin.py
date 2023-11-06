@@ -27,6 +27,7 @@ class FeedbackAdmin(admin.ModelAdmin):
 class StatusLogAdmin(admin.ModelAdmin):
     list_display = [
         "title",
+        StatusLog.user.field.name,
         StatusLog.from_status.field.name,
         StatusLog.to.field.name,
     ]

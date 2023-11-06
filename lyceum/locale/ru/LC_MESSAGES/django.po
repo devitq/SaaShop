@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-06 13:51+0300\n"
+"POT-Creation-Date: 2023-11-06 17:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,7 +85,7 @@ msgstr "главные изображения"
 msgid "show_on_main_models"
 msgstr "отображать на главной"
 
-#: .\catalog\models.py:211 .\feedback\models.py:31
+#: .\catalog\models.py:211 .\feedback\models.py:32
 msgid "text_models"
 msgstr "текст"
 
@@ -93,7 +93,7 @@ msgstr "текст"
 msgid "text_should_contain"
 msgstr "Текст должен содержать слово 'превосходно' или 'роскошно'"
 
-#: .\catalog\models.py:223 .\feedback\models.py:34
+#: .\catalog\models.py:223 .\feedback\models.py:35
 msgid "created_at_utc_models"
 msgstr "дата создания (UTC)"
 
@@ -141,7 +141,7 @@ msgstr "Пятница"
 msgid "unverified"
 msgstr "Непроверенное"
 
-#: .\core\models.py:17
+#: .\core\models.py:17 .\feedback\admin.py:41
 msgid "title_models"
 msgstr "название"
 
@@ -170,6 +170,18 @@ msgstr "Элемент с похожим именем уже существуе�
 msgid "feedback"
 msgstr "Обратная связь"
 
+#: .\feedback\models.py:13
+msgid "received"
+msgstr "получено"
+
+#: .\feedback\models.py:14
+msgid "processing"
+msgstr "в обработке"
+
+#: .\feedback\models.py:15
+msgid "answered"
+msgstr "ответ дан"
+
 #: .\feedback\models.py:18
 msgid "status_feedback_models"
 msgstr "статус обработки"
@@ -178,23 +190,35 @@ msgstr "статус обработки"
 msgid "name_models"
 msgstr "Имя"
 
-#: .\feedback\models.py:28
+#: .\feedback\models.py:29
 msgid "mail_models"
 msgstr "почта"
 
-#: .\feedback\models.py:43
+#: .\feedback\models.py:44 .\feedback\models.py:55
 msgid "feedback_models"
 msgstr "обратная связь"
 
-#: .\feedback\models.py:44
+#: .\feedback\models.py:45
 msgid "feedbacks_models"
 msgstr "отзывы"
 
-#: .\feedback\models.py:78
+#: .\feedback\models.py:50
+msgid "author"
+msgstr "автор"
+
+#: .\feedback\models.py:60
+msgid "from_status_models"
+msgstr "из статуса"
+
+#: .\feedback\models.py:67
+msgid "to_status_models"
+msgstr "в статус"
+
+#: .\feedback\models.py:81
 msgid "status_log_models"
 msgstr "изменение статуса"
 
-#: .\feedback\models.py:79
+#: .\feedback\models.py:82
 msgid "status_logs_models"
 msgstr "изменения статуса"
 
