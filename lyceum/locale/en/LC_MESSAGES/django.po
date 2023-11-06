@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-06 17:21+0300\n"
+"POT-Creation-Date: 2023-11-06 18:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,7 +83,7 @@ msgstr "main images"
 msgid "show_on_main_models"
 msgstr "show on main"
 
-#: .\catalog\models.py:211 .\feedback\models.py:32
+#: .\catalog\models.py:211 .\feedback\models.py:33
 msgid "text_models"
 msgstr "text"
 
@@ -91,7 +91,7 @@ msgstr "text"
 msgid "text_should_contain"
 msgstr "Text should contain 'превосходно' или 'роскошно'"
 
-#: .\catalog\models.py:223 .\feedback\models.py:35
+#: .\catalog\models.py:223 .\feedback\models.py:36
 msgid "created_at_utc_models"
 msgstr "created at (UTC)"
 
@@ -139,7 +139,7 @@ msgstr "Friday"
 msgid "unverified"
 msgstr "Unverified"
 
-#: .\core\models.py:17 .\feedback\admin.py:41
+#: .\core\models.py:17 .\feedback\admin.py:42
 msgid "title_models"
 msgstr "title"
 
@@ -168,6 +168,30 @@ msgstr "An element with the same similar name already exists"
 msgid "feedback"
 msgstr "Feedback"
 
+#: .\feedback\forms.py:30
+msgid "mail_label"
+msgstr "Mail"
+
+#: .\feedback\forms.py:31
+msgid "text_label"
+msgstr "Text"
+
+#: .\feedback\forms.py:32
+msgid "name_label"
+msgstr "Name"
+
+#: .\feedback\forms.py:35
+msgid "mail_help_text"
+msgstr "The mail by which we will contact you"
+
+#: .\feedback\forms.py:36
+msgid "text_help_text"
+msgstr "Your feedback"
+
+#: .\feedback\forms.py:37
+msgid "name_help_text"
+msgstr "Your name"
+
 #: .\feedback\models.py:13
 msgid "received"
 msgstr "received"
@@ -188,35 +212,35 @@ msgstr "processing status"
 msgid "name_models"
 msgstr "name"
 
-#: .\feedback\models.py:29
+#: .\feedback\models.py:30
 msgid "mail_models"
 msgstr "mail"
 
-#: .\feedback\models.py:44 .\feedback\models.py:55
+#: .\feedback\models.py:45 .\feedback\models.py:57
 msgid "feedback_models"
 msgstr "feedback"
 
-#: .\feedback\models.py:45
+#: .\feedback\models.py:46
 msgid "feedbacks_models"
 msgstr "feedbacks"
 
-#: .\feedback\models.py:50
+#: .\feedback\models.py:52
 msgid "author"
 msgstr "author"
 
-#: .\feedback\models.py:60
+#: .\feedback\models.py:61
 msgid "from_status_models"
 msgstr "from status"
 
-#: .\feedback\models.py:67
+#: .\feedback\models.py:68
 msgid "to_status_models"
 msgstr "to status"
 
-#: .\feedback\models.py:81
+#: .\feedback\models.py:82
 msgid "status_log_models"
 msgstr "status change"
 
-#: .\feedback\models.py:82
+#: .\feedback\models.py:83
 msgid "status_logs_models"
 msgstr "status changes"
 

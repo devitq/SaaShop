@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from feedback.models import Feedback
 
@@ -26,14 +27,14 @@ class FeedbackForm(forms.ModelForm):
             Feedback.status.field.name,
         ]
         labels = {
-            Feedback.mail.field.name: "Почта",
-            Feedback.text.field.name: "Текст",
-            Feedback.name.field.name: "Имя",
+            Feedback.mail.field.name: _("mail_label"),
+            Feedback.text.field.name: _("text_label"),
+            Feedback.name.field.name: _("name_label"),
         }
         help_texts = {
-            Feedback.mail.field.name: "Почта, по которой мы свяжемся с вами",
-            Feedback.text.field.name: "Ваш отзыв",
-            Feedback.name.field.name: "Ваше имя",
+            Feedback.mail.field.name: _("mail_help_text"),
+            Feedback.text.field.name: _("text_help_text"),
+            Feedback.name.field.name: _("name_help_text"),
         }
         widgets = {
             Feedback.text.field.name: forms.Textarea(
