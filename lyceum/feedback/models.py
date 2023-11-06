@@ -23,6 +23,7 @@ class Feedback(models.Model):
     name = models.CharField(
         _("name_models"),
         max_length=1478,
+        null=True,
     )
     mail = models.EmailField(
         _("mail_models"),
@@ -60,12 +61,11 @@ class StatusLog(models.Model):
         editable=False,
         db_column="from",
     )
-    to_status = models.CharField(
+    to = models.CharField(
         "в статус",
         max_length=1,
         choices=Feedback.STATUS_CHOICES,
         editable=False,
-        db_column="to",
     )
     timestamp = models.DateTimeField(
         auto_now_add=True,

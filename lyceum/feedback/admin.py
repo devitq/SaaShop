@@ -20,7 +20,7 @@ class FeedbackAdmin(admin.ModelAdmin):
                 user=request.user,
                 feedback=obj,
                 from_status=original_status,
-                to_status=obj.status,
+                to=obj.status,
             )
 
 
@@ -28,11 +28,11 @@ class StatusLogAdmin(admin.ModelAdmin):
     list_display = [
         "title",
         StatusLog.from_status.field.name,
-        StatusLog.to_status.field.name,
+        StatusLog.to.field.name,
     ]
     readonly_fields = [
         StatusLog.from_status.field.name,
-        StatusLog.to_status.field.name,
+        StatusLog.to.field.name,
     ]
 
     def title(self, obj):

@@ -112,3 +112,9 @@ Run this command:
 ```cmd
 > python manage.py runserver
 ```
+
+# Prod run
+
+```cmd
+> gunicorn lyceum.wsgi
+```
