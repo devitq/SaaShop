@@ -5,6 +5,26 @@ from django.utils.translation import gettext_lazy as _
 __all__ = ("Feedback", "StatusLog")
 
 
+def upload_file_to_path(instance, filename):
+    return f"uploads/{instance.feedback.id}/{filename}"
+
+
+class PersonalData(models.Model):
+    name = models.CharField(
+        _("name_models"),
+        max_length=1478,
+        null=True,
+        blank=True,
+    )
+    mail = models.EmailField(
+        _("mail_models"),
+    )
+
+    class Meta:
+        verbose_name = _("personal_data_models")
+        verbose_name_plural = _("personal_datas_models")
+
+
 class Feedback(models.Model):
     RECEIVED = "R"
     PROCESSING = "P"
@@ -14,20 +34,18 @@ class Feedback(models.Model):
         (PROCESSING, _("processing")),
         (ANSWERED, _("answered")),
     ]
+    author = models.ForeignKey(
+        PersonalData,
+        verbose_name=_("author"),
+        related_name="feedbacks",
+        on_delete=models.CASCADE,
+        null=False,
+    )
     status = models.CharField(
         _("status_feedback_models"),
         max_length=1,
         choices=STATUS_CHOICES,
         default=RECEIVED,
-    )
-    name = models.CharField(
-        _("name_models"),
-        max_length=1478,
-        null=True,
-        blank=True,
-    )
-    mail = models.EmailField(
-        _("mail_models"),
     )
     text = models.TextField(
         _("text_models"),
@@ -39,7 +57,7 @@ class Feedback(models.Model):
     )
 
     def __str__(self) -> str:
-        return f"Обратная связь от {self.name}, ID:{self.id}"
+        return f"Обратная связь от, ID:{self.id}"
 
     class Meta:
         verbose_name = _("feedback_models")
@@ -81,3 +99,26 @@ class StatusLog(models.Model):
     class Meta:
         verbose_name = _("status_log_models")
         verbose_name_plural = _("status_logs_models")
+
+
+class FeedbackFile(models.Model):
+    feedback = models.ForeignKey(
+        Feedback,
+        on_delete=models.CASCADE,
+        null=True,
+        related_query_name="files",
+        verbose_name=_("feedback_models"),
+        related_name="files",
+    )
+    file = models.FileField(
+        _("file_models"),
+        upload_to=upload_file_to_path,
+        null=True,
+    )
+
+    def __str__(self) -> str:
+        return f"Файл обратной связи №{self.id}"
+
+    class Meta:
+        verbose_name = _("feedback_file_models")
+        verbose_name_plural = _("feedback_files_models")

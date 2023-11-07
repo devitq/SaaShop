@@ -1,12 +1,23 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from feedback.models import Feedback, StatusLog
+from feedback.models import Feedback, FeedbackFile, PersonalData, StatusLog
 
 __all__ = ()
 
 
+class FilesInline(admin.TabularInline):
+    model = FeedbackFile
+    extra = 1
+
+
 class FeedbackAdmin(admin.ModelAdmin):
+    list_display = [
+        Feedback,
+        Feedback.status.field.name,
+    ]
+    inlines = [FilesInline]
+
     def save_model(self, request, obj, form, change):
         original_status = None
 
@@ -44,3 +55,5 @@ class StatusLogAdmin(admin.ModelAdmin):
 
 admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(StatusLog, StatusLogAdmin)
+admin.site.register(PersonalData)
+admin.site.register(FeedbackFile)

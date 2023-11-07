@@ -11,7 +11,7 @@
       </button>
       {% with request.resolver_match.view_name as view_name %}
       <div class="collapse navbar-collapse justify-content-end flex-nowrap" id="SaaShop">
-        <ul class="nav nav-pills nav-fill mt-xs-2 mt-md-2 mt-lg-0 mt-2">
+        <ul class="nav nav-pills nav-fill mt-xs-2 mt-md-2 mt-lg-2 mt-xl-0 mt-2">
           <li class="nav-item"><a href="{% url 'homepage:homepage' %}" {% if view_name == 'homepage:homepage' %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "home" %}</a></li>
           <li class="nav-item"><a href="{% url 'about:about' %}" {% if view_name == 'about:about' %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "about" %}</a></li>
           <li class="nav-item"><a href="{% url 'catalog:item_list' %}" {% if view_name == 'catalog:item_list' %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "item_list" %}</a></li>
@@ -20,8 +20,9 @@
           <li class="nav-item"><a href="{% url 'admin:index' %}" class="nav-link">{% translate "admin_panel" %}</a></li>
           {% endif %}
         </ul>
-        <form class="d-flex" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-          <select onchange="this.form.submit()" class="form-select ms-lg-2 mt-xs-2 mt-md-2 mt-lg-0 mt-2" name="language">
+        <form class="d-flex" action="{% url 'set_language' %}" method="post">
+          {% csrf_token %}
+          <select onchange="this.form.submit()" class="form-select ms-lg-2 mt-xs-2 mt-md-2 mt-lg-2 mt-xl-0 mt-2" name="language">
               {% get_current_language as LANGUAGE_CODE %}
               {% get_available_languages as LANGUAGES %}
               {% get_language_info_list for LANGUAGES as languages %}
