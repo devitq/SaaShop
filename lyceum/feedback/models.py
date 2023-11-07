@@ -113,7 +113,7 @@ class StatusLog(models.Model):
 
 class FeedbackFile(models.Model):
     def get_path_for_file(self, filename):
-        return f"uploads/{self.feedback.id}/{filename}"
+        return f"uploads/{self.feedback_id}/{filename}"
 
     feedback = models.ForeignKey(
         Feedback,
