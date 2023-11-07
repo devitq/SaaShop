@@ -22,7 +22,7 @@ class Feedback(models.Model):
         "PersonalData",
         verbose_name=_("author_models"),
         related_name="feedbacks",
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         null=False,
     )
     status = models.CharField(

@@ -11,13 +11,21 @@ class FilesInline(admin.TabularInline):
     extra = 1
 
 
+class PersonalDataInline(admin.TabularInline):
+    model = PersonalData
+    can_delete = False
+
+
 class FeedbackAdmin(admin.ModelAdmin):
     list_display = [
         "title",
         Feedback.author.field.name,
         Feedback.status.field.name,
     ]
-    inlines = [FilesInline]
+    inlines = [
+        FilesInline,
+        PersonalDataInline,
+    ]
 
     def save_model(self, request, obj, form, change):
         original_status = None
