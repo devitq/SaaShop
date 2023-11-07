@@ -1,5 +1,5 @@
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import Client, TestCase
+from django.test import Client, override_settings, TestCase
 from django.urls import reverse
 
 from feedback.forms import FeedbackForm, FilesForm, PersonalDataForm
@@ -9,6 +9,7 @@ __all__ = ()
 
 
 class UploadTests(TestCase):
+    @override_settings(MEDIA_ROOT="tests/")
     def test_file_upload(self):
         files = [
             SimpleUploadedFile(f"test_file{i}.txt", b"file_content")

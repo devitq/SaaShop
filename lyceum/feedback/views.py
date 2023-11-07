@@ -33,6 +33,8 @@ def feedback(request):
             feedback = feedback_form.save(commit=False)
             feedback.author = personal_data
             feedback.save()
+            personal_data.feedback = feedback
+            personal_data.save()
             files = request.FILES.getlist("file")
             for file in files:
                 FeedbackFile.objects.create(feedback=feedback, file=file)
@@ -46,6 +48,7 @@ def feedback(request):
             files = files_form.cleaned_data["file"]
             messages.success(request, "Форма успешно отправлена")
             return redirect(reverse("feedback:feedback"))
+
     return render(
         request=request,
         template_name="feedback/feedback.html",

@@ -13,7 +13,8 @@ class FilesInline(admin.TabularInline):
 
 class FeedbackAdmin(admin.ModelAdmin):
     list_display = [
-        Feedback,
+        "title",
+        Feedback.author.field.name,
         Feedback.status.field.name,
     ]
     inlines = [FilesInline]
@@ -34,6 +35,11 @@ class FeedbackAdmin(admin.ModelAdmin):
                 to=obj.status,
             )
 
+    def title(self, obj):
+        return f"Обратная связь от {obj.author.name}, ID:{obj.id}"
+
+    title.short_description = _("title_models")
+
 
 class StatusLogAdmin(admin.ModelAdmin):
     list_display = [
@@ -48,7 +54,10 @@ class StatusLogAdmin(admin.ModelAdmin):
     ]
 
     def title(self, obj):
-        return f'Изменение статуса для "{obj.feedback.__str__()}"'
+        return (
+            'Изменение статуса для "Обратная связь от ',
+            f'{obj.feedback.author.name}, ID:{obj.feedback.id}"',
+        )
 
     title.short_description = _("title_models")
 

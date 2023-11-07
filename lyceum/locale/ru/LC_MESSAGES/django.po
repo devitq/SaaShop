@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-07 19:50+0300\n"
+"POT-Creation-Date: 2023-11-07 21:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,7 +85,7 @@ msgstr "главные изображения"
 msgid "show_on_main_models"
 msgstr "отображать на главной"
 
-#: .\catalog\models.py:211 .\feedback\models.py:51
+#: .\catalog\models.py:211 .\feedback\models.py:35
 msgid "text_models"
 msgstr "текст"
 
@@ -93,7 +93,7 @@ msgstr "текст"
 msgid "text_should_contain"
 msgstr "Текст должен содержать слово 'превосходно' или 'роскошно'"
 
-#: .\catalog\models.py:223 .\feedback\models.py:54
+#: .\catalog\models.py:223 .\feedback\models.py:38
 msgid "created_at_utc_models"
 msgstr "дата создания (UTC)"
 
@@ -194,75 +194,80 @@ msgstr "Текст"
 msgid "text_help_text"
 msgstr "Ваш отзыв"
 
-#: .\feedback\models.py:14
-msgid "name_models"
-msgstr "Имя"
-
-#: .\feedback\models.py:20
-msgid "mail_models"
-msgstr "почта"
-
-#: .\feedback\models.py:24
-msgid "personal_data_models"
-msgstr "персональные данные"
-
-#: .\feedback\models.py:25
-msgid "personal_datas_models"
-msgstr "персональные данные"
-
-#: .\feedback\models.py:33
+#: .\feedback\models.py:17
 msgid "received"
 msgstr "получено"
 
-#: .\feedback\models.py:34
+#: .\feedback\models.py:18
 msgid "processing"
 msgstr "в обработке"
 
-#: .\feedback\models.py:35
+#: .\feedback\models.py:19
 msgid "answered"
 msgstr "ответ дан"
 
-#: .\feedback\models.py:39 .\feedback\models.py:70
-msgid "author"
+#: .\feedback\models.py:23
+msgid "author_models"
 msgstr "автор"
 
-#: .\feedback\models.py:45
+#: .\feedback\models.py:29
 msgid "status_feedback_models"
 msgstr "статус обработки"
 
-#: .\feedback\models.py:63 .\feedback\models.py:75 .\feedback\models.py:110
+#: .\feedback\models.py:47 .\feedback\models.py:63 .\feedback\models.py:82
+#: .\feedback\models.py:117
 msgid "feedback_models"
 msgstr "обратная связь"
 
-#: .\feedback\models.py:64
+#: .\feedback\models.py:48
 msgid "feedbacks_models"
 msgstr "отзывы"
 
-#: .\feedback\models.py:79
+#: .\feedback\models.py:53
+msgid "name_models"
+msgstr "Имя"
+
+#: .\feedback\models.py:59
+msgid "mail_models"
+msgstr "почта"
+
+#: .\feedback\models.py:70
+msgid "personal_data_models"
+msgstr "персональные данные"
+
+#: .\feedback\models.py:71
+msgid "personal_datas_models"
+msgstr "персональные данные"
+
+#: .\feedback\models.py:77
+msgid "author"
+msgstr "автор"
+
+#: .\feedback\models.py:86
 msgid "from_status_models"
 msgstr "из статуса"
 
-#: .\feedback\models.py:86
+#: .\feedback\models.py:93
 msgid "to_status_models"
 msgstr "в статус"
 
-#: .\feedback\models.py:100
+#: .\feedback\models.py:107
 msgid "status_log_models"
 msgstr "изменение статуса"
 
-#: .\feedback\models.py:101
+#: .\feedback\models.py:108
 msgid "status_logs_models"
 msgstr "изменения статуса"
 
-#: .\feedback\models.py:114
+#: .\feedback\models.py:121
 msgid "file_models"
 msgstr "файл"
 
-#: .\feedback\models.py:123
+#: .\feedback\models.py:130
 msgid "feedback_file_models"
 msgstr "файл обратной связи"
 
-#: .\feedback\models.py:124
+#: .\feedback\models.py:131
 msgid "feedback_files_models"
 msgstr "файлы обратной связи"
 

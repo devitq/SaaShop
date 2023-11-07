@@ -62,7 +62,7 @@ class PersonalDataForm(forms.ModelForm):
         model = PersonalData
         fields = "__all__"
         exclude = [
-            "feedbacks",
+            "feedback",
         ]
         labels = {
             PersonalData.mail.field.name: _("mail_label"),

@@ -9,22 +9,6 @@ def upload_file_to_path(instance, filename):
     return f"uploads/{instance.feedback.id}/{filename}"
 
 
-class PersonalData(models.Model):
-    name = models.CharField(
-        _("name_models"),
-        max_length=1478,
-        null=True,
-        blank=True,
-    )
-    mail = models.EmailField(
-        _("mail_models"),
-    )
-
-    class Meta:
-        verbose_name = _("personal_data_models")
-        verbose_name_plural = _("personal_datas_models")
-
-
 class Feedback(models.Model):
     RECEIVED = "R"
     PROCESSING = "P"
@@ -34,9 +18,9 @@ class Feedback(models.Model):
         (PROCESSING, _("processing")),
         (ANSWERED, _("answered")),
     ]
-    author = models.ForeignKey(
-        PersonalData,
-        verbose_name=_("author"),
+    author = models.OneToOneField(
+        "PersonalData",
+        verbose_name=_("author_models"),
         related_name="feedbacks",
         on_delete=models.CASCADE,
         null=False,
@@ -57,11 +41,37 @@ class Feedback(models.Model):
     )
 
     def __str__(self) -> str:
-        return f"Обратная связь от, ID:{self.id}"
+        return f"Обратная связь от {self.author.mail}, ID:{self.id}"
 
     class Meta:
         verbose_name = _("feedback_models")
         verbose_name_plural = _("feedbacks_models")
+
+
+class PersonalData(models.Model):
+    name = models.CharField(
+        _("name_models"),
+        max_length=1478,
+        null=True,
+        blank=True,
+    )
+    mail = models.EmailField(
+        _("mail_models"),
+    )
+    feedback = models.OneToOneField(
+        Feedback,
+        verbose_name=_("feedback_models"),
+        related_name="feedbacks",
+        on_delete=models.CASCADE,
+        null=True,
+    )
+
+    def __str__(self):
+        return self.mail
+
+    class Meta:
+        verbose_name = _("personal_data_models")
+        verbose_name_plural = _("personal_datas_models")
 
 
 class StatusLog(models.Model):
@@ -102,6 +112,9 @@ class StatusLog(models.Model):
 
 
 class FeedbackFile(models.Model):
+    def get_path_for_file(self, filename):
+        return f"uploads/{self.feedback.id}/{filename}"
+
     feedback = models.ForeignKey(
         Feedback,
         on_delete=models.CASCADE,
@@ -112,12 +125,12 @@ class FeedbackFile(models.Model):
     )
     file = models.FileField(
         _("file_models"),
-        upload_to=upload_file_to_path,
+        upload_to=get_path_for_file,
         null=True,
     )
 
-    def __str__(self) -> str:
-        return f"Файл обратной связи №{self.id}"
+    def __str__(self):
+        return f"Файл обратной связи, ID:{self.id}"
 
     class Meta:
         verbose_name = _("feedback_file_models")
