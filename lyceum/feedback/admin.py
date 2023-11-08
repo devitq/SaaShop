@@ -14,6 +14,8 @@ class FilesInline(admin.TabularInline):
 class PersonalDataInline(admin.TabularInline):
     model = PersonalData
     can_delete = False
+    max_num = 1
+    min_num = 1
 
 
 class FeedbackAdmin(admin.ModelAdmin):
@@ -44,7 +46,7 @@ class FeedbackAdmin(admin.ModelAdmin):
             )
 
     def title(self, obj):
-        return f"Обратная связь от {obj.author.name}, ID:{obj.id}"
+        return obj
 
     title.short_description = _("title_models")
 
@@ -57,15 +59,14 @@ class StatusLogAdmin(admin.ModelAdmin):
         StatusLog.to.field.name,
     ]
     readonly_fields = [
+        StatusLog.feedback.field.name,
+        StatusLog.user.field.name,
         StatusLog.from_status.field.name,
         StatusLog.to.field.name,
     ]
 
     def title(self, obj):
-        return (
-            'Изменение статуса для "Обратная связь от ',
-            f'{obj.feedback.author.name}, ID:{obj.feedback.id}"',
-        )
+        return obj
 
     title.short_description = _("title_models")
 

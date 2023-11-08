@@ -41,7 +41,9 @@ class Feedback(models.Model):
     )
 
     def __str__(self) -> str:
-        return f"Обратная связь от {self.author.mail}, ID:{self.id}"
+        verbose = _("feedback_models").capitalize()
+        from_verbose = _("from_in_text_models")
+        return f"{verbose} {from_verbose} {self.author.mail}, ID:{self.id}"
 
     class Meta:
         verbose_name = _("feedback_models")
@@ -66,7 +68,7 @@ class PersonalData(models.Model):
         null=True,
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.mail
 
     class Meta:
@@ -103,8 +105,10 @@ class StatusLog(models.Model):
         null=True,
     )
 
-    def __str__(self):
-        return f'Изменение статуса для "{self.feedback.__str__()}"'
+    def __str__(self) -> str:
+        verbose = _("status_log_models").capitalize()
+        for_verbose = _("for_in_text_models")
+        return f'{verbose} {for_verbose} "{self.feedback}"'
 
     class Meta:
         verbose_name = _("status_log_models")
@@ -129,8 +133,9 @@ class FeedbackFile(models.Model):
         null=True,
     )
 
-    def __str__(self):
-        return f"Файл обратной связи, ID:{self.id}"
+    def __str__(self) -> str:
+        verbose = _("feedback_file_models").capitalize()
+        return f"{verbose}, ID:{self.id}"
 
     class Meta:
         verbose_name = _("feedback_file_models")

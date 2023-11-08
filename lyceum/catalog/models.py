@@ -103,8 +103,9 @@ class MainImage(models.Model):
     image_tmb.short_description = _("preview")
     image_tmb.allow_tags = True
 
-    def __str__(self):
-        return f"Главное изображение, ID:{self.id}"
+    def __str__(self) -> str:
+        verbose = _("main_image_models").capitalize()
+        return f"{verbose}, ID:{self.id}"
 
     class Meta:
         verbose_name = _("main_image_models")
@@ -298,7 +299,8 @@ class ItemImages(models.Model):
     image_tmb.allow_tags = True
 
     def __str__(self) -> str:
-        return f"Изображение товара, ID:{self.id}"
+        verbose = _("item_image_models").capitalize()
+        return f"{verbose}, ID:{self.id}"
 
     class Meta:
         verbose_name = _("item_image_models")
