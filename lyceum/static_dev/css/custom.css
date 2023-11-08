@@ -2,6 +2,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    margin-bottom: 0;
 }
 
 footer {
@@ -60,4 +61,35 @@ label {
     min-height: 200px;
     width: 250px;
     z-index: 99999999999999;
+}
+
+.top {
+    --offset: 50px;
+    position: fixed;
+    bottom: -60px; /* Initially, hide the element off-screen */
+    margin-right: 10px;
+    place-self: end;
+    width: 45px;
+    aspect-ratio: 1;
+    background: #2071e2;
+    border-radius: 10px;
+    transition: bottom 0.3s ease;
+}
+
+.top.active {
+    bottom: 20px;
+}
+
+.top:before {
+    content: "";
+    position: absolute;
+    inset: 30%;
+    transform: translateY(20%) rotate(-45deg);
+    border-top: 5px solid #fff;
+    border-right: 5px solid #fff;
+}
+
+html,
+body {
+    scroll-behavior: smooth;
 }

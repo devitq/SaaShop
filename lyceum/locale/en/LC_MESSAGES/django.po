@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-08 19:23+0300\n"
+"POT-Creation-Date: 2023-11-08 19:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -168,27 +168,35 @@ msgstr "An element with the same similar name already exists"
 msgid "feedback"
 msgstr "Feedback"
 
-#: .\feedback\forms.py:68
+#: .\feedback\forms.py:27
+msgid "files_label"
+msgstr "Files"
+
+#: .\feedback\forms.py:28
+msgid "files_help_text"
+msgstr "You can upload files here for better feedback"
+
+#: .\feedback\forms.py:72
 msgid "mail_label"
 msgstr "Mail"
 
-#: .\feedback\forms.py:69
+#: .\feedback\forms.py:73
 msgid "name_label"
 msgstr "Name"
 
-#: .\feedback\forms.py:72
+#: .\feedback\forms.py:76
 msgid "mail_help_text"
 msgstr "The mail by which we will contact you"
 
-#: .\feedback\forms.py:73
+#: .\feedback\forms.py:77
 msgid "name_help_text"
 msgstr "Your name"
 
-#: .\feedback\forms.py:99
+#: .\feedback\forms.py:103
 msgid "text_label"
 msgstr "Text"
 
-#: .\feedback\forms.py:102
+#: .\feedback\forms.py:106
 msgid "text_help_text"
 msgstr "Your feedback"
 

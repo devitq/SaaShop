@@ -23,7 +23,11 @@ class MultipleFileField(forms.FileField):
 
 
 class FilesForm(forms.ModelForm):
-    file = MultipleFileField(required=False)
+    file = MultipleFileField(
+        label=_("files_label"),
+        help_text=_("files_help_text"),
+        required=False,
+    )
 
     def __init__(self, *args, **kwargs):
         super(FilesForm, self).__init__(*args, **kwargs)
