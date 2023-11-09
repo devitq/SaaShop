@@ -220,6 +220,13 @@ LOCALE_PATHS = [
 
 THUMBNAIL_PRESERVE_FORMAT = True
 
+THUMBNAIL_REDIS_URL = os.getenv("REDIS_URL", None)
+
+if THUMBNAIL_REDIS_URL:
+    THUMBNAIL_KVSTORE = "sorl.thumbnail.kvstores.redis_kvstore.KVStore"
+
+THUMBNAIL_STORAGE = "django.core.files.storage.FileSystemStorage"
+
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 
 EMAIL_FILE_PATH = BASE_DIR / "send_mail"
