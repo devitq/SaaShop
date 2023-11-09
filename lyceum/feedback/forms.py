@@ -97,7 +97,6 @@ class FeedbackForm(forms.ModelForm):
         exclude = [
             Feedback.created_on.field.name,
             Feedback.status.field.name,
-            Feedback.author.field.name,
         ]
         labels = {
             Feedback.text.field.name: _("text_label"),

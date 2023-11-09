@@ -138,7 +138,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "lyceum.wsgi.application"
 
-DB_NAME = os.getenv("DB_NAME", "default").lower()
+DB_NAME = os.getenv("DB_NAME", "sqlite").lower()
 
 if DB_NAME == "sqlite":
     DATABASES = {

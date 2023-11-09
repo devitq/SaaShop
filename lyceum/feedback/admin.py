@@ -21,7 +21,7 @@ class PersonalDataInline(admin.TabularInline):
 class FeedbackAdmin(admin.ModelAdmin):
     list_display = [
         "title",
-        Feedback.author.field.name,
+        "author",
         Feedback.status.field.name,
     ]
     inlines = [

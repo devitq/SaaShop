@@ -18,13 +18,6 @@ class Feedback(models.Model):
         (PROCESSING, _("processing")),
         (ANSWERED, _("answered")),
     ]
-    author = models.OneToOneField(
-        "PersonalData",
-        verbose_name=_("author_models"),
-        related_name="feedbacks",
-        on_delete=models.PROTECT,
-        null=False,
-    )
     status = models.CharField(
         _("status_feedback_models"),
         max_length=1,
@@ -63,7 +56,7 @@ class PersonalData(models.Model):
     feedback = models.OneToOneField(
         Feedback,
         verbose_name=_("feedback_models"),
-        related_name="feedbacks",
+        related_name="author",
         on_delete=models.CASCADE,
         null=True,
     )
