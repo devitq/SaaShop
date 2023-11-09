@@ -40,8 +40,7 @@ USE_LOCAL_MEDIA = os.getenv("USE_LOCAL_MEDIA", "true").lower() in (
     "y",
 )
 
-# Change this to "aws" if you want to use it as storage
-STORAGE_NAME = "default"
+STORAGE_NAME = os.getenv("STORAGE_NAME", "default").lower()
 
 if STORAGE_NAME == "aws":
     AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
@@ -139,8 +138,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "lyceum.wsgi.application"
 
-# Change to "postgresql" if you're using it
-DB_NAME = "sqlite"
+DB_NAME = os.getenv("DB_NAME", "default").lower()
 
 if DB_NAME == "sqlite":
     DATABASES = {
