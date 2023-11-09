@@ -10,4 +10,5 @@ psycopg2-binary==2.9.9
 python-dotenv==1.0.0
 sentry-sdk==1.33.1
 sorl.thumbnail==12.10.0
+redis==5.0.1
 transliterate==1.10.2
