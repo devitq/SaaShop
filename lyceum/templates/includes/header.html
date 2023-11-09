@@ -2,7 +2,7 @@
 <header>
   <nav class="navbar navbar-expand-xl bg-body-tertiary rounded d-flex flex-wrap saas_navbar" aria-label="SaaShopnavbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url "homepage:homepage" %}">
+      <a class="navbar-brand" href="{% url 'homepage:homepage' %}">
         <img src="{% static 'img/saas.png' %}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
           SaaShop
       </a>
@@ -12,10 +12,10 @@
       {% with request.resolver_match.view_name as view_name %}
       <div class="collapse navbar-collapse justify-content-end flex-nowrap" id="SaaShop">
         <ul class="nav nav-pills nav-fill mt-xs-2 mt-md-2 mt-lg-2 mt-xl-0 mt-2">
-          <li class="nav-item"><a href="{% url 'homepage:homepage' %}" {% if view_name == 'homepage:homepage' %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "home" %}</a></li>
-          <li class="nav-item"><a href="{% url 'about:about' %}" {% if view_name == 'about:about' %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "about" %}</a></li>
-          <li class="nav-item"><a href="{% url 'catalog:item_list' %}" {% if view_name == 'catalog:item_list' %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "item_list" %}</a></li>
-          <li class="nav-item"><a href="{% url 'feedback:feedback' %}" {% if view_name == 'feedback:feedback' %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "feedback" %}</a></li>
+          <li class="nav-item"><a href="{% url 'homepage:homepage' %}" {% if view_name == "homepage:homepage" %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "home" %}</a></li>
+          <li class="nav-item"><a href="{% url 'about:about' %}" {% if view_name == "about:about" %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "about" %}</a></li>
+          <li class="nav-item"><a href="{% url 'catalog:item_list' %}" {% if view_name == "catalog:item_list" %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "item_list" %}</a></li>
+          <li class="nav-item"><a href="{% url 'feedback:feedback' %}" {% if view_name == "feedback:feedback" %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "feedback" %}</a></li>
           {% if user.is_superuser %}
           <li class="nav-item"><a href="{% url 'admin:index' %}" class="nav-link">{% translate "admin_panel" %}</a></li>
           {% endif %}

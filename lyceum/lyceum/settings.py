@@ -40,20 +40,21 @@ USE_LOCAL_MEDIA = os.getenv("USE_LOCAL_MEDIA", "true").lower() in (
     "y",
 )
 
-STORAGE_NAME = os.getenv("STORAGE_NAME", "default").lower()
+# Change this to "aws" if you want to use it as storage
+STORAGE_NAME = "default"
 
 if STORAGE_NAME == "aws":
-    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 
-    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 
-    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", "")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
 
-    AWS_SESSION_TOKEN = os.getenv("AWS_SESSION_TOKEN", "")
+    AWS_SESSION_TOKEN = os.getenv("AWS_SESSION_TOKEN")
 
     AWS_LOCATION = "media/"
 
-    AWS_S3_REGION_NAME = os.getenv("AWS_REGION", "")
+    AWS_S3_REGION_NAME = os.getenv("AWS_REGION")
 
     AWS_S3_FILE_OVERWRITE = False
 
@@ -138,7 +139,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "lyceum.wsgi.application"
 
-DB_NAME = os.getenv("DB_NAME", "sqlite")
+# Change to "postgresql" if you're using it
+DB_NAME = "sqlite"
 
 if DB_NAME == "sqlite":
     DATABASES = {

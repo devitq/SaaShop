@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from catalog.models import Category, Item, Tag
 
-__all__ = ("ModelsTests",)
+__all__ = ()
 
 
 class ModelsTests(TestCase):
@@ -81,6 +81,7 @@ class ModelsTests(TestCase):
     def test_getting_right_context(self):
         response = Client().get(reverse("homepage:homepage"))
         self.assertIn("items", response.context)
+        self.assertIn("features", response.context)
 
     def test_item_count(self):
         response = Client().get(reverse("homepage:homepage"))

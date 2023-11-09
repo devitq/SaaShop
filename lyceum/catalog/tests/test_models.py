@@ -11,7 +11,7 @@ import parameterized
 
 from catalog.models import Category, Item, Tag
 
-__all__ = ("ModelsTests",)
+__all__ = ()
 
 
 class ModelsTests(TestCase):

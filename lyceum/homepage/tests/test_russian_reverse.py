@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from lyceum import settings
 
-__all__ = ("RussianReverseTests",)
+__all__ = ()
 
 
 class RussianReverseTests(TestCase):

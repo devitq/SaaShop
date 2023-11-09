@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
 import parameterized
 
-__all__ = ("DynamicURLTests",)
+__all__ = ()
 
 
 class DynamicURLTests(TestCase):

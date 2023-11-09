@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-08 19:57+0300\n"
+"POT-Creation-Date: 2023-11-09 20:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -287,6 +287,66 @@ msgstr "файл обратной связи"
 msgid "feedback_files_models"
 msgstr "файлы обратной связи"
 
+#: .\homepage\views.py:16
+msgid "feature_1_title"
+msgstr "Широкий выбор ИТ-решений"
+
+#: .\homepage\views.py:16
+msgid "feature_1_content"
+msgstr ""
+"Наш каталог включает готовые ИТ-решения, подходящие для различных "
+"потребностей бизнеса."
+
+#: .\homepage\views.py:17
+msgid "feature_2_title"
+msgstr "Гибкая интеграция"
+
+#: .\homepage\views.py:17
+msgid "feature_2_content"
+msgstr ""
+"Легкая интеграция наших ИТ-решений с существующими системами бизнеса, "
+"упрощает внедрение новых технологий."
+
+#: .\homepage\views.py:18
+msgid "feature_3_title"
+msgstr "Поддержка и обновления"
+
+#: .\homepage\views.py:18
+msgid "feature_3_content"
+msgstr ""
+"Постоянная поддержка и обновления, чтобы ваш бизнес всегда оставался на "
+"передовой в мире технологий."
+
+#: .\homepage\views.py:19
+msgid "feature_4_title"
+msgstr "Безопасность и надежность"
+
+#: .\homepage\views.py:19
+msgid "feature_4_content"
+msgstr ""
+"Ваша безопасность и надежность у нас в приоритете - мы предлагаем только "
+"надежные и проверенные ИТ-решения."
+
+#: .\homepage\views.py:20
+msgid "feature_5_title"
+msgstr "Эффективное управление бизнесом"
+
+#: .\homepage\views.py:20
+msgid "feature_5_content"
+msgstr ""
+"Наши ИТ-решения помогут улучшить управление бизнесом, оптимизировать "
+"процессы и повысить производительность."
+
+#: .\homepage\views.py:21
+msgid "feature_6_title"
+msgstr "Гибкая ценообразование"
+
+#: .\homepage\views.py:21
+msgid "feature_6_content"
+msgstr ""
+"Мы предлагаем гибкие варианты ценообразования, чтобы обеспечить оптимальное "
+"соотношение цены и качества для вашего бизнеса."
+
 #: .\lyceum\settings.py:193
 msgid "English"
 msgstr "Английский"
@@ -332,7 +392,7 @@ msgstr ""
 msgid "home"
 msgstr "Главная"
 
-#: .\templates\catalog\item_list.html:30 .\templates\homepage\main.html:171
+#: .\templates\catalog\item_list.html:30 .\templates\homepage\main.html:129
 msgid "no_cards"
 msgstr "Товары отсутствуют"
 
@@ -340,16 +400,60 @@ msgstr "Товары отсутствуют"
 msgid "landing_lead_text"
 msgstr "Лучший в мире каталог готовых ИТ-решений для вашего бизнеса."
 
-#: .\templates\homepage\main.html:28 .\templates\includes\footer.html:16
-#: .\templates\includes\header.html:17
+#: .\templates\homepage\main.html:28 .\templates\includes\header.html:17
 msgid "item_list"
 msgstr "Список товаров"
 
-#: .\templates\homepage\main.html:166
+#: .\templates\homepage\main.html:74
+msgid "subscription_title"
+msgstr "Программа \"Привилегии SaaShop\""
+
+#: .\templates\homepage\main.html:75
+msgid "subscription_description"
+msgstr ""
+"Программа \"Привилегии SaaShop\" - это специальная программа лояльности для "
+"наших постоянных клиентов. Получайте бонусные баллы за покупки, эксклюзивные "
+"предложения и персональное обслуживание, чтобы сделать ваш опыт покупок еще "
+"более выгодным и приятным. Присоединяйтесь сегодня и начните получать "
+"дополнительные привилегии!"
+
+#: .\templates\homepage\main.html:84
+msgid "subscription_features_title"
+msgstr "Преимущества:"
+
+#: .\templates\homepage\main.html:87
+msgid "subscription_feature_1"
+msgstr "Бонусные баллы за каждую покупку."
+
+#: .\templates\homepage\main.html:90
+msgid "subscription_feature_2"
+msgstr "Эксклюзивные предложения и акции для участников программы."
+
+#: .\templates\homepage\main.html:93
+msgid "subscription_feature_3"
+msgstr "Персональное обслуживание и приоритетная поддержка клиентов."
+
+#: .\templates\homepage\main.html:96
+msgid "subscription_feature_4"
+msgstr "Доступ к бета-версиям новых продуктов и функций."
+
+#: .\templates\homepage\main.html:101
+msgid "subscription_order_button_text"
+msgstr "Оформить (в разработке)"
+
+#: .\templates\homepage\main.html:113
+msgid "not_sure_in_buying"
+msgstr "Не знаете что купить?"
+
+#: .\templates\homepage\main.html:115
+msgid "discover_new_items"
+msgstr "Изучите наши новинки"
+
+#: .\templates\homepage\main.html:124
 msgid "landing_item_list"
 msgstr "Лучшие товары"
 
-#: .\templates\includes\footer.html:21
+#: .\templates\includes\footer.html:18
 msgid "all_rights_reserved"
 msgstr "все права защищены"
 

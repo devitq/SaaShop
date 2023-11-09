@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from catalog.models import Category, Item, Tag
 
-__all__ = ("ItemManagerTests",)
+__all__ = ()
 
 
 class ItemManagerTests(TestCase):

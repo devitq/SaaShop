@@ -99,6 +99,12 @@ Test requirements installation
 > python manage.py loaddata fixtures/data.json
 ```
 
+### Using bult in command
+
+```cmd
+> python manage.py initdata
+```
+
 ## Collecting static
 
 Run this command:

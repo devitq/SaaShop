@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-08 19:57+0300\n"
+"POT-Creation-Date: 2023-11-09 20:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -285,6 +285,66 @@ msgstr "feedback file"
 msgid "feedback_files_models"
 msgstr "feedback files"
 
+#: .\homepage\views.py:16
+msgid "feature_1_title"
+msgstr "Wide Range of IT Solutions"
+
+#: .\homepage\views.py:16
+msgid "feature_1_content"
+msgstr ""
+"Our catalog includes a wide range of ready-made IT solutions, suitable for "
+"various business needs."
+
+#: .\homepage\views.py:17
+msgid "feature_2_title"
+msgstr "Flexible Integration"
+
+#: .\homepage\views.py:17
+msgid "feature_2_content"
+msgstr ""
+"Easy integration of our IT solutions with existing business systems, "
+"simplifying the implementation of new technologies."
+
+#: .\homepage\views.py:18
+msgid "feature_3_title"
+msgstr "Support and Updates"
+
+#: .\homepage\views.py:18
+msgid "feature_3_content"
+msgstr ""
+"Ongoing support and updates to ensure your business stays at the forefront "
+"of technology."
+
+#: .\homepage\views.py:19
+msgid "feature_4_title"
+msgstr "Security and Reliability"
+
+#: .\homepage\views.py:19
+msgid "feature_4_content"
+msgstr ""
+"Your security and reliability are our priority - we offer only reliable and "
+"proven IT solutions."
+
+#: .\homepage\views.py:20
+msgid "feature_5_title"
+msgstr "Efficient Business Management"
+
+#: .\homepage\views.py:20
+msgid "feature_5_content"
+msgstr ""
+"Our IT solutions will help improve business management, optimize processes, "
+"and increase productivity."
+
+#: .\homepage\views.py:21
+msgid "feature_6_title"
+msgstr "Flexible Pricing"
+
+#: .\homepage\views.py:21
+msgid "feature_6_content"
+msgstr ""
+"We offer flexible pricing options to ensure the optimal balance of price and "
+"quality for your business."
+
 #: .\lyceum\settings.py:193
 msgid "English"
 msgstr "English"
@@ -328,7 +388,7 @@ msgstr "Here you can view our works and choose the ones you need"
 msgid "home"
 msgstr "Home"
 
-#: .\templates\catalog\item_list.html:30 .\templates\homepage\main.html:171
+#: .\templates\catalog\item_list.html:30 .\templates\homepage\main.html:129
 msgid "no_cards"
 msgstr "No items"
 
@@ -336,16 +396,59 @@ msgstr "No items"
 msgid "landing_lead_text"
 msgstr "The world's best catalog of ready-made IT solutions for your business."
 
-#: .\templates\homepage\main.html:28 .\templates\includes\footer.html:16
-#: .\templates\includes\header.html:17
+#: .\templates\homepage\main.html:28 .\templates\includes\header.html:17
 msgid "item_list"
 msgstr "Item list"
 
-#: .\templates\homepage\main.html:166
+#: .\templates\homepage\main.html:74
+msgid "subscription_title"
+msgstr "\"SaaShop Privileges Program\""
+
+#: .\templates\homepage\main.html:75
+msgid "subscription_description"
+msgstr ""
+"\"SaaShop Privileges Program\" is a special loyalty program for our regular "
+"customers. Get bonus points for your purchases, exclusive offers and "
+"personalized service to make your shopping experience even more rewarding "
+"and enjoyable. Join today and start receiving additional privileges!"
+
+#: .\templates\homepage\main.html:84
+msgid "subscription_features_title"
+msgstr "Benefits:"
+
+#: .\templates\homepage\main.html:87
+msgid "subscription_feature_1"
+msgstr "Bonus points for every purchase."
+
+#: .\templates\homepage\main.html:90
+msgid "subscription_feature_2"
+msgstr "Exclusive offers and promotions for program participants."
+
+#: .\templates\homepage\main.html:93
+msgid "subscription_feature_3"
+msgstr "Personalized service and priority customer support."
+
+#: .\templates\homepage\main.html:96
+msgid "subscription_feature_4"
+msgstr "Access to beta versions of new products and features."
+
+#: .\templates\homepage\main.html:101
+msgid "subscription_order_button_text"
+msgstr "Order (in developing)"
+
+#: .\templates\homepage\main.html:113
+msgid "not_sure_in_buying"
+msgstr "Not sure what to buy?"
+
+#: .\templates\homepage\main.html:115
+msgid "discover_new_items"
+msgstr "Discover our new items"
+
+#: .\templates\homepage\main.html:124
 msgid "landing_item_list"
 msgstr "Best items"
 
-#: .\templates\includes\footer.html:21
+#: .\templates\includes\footer.html:18
 msgid "all_rights_reserved"
 msgstr "all rights reserved"
 

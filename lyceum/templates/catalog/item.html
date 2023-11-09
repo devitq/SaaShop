@@ -34,9 +34,9 @@
                 <span class="badge rounded-pill text-bg-warning">{{ item.category.name }}</span>
                 <h6>{% translate "tags" %}:</h6>
                 {% for tag in item.tags.all %}
-                <span class="badge rounded-pill text-bg-warning">{{ tag.name }}</span>
+                    <span class="badge rounded-pill text-bg-warning">{{ tag.name }}</span>
                 {% empty %}
-                {% translate "empty_plural" %}
+                    {% translate "empty_plural" %}
                 {% endfor %}
             </div>
         </div>

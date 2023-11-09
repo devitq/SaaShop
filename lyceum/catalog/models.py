@@ -16,7 +16,7 @@ from tinymce.models import HTMLField
 from catalog.validators import ValidateMustContain
 from core.models import AddUniqueName, CoreModel
 
-__all__ = ("Category", "Item", "ItemImages", "MainImage", "Tag")
+__all__ = ()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
