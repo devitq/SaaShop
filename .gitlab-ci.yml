@@ -25,7 +25,7 @@ pytest:
     - pip install -r requirements/test.txt
     - pip install -r requirements/prod.txt
     - cd lyceum
-    - django-admin compilemessages  
+    - django-admin compilemessages
     - python manage.py makemigrations --check --dry-run
     - python manage.py migrate
     - python manage.py loaddata fixtures/data.json
