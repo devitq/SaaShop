@@ -167,11 +167,11 @@ class MyLoginView(LoginView):
 
 
 class MyLogoutView(LogoutView):
-    template_name = "users/logged_out.html"
+    template_name = "users/logout.html"
 
 
 class MyPasswordChangeView(PasswordChangeView):
-    template_name = "users/password_change_form.html"
+    template_name = "users/password_change.html"
     success_url = reverse_lazy("users:password_change_done")
     form_class = MyPasswordChangeForm
 
@@ -181,7 +181,7 @@ class MyPasswordChangeDoneView(PasswordChangeDoneView):
 
 
 class MyPasswordResetView(PasswordResetView):
-    template_name = "users/password_reset_form.html"
+    template_name = "users/password_reset.html"
     success_url = reverse_lazy("users:password_reset_done")
     form_class = MyPasswordResetForm
 
