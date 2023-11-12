@@ -32,6 +32,10 @@ def home(request):
 
 
 def coffee(request):
+    if request.user.is_authenticated:
+        profile = request.user.profile
+        profile.coffee_count += 1
+        profile.save()
     return HttpResponse("Я чайник", status=HTTPStatus.IM_A_TEAPOT)
 
 

@@ -12,4 +12,5 @@ application-import-names =
     lyceum,
     download,
     feedback,
+    users,
 inline-quotes = "

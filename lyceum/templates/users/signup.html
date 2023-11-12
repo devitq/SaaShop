@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block main %}
+
+<div class="container">
+    <h1>Вход</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% include "includes/form.html" %}
+        <input class="btn btn-primary" type="submit" value="Отправить">
+    </form>
+    <br>
+    <p>Уже есть аккаунт? <a class="bold" href="{% url 'users:login' %}">Войти</a></p>
+</div>
+
+{% endblock %}

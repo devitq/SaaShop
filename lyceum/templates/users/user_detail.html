@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container">
+  <h2>Информация о пользователе по его id</h2>
+  <dl>
+    <dt>Имя пользователя:</dt>
+    <dd>{{ user.username }}</dd>
+
+    <dt>Почта:</dt>
+    <dd>{{ user.email }}</dd>
+
+    <dt>Имя:</dt>
+    <dd>{{ user.first_name|default:"Не указано" }}</dd>
+
+    <dt>Фамилия:</dt>
+    <dd>{{ user.last_name|default:"Не указано"}}</dd>
+
+    <dt>Активен:</dt>
+    <dd>{{ user.is_active|yesno:"Да,Нет" }}</dd>
+
+    <dt>Дата рождения:</dt>
+    <dd>{{ user.profile.birthday|default:"Не указано" }}</dd>
+
+    <dt>Аватар:</dt>
+    <dd>
+      {% if user.profile.image %}
+      <img src="{{ user.profile.image.url }}" alt="User Image" width="100">
+      {% else %}
+      Отсутствует
+      {% endif %}
+    </dd>
+
+    <dt>Количество свареных кофе:</dt>
+    <dd>{{ user.profile.coffee_count }}</dd>
+  </dl>
+</div>
+{% endblock %}

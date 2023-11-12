@@ -26,6 +26,14 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(" ")
 
 MAIL = os.getenv("DJANGO_MAIL", "example@mail.com")
 
+if DEBUG:
+    DEFAULT_USER_IS_ACTIVE = True
+else:
+    DEFAULT_USER_IS_ACTIVE = os.getenv(
+        "DEFAULT_USER_IS_ACTIVE",
+        "false",
+    ).lower() in ("true", "1", "yes", "y")
+
 ALLOW_REVERSE = os.getenv("DJANGO_ALLOW_REVERSE", "true").lower() in (
     "true",
     "1",
@@ -95,6 +103,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "download.apps.DownloadConfig",
     "feedback.apps.FeedbackConfig",
+    "users.apps.UsersConfig",
 ]
 
 
@@ -217,6 +226,12 @@ MEDIA_ROOT = BASE_DIR / "media"
 LOCALE_PATHS = [
     BASE_DIR / "locale",
 ]
+
+LOGIN_URL = "/auth/login"
+
+LOGIN_REDIRECT_URL = "/"
+
+LOGOUT_REDIRECT_URL = "/auth/login"
 
 THUMBNAIL_PRESERVE_FORMAT = True
 

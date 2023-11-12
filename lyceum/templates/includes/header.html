@@ -16,7 +16,12 @@
           <li class="nav-item"><a href="{% url 'about:about' %}" {% if view_name == "about:about" %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "about" %}</a></li>
           <li class="nav-item"><a href="{% url 'catalog:item_list' %}" {% if view_name == "catalog:item_list" %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "item_list" %}</a></li>
           <li class="nav-item"><a href="{% url 'feedback:feedback' %}" {% if view_name == "feedback:feedback" %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>{% translate "feedback" %}</a></li>
-          {% if user.is_superuser %}
+          {% if request.user.is_anonymous %}
+          <li class="nav-item"><a href="{% url 'users:login' %}" {% if view_name == "users:login" %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>Войти</a></li>
+          {% else %}
+          <li class="nav-item"><a href="{% url 'users:logout' %}" {% if view_name == "users:logout" %}aria-current="page" class="nav-link active"{% else %}class="nav-link"{% endif %}>Выйти</a></li>
+          {% endif %}
+          {% if request.user.is_superuser %}
           <li class="nav-item"><a href="{% url 'admin:index' %}" class="nav-link">{% translate "admin_panel" %}</a></li>
           {% endif %}
         </ul>

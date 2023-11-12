@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block main %}
+
+<div class="container">
+    <h1>Вход</h1>
+    <form method="post" action="{% url 'users:login' %}" class="form">
+        {% csrf_token %}
+        {% include "includes/form.html" %}
+        <input class="btn btn-primary" type="submit" value="Отправить">
+    </form>
+    <br>
+    <p>Ещё нет аккаунта? <a class="bold" href="{% url 'users:signup' %}">Зарегестрируйтесь</a></p>
+    <a class="bold" href="{% url 'users:password_reset' %}">Забыли пароль?</a>
+</div>
+
+{% endblock %}

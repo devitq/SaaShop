@@ -93,3 +93,7 @@ html,
 body {
     scroll-behavior: smooth;
 }
+
+.bold {
+    font-weight: 800;
+}
