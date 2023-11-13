@@ -28,7 +28,7 @@ class UserForm(auth.forms.UserChangeForm, BaseFormMixin):
 
     class Meta(auth.forms.UserChangeForm.Meta):
         model = User
-        fields = ["username", "email", "first_name"]
+        fields = ("username", "email", "first_name")
 
 
 class UserChangeForm(forms.ModelForm, BaseFormMixin):
@@ -62,4 +62,4 @@ class UserSignupForm(auth.forms.UserCreationForm, BaseFormMixin):
 
     class Meta(auth.forms.UserCreationForm.Meta):
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = ("username", "email", "password1", "password2")
