@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib import auth
 from django.contrib.auth.models import User
 
 from users.models import Profile
@@ -20,13 +20,13 @@ class BaseFormMixin:
                 field.field.widget.attrs["class"] = "form-control is-valid"
 
 
-class UserForm(forms.ModelForm, BaseFormMixin):
+class UserForm(auth.forms.UserChangeForm, BaseFormMixin):
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
         has_submitted = False
         self.set_field_attributes(has_submitted)
 
-    class Meta:
+    class Meta(auth.forms.UserChangeForm.Meta):
         model = User
         fields = ["username", "email", "first_name"]
 
@@ -54,12 +54,12 @@ class UserChangeForm(forms.ModelForm, BaseFormMixin):
         }
 
 
-class UserSignupForm(UserCreationForm, BaseFormMixin):
+class UserSignupForm(auth.forms.UserCreationForm, BaseFormMixin):
     def __init__(self, *args, **kwargs):
         super(UserSignupForm, self).__init__(*args, **kwargs)
         has_submitted = False
         self.set_field_attributes(has_submitted)
 
-    class Meta(UserCreationForm.Meta):
+    class Meta(auth.forms.UserCreationForm.Meta):
         model = User
         fields = ["username", "email", "password1", "password2"]

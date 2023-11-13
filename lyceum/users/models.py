@@ -30,6 +30,10 @@ class Profile(models.Model):
         blank=True,
     )
 
+    class Meta:
+        verbose_name = "профиль"
+        verbose_name_plural = "профили"
+
 
 def create_profile(sender, instance, created, **kwargs):
     if created:
