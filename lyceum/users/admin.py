@@ -10,9 +10,7 @@ __all__ = ()
 class ProfileInline(admin.TabularInline):
     model = Profile
     can_delete = False
-    readonly_fields = (
-        Profile.coffee_count.field.name,
-        )
+    readonly_fields = (Profile.coffee_count.field.name,)
 
 
 class UserAdmin(BaseUserAdmin):

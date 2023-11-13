@@ -1,3 +1,4 @@
+import os
 import datetime
 from http import HTTPStatus
 from unittest.mock import patch
@@ -94,3 +95,30 @@ class StaticURLTests(TestCase):
     def test_login_url(self, url):
         response = Client().get(reverse(url))
         self.assertEqual(response.status_code, HTTPStatus.OK)
+
+
+class AuthenticationTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.username = "testuser"
+        self.email = "testuser@example.com"
+        self.password = os.getenv("DJANGO_SUPERUSER_PASSWORD", "1234")
+        self.user = User.objects.create_user(
+            username=self.username,
+            email=self.email,
+            password=self.password,
+        )
+
+    def test_login_by_username(self):
+        response = self.client.post(
+            reverse("login"),
+            {"username": self.username, "password": self.password},
+        )
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+    def test_login_by_email(self):
+        response = self.client.post(
+            reverse("login"),
+            {"username": self.email, "password": self.password},
+        )
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)

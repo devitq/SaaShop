@@ -1,8 +1,24 @@
 import re
 
 from django.conf import settings
+from django.utils.functional import SimpleLazyObject
 
-__all__ = ("ReverseRussianMiddleware",)
+from users.models import User
+
+__all__ = ("ReverseRussianMiddleware", "UserProxyMiddleware")
+
+
+class UserProxyMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def process_request(self, request):
+        def get_user():
+            if not hasattr(request, "_cached_user"):
+                request._cached_user = User.objects.get(pk=request.user.pk)
+            return request._cached_user
+
+        request.user = SimpleLazyObject(get_user)
 
 
 class ReverseRussianMiddleware:

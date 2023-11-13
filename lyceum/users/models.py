@@ -1,13 +1,22 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser, User, UserManager
 from django.db import models
 
 __all__ = ()
+
+
+class ProfileManager(UserManager):
+    def by_mail(self, email):
+        return self.get(email=email)
+
+    def active(self):
+        return self.filter(is_active=True)
 
 
 class Profile(models.Model):
     def get_path_for_file(self, filename):
         return f"avatars/{self.user_id}/{filename}"
 
+    objects = ProfileManager()
     user = models.OneToOneField(
         User,
         related_name="profile",
@@ -30,9 +39,19 @@ class Profile(models.Model):
         blank=True,
     )
 
+    def active(self):
+        return self.is_active
+
     class Meta:
         verbose_name = "профиль"
         verbose_name_plural = "профили"
+
+
+class User(AbstractUser):
+    class Meta:
+        proxy = True
+
+    objects = ProfileManager()
 
 
 def create_profile(sender, instance, created, **kwargs):
