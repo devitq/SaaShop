@@ -25,8 +25,9 @@ class Profile(models.Model):
         upload_to=get_path_for_file,
     )
     coffee_count = models.PositiveIntegerField(
+        "количество выпитого кофе",
         default=0,
-        editable=False,
+        blank=True,
     )
 
 

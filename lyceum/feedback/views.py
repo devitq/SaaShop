@@ -19,11 +19,9 @@ def feedback(request):
         auto_id=True,
     )
     context = {
-        "forms": [
-            personal_data_form,
-            feedback_form,
-            files_form,
-        ],
+        "personal_data_form": personal_data_form,
+        "form": feedback_form,
+        "files_form": files_form,
     }
     if request.method == "POST":
         if feedback_form.is_valid() and personal_data_form.is_valid():

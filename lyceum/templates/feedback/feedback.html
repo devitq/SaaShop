@@ -21,7 +21,7 @@
     <h1>{% translate "feedback" %}</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {% for form in forms %}
+        {% with personal_data_form as form %}
             {% for field in form %}
                 <div class="form-group mb-3">
                     <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}</label>
@@ -47,7 +47,59 @@
                     {% endfor %}
                 </div>
             {% endif %}
-        {% endfor %}
+        {% endwith %}
+        {% for field in form %}
+            <div class="form-group mb-3">
+                <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if field.help_text %}
+                    <div class="form-text text-muted">
+                        <p>{{ field.help_text }}</p>
+                    </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% with files_form as form %}
+            {% for field in form %}
+                <div class="form-group mb-3">
+                    <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if field.help_text %}
+                        <div class="form-text text-muted">
+                            <p>{{ field.help_text }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
         <input class="btn btn-primary" type="submit" value="Отправить">
     </form>
 </div>

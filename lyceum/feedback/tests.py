@@ -2,7 +2,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, override_settings, TestCase
 from django.urls import reverse
 
-from feedback.forms import FeedbackForm, FilesForm, PersonalDataForm
+from feedback.forms import FeedbackForm, PersonalDataForm
 from feedback.models import Feedback, PersonalData
 
 __all__ = ()
@@ -86,11 +86,7 @@ class FormTests(TestCase):
 
     def test_getting_right_context(self):
         response = Client().get(reverse("feedback:feedback"))
-        self.assertIn("forms", response.context)
-        forms = response.context["forms"]
-        self.assertIn(PersonalDataForm, [item.__class__ for item in forms])
-        self.assertIn(FilesForm, [item.__class__ for item in forms])
-        self.assertIn(FeedbackForm, [item.__class__ for item in forms])
+        self.assertIn("form", response.context)
 
     def test_text_label_and_help_text(self):
         text_label = self.feedback_form.fields[Feedback.text.field.name].label

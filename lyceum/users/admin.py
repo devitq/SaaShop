@@ -10,6 +10,7 @@ __all__ = ()
 class ProfileInline(admin.TabularInline):
     model = Profile
     can_delete = False
+    readonly_fields = ("birthday",)
 
 
 class UserAdmin(BaseUserAdmin):

@@ -1,11 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import (
-    AuthenticationForm,
-    PasswordChangeForm,
-    PasswordResetForm,
-    SetPasswordForm,
-    UserCreationForm,
-)
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from users.models import Profile
@@ -37,15 +31,27 @@ class UserForm(forms.ModelForm, BaseFormMixin):
         fields = ["username", "email", "first_name"]
 
 
-class UserProfileForm(forms.ModelForm, BaseFormMixin):
+class UserChangeForm(forms.ModelForm, BaseFormMixin):
     def __init__(self, *args, **kwargs):
-        super(UserProfileForm, self).__init__(*args, **kwargs)
+        super(UserChangeForm, self).__init__(*args, **kwargs)
+        self.fields["coffee_count"].widget.attrs["disabled"] = True
+        self.fields["coffee_count"].widget.attrs["required"] = False
+        self.fields["birthday"].widget.attrs["required"] = False
         has_submitted = False
         self.set_field_attributes(has_submitted)
 
     class Meta:
         model = Profile
-        fields = ["birthday", "image"]
+        fields = (
+            Profile.birthday.field.name,
+            Profile.image.field.name,
+            Profile.coffee_count.field.name,
+        )
+        widgets = {
+            Profile.birthday.field.name: forms.DateInput(
+                attrs={"type": "date", "placeholder": "yyyy-mm-dd (DOB)"},
+            ),
+        }
 
 
 class UserSignupForm(UserCreationForm, BaseFormMixin):
@@ -54,34 +60,6 @@ class UserSignupForm(UserCreationForm, BaseFormMixin):
         has_submitted = False
         self.set_field_attributes(has_submitted)
 
-    class Meta:
+    class Meta(UserCreationForm.Meta):
         model = User
         fields = ["username", "email", "password1", "password2"]
-
-
-class MyLoginForm(AuthenticationForm, BaseFormMixin):
-    def __init__(self, *args, **kwargs):
-        super(MyLoginForm, self).__init__(*args, **kwargs)
-        has_submitted = False
-        self.set_field_attributes(has_submitted)
-
-
-class MyPasswordChangeForm(PasswordChangeForm, BaseFormMixin):
-    def __init__(self, *args, **kwargs):
-        super(MyPasswordChangeForm, self).__init__(*args, **kwargs)
-        has_submitted = False
-        self.set_field_attributes(has_submitted)
-
-
-class MyPasswordResetForm(PasswordResetForm, BaseFormMixin):
-    def __init__(self, *args, **kwargs):
-        super(MyPasswordResetForm, self).__init__(*args, **kwargs)
-        has_submitted = False
-        self.set_field_attributes(has_submitted)
-
-
-class MyPasswordConfirmForm(SetPasswordForm, BaseFormMixin):
-    def __init__(self, *args, **kwargs):
-        super(MyPasswordConfirmForm, self).__init__(*args, **kwargs)
-        has_submitted = False
-        self.set_field_attributes(has_submitted)

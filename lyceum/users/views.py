@@ -2,16 +2,6 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth.views import (
-    LoginView,
-    LogoutView,
-    PasswordChangeDoneView,
-    PasswordChangeView,
-    PasswordResetCompleteView,
-    PasswordResetConfirmView,
-    PasswordResetDoneView,
-    PasswordResetView,
-)
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
@@ -28,12 +18,8 @@ from django.views.generic import (
 )
 
 from users.forms import (
-    MyLoginForm,
-    MyPasswordChangeForm,
-    MyPasswordConfirmForm,
-    MyPasswordResetForm,
+    UserChangeForm,
     UserForm,
-    UserProfileForm,
     UserSignupForm,
 )
 from users.tokens import account_activation_token
@@ -138,11 +124,11 @@ class UserDetailView(DetailView):
 @login_required
 def profile_edit(request):
     user_form = UserForm(instance=request.user)
-    profile_form = UserProfileForm(instance=request.user.profile)
+    profile_form = UserChangeForm(instance=request.user.profile)
 
     if request.method == "POST":
         user_form = UserForm(request.POST, instance=request.user)
-        profile_form = UserProfileForm(
+        profile_form = UserChangeForm(
             request.POST,
             request.FILES,
             instance=request.user.profile,
@@ -159,42 +145,3 @@ def profile_edit(request):
         "users/profile.html",
         {"user_form": user_form, "profile_form": profile_form},
     )
-
-
-class MyLoginView(LoginView):
-    template_name = "users/login.html"
-    form_class = MyLoginForm
-
-
-class MyLogoutView(LogoutView):
-    template_name = "users/logout.html"
-
-
-class MyPasswordChangeView(PasswordChangeView):
-    template_name = "users/password_change.html"
-    success_url = reverse_lazy("users:password_change_done")
-    form_class = MyPasswordChangeForm
-
-
-class MyPasswordChangeDoneView(PasswordChangeDoneView):
-    template_name = "users/password_change_done.html"
-
-
-class MyPasswordResetView(PasswordResetView):
-    template_name = "users/password_reset.html"
-    success_url = reverse_lazy("users:password_reset_done")
-    form_class = MyPasswordResetForm
-
-
-class MyPasswordResetDoneView(PasswordResetDoneView):
-    template_name = "users/password_reset_done.html"
-
-
-class MyPasswordResetConfirmView(PasswordResetConfirmView):
-    template_name = "users/password_reset_confirm.html"
-    success_url = reverse_lazy("users:password_reset_complete")
-    form_class = MyPasswordConfirmForm
-
-
-class MyPasswordResetCompleteView(PasswordResetCompleteView):
-    template_name = "users/password_reset_complete.html"
