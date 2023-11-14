@@ -119,7 +119,7 @@ MIDDLEWARE = [
     "django.middleware.locale.LocaleMiddleware",
     # Our middleware
     "lyceum.middleware.ReverseRussianMiddleware",
-    "lyceum.middleware.UserProxyMiddleware",
+    "users.middleware.Users",
 ]
 
 if DEBUG:

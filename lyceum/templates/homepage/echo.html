@@ -5,7 +5,31 @@
     <h1>Эхо</h1>
     <form method="post" action="{% url 'homepage:echo_submit' %}">
         {% csrf_token %}
-        {% include "includes/form.html" %}
+        {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                        {% for error in field.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                {% endif %}
+                {% if field.help_text %}
+                    <div class="form-text text-muted">
+                        <p>{{ field.help_text }}</p>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
         <input class="btn btn-primary" type="submit" value="Отправить">
     </form>
 </div>
