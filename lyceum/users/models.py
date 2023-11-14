@@ -43,11 +43,11 @@ class Profile(models.Model):
         verbose_name_plural = "профили"
 
 
-class User(User):
-    objects = ProfileManager()
-
+class CustomUser(User):
     class Meta:
         proxy = True
+
+    objects = ProfileManager()
 
     def active(self):
         return self.is_active
@@ -59,3 +59,4 @@ def create_profile(sender, instance, created, **kwargs):
 
 
 models.signals.post_save.connect(create_profile, sender=User)
+User._meta.get_field("email")._unique = True
