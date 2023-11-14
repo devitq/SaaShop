@@ -3,16 +3,6 @@ from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
-import sentry_sdk
-
-sentry_sdk.init(
-    dsn=(
-        "https://38f01932ee1648b37247a241cb06f10e@o4506155887558656."
-        "ingest.sentry.io/4506155889262592"
-    ),
-    traces_sample_rate=1.0,
-    profiles_sample_rate=1.0,
-)
 
 load_dotenv(override=False)
 
