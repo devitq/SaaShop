@@ -8,18 +8,10 @@ __all__ = ()
 
 class ProfileManager(UserManager):
     def by_mail(self, email):
-        return (
-            self
-            .select_related("profile")
-            .get(email=email)
-            )
+        return self.select_related("profile").get(email=email)
 
     def active(self):
-        return (
-            self
-            .select_related("profile")
-            .filter(is_active=True)
-            )
+        return self.select_related("profile").filter(is_active=True)
 
 
 class Profile(models.Model):
