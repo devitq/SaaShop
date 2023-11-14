@@ -1,3 +1,5 @@
+import sys
+
 from django.contrib.auth.models import User, UserManager
 from django.db import models
 
@@ -59,4 +61,6 @@ def create_profile(sender, instance, created, **kwargs):
 
 
 models.signals.post_save.connect(create_profile, sender=User)
-User._meta.get_field("email")._unique = True
+
+if "makemigrations" not in sys.argv and "migrate" not in sys.argv:
+    User._meta.get_field("email")._unique = True

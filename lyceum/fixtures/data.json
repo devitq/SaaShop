@@ -1,279 +1,278 @@
 [
-  {
-    "model": "catalog.tag",
-    "pk": 6,
-    "fields": {
-      "name": "Appliances",
-      "name_en": "Appliances",
-      "name_ru": "Бытовая техника",
-      "is_published": true,
-      "unique_name": "bytovajatehnika",
-      "slug": "appliances"
-    }
-  },
-  {
-    "model": "catalog.tag",
-    "pk": 7,
-    "fields": {
-      "name": "For home",
-      "name_en": "For home",
-      "name_ru": "Для дома",
-      "is_published": true,
-      "unique_name": "dljadoma",
-      "slug": "for-home"
-    }
-  },
-  {
-    "model": "catalog.tag",
-    "pk": 8,
-    "fields": {
-      "name": "For kids",
-      "name_en": "For kids",
-      "name_ru": "Для детей",
-      "is_published": true,
-      "unique_name": "dljadetej",
-      "slug": "for-kids"
-    }
-  },
-  {
-    "model": "catalog.tag",
-    "pk": 9,
-    "fields": {
-      "name": "For adults",
-      "name_en": "For adults",
-      "name_ru": "Для взрослых",
-      "is_published": true,
-      "unique_name": "dljavzroslyh",
-      "slug": "for-adults"
-    }
-  },
-  {
-    "model": "catalog.tag",
-    "pk": 10,
-    "fields": {
-      "name": "For teenagers",
-      "name_en": "For teenagers",
-      "name_ru": "Для подростков",
-      "is_published": true,
-      "unique_name": "dljapodrostkov",
-      "slug": "for-teenagers"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 1,
-    "fields": {
-      "name": "Electronics",
-      "name_en": "Electronics",
-      "name_ru": "Электроника",
-      "is_published": true,
-      "unique_name": "elektronika",
-      "slug": "electronics",
-      "weight": 100
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 2,
-    "fields": {
-      "name": "Entertainments",
-      "name_en": "Entertainments",
-      "name_ru": "Развлечения",
-      "is_published": true,
-      "unique_name": "razvlechenija",
-      "slug": "Entertainments",
-      "weight": 100
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 4,
-    "fields": {
-      "name": "Empty",
-      "name_en": "Empty",
-      "name_ru": "Пустая",
-      "is_published": true,
-      "unique_name": "empty",
-      "slug": "pustaya",
-      "weight": 100
-    }
-  },
-  {
-    "model": "catalog.mainimage",
-    "pk": 23,
-    "fields": {
-      "main_image": "main_image/2023.11.04/a2588f4e-91f2-462c-9dcd-1f515777ea76.png"
-    }
-  },
-  {
-    "model": "catalog.item",
-    "pk": 21,
-    "fields": {
-      "name": "Vacuum cleaner",
-      "name_en": "Vacuum cleaner",
-      "name_ru": "Пылесос",
-      "is_published": true,
-      "is_on_main": true,
-      "text": "<p>Perfect</p>",
-      "text_en": "<p>Perfect</p>",
-      "text_ru": "<p>Превосходно</p>",
-      "created_at": "2023-11-03T12:27:06.554Z",
-      "updated_at": "2023-11-03T12:48:28.238Z",
-      "category": 1,
-      "main_image": null,
-      "tags": [
-        6,
-        7
-      ]
-    }
-  },
-  {
-    "model": "catalog.item",
-    "pk": 22,
-    "fields": {
-      "name": "A set of pencils",
-      "name_en": "A set of pencils",
-      "name_ru": "Набор карандашей",
-      "is_published": true,
-      "is_on_main": true,
-      "text": "<p>Perfect</p>",
-      "text_en": "<p>Perfect</p>",
-      "text_ru": "<p>Плохой набор, не роскошно</p>",
-      "created_at": "2023-11-03T12:38:57.766Z",
-      "updated_at": "2023-11-03T12:41:58.246Z",
-      "category": 2,
-      "main_image": null,
-      "tags": [
-        8,
-        9,
-        10
-      ]
-    }
-  },
-  {
-    "model": "catalog.item",
-    "pk": 23,
-    "fields": {
-      "name": "Lego Duplo Set",
-      "name_en": "Lego Duplo Set",
-      "name_ru": "Набор Lego Duplo",
-      "is_published": true,
-      "is_on_main": true,
-      "text": "<p>Perfect</p>",
-      "text_en": "<p>Perfect</p>",
-      "text_ru": "<p>Превосходно</p>",
-      "created_at": "2023-11-03T12:43:51.934Z",
-      "updated_at": "2023-11-03T12:43:51.934Z",
-      "category": 2,
-      "main_image": null,
-      "tags": [
-        7,
-        8
-      ]
-    }
-  },
-  {
-    "model": "catalog.item",
-    "pk": 24,
-    "fields": {
-      "name": "Toaster",
-      "name_en": "Toaster",
-      "name_ru": "Тостер",
-      "is_published": true,
-      "is_on_main": true,
-      "text": "<p>Perfect</p>",
-      "text_en": "<p>Perfect</p>",
-      "text_ru": "<p>Превосходно</p>",
-      "created_at": "2023-11-03T12:44:40.001Z",
-      "updated_at": "2023-11-03T12:44:40.001Z",
-      "category": 1,
-      "main_image": null,
-      "tags": [
-        9,
-        6,
-        7
-      ]
-    }
-  },
-  {
-    "model": "catalog.item",
-    "pk": 25,
-    "fields": {
-      "name": "Lego Technic Set",
-      "name_en": "Lego Technic Set",
-      "name_ru": "Набор Lego Technic",
-      "is_published": true,
-      "is_on_main": true,
-      "text": "<p>Perfect</p>",
-      "text_en": "<p>Perfect</p>",
-      "text_ru": "<p>Превосходно</p>",
-      "created_at": "2023-11-03T12:45:40.641Z",
-      "updated_at": "2023-11-03T12:45:40.641Z",
-      "category": 2,
-      "main_image": null,
-      "tags": [
-        8,
-        9,
-        10
-      ]
-    }
-  },
-  {
-    "model": "catalog.item",
-    "pk": 26,
-    "fields": {
-      "name": "Engish title",
-      "name_en": "Engish title",
-      "name_ru": "Русский заголовок",
-      "is_published": true,
-      "is_on_main": true,
-      "text": "<p>This is perfect, PERFECT</p>",
-      "text_en": "<p>This is perfect, PERFECT</p>",
-      "text_ru": "<p>Это превосходно, ПРЕВОСХОДНО</p>",
-      "created_at": "2023-11-03T12:46:59.038Z",
-      "updated_at": "2023-11-04T15:42:10.743Z",
-      "category": 4,
-      "main_image": 23,
-      "tags": [
-        6,
-        7,
-        8,
-        9,
-        10
-      ]
-    }
-  },
-  {
-    "model": "catalog.itemimages",
-    "pk": 26,
-    "fields": {
-      "item": 26,
-      "image": "images/2023.11.04/24508699-d797-49d9-bd84-5cf81525de0b.png"
-    }
-  },
-  {
-    "model": "catalog.itemimages",
-    "pk": 27,
-    "fields": {
-      "item": 26,
-      "image": "images/2023.11.04/1303ea0f-8691-4753-8e2e-601af8002a72.png"
-    }
-  },
-  {
-    "model": "catalog.itemimages",
-    "pk": 28,
-    "fields": {
-      "item": 26,
-      "image": "images/2023.11.04/c1363286-4b31-402e-975f-3ded5086858e.png"
-    }
-  },
-  {
-    "model": "catalog.itemimages",
-    "pk": 29,
-    "fields": {
-      "item": 26,
-      "image": "images/2023.11.04/bd5769c5-3c75-4c0a-8190-68873721cb2a.png"
-    }
+{
+  "model": "catalog.tag",
+  "pk": 6,
+  "fields": {
+    "name": "Appliances",
+    "name_en": "Appliances",
+    "name_ru": "Бытовая техника",
+    "is_published": true,
+    "unique_name": "bytovajatehnika",
+    "slug": "appliances"
   }
-  ]
-  
+},
+{
+  "model": "catalog.tag",
+  "pk": 7,
+  "fields": {
+    "name": "For home",
+    "name_en": "For home",
+    "name_ru": "Для дома",
+    "is_published": true,
+    "unique_name": "dljadoma",
+    "slug": "for-home"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 8,
+  "fields": {
+    "name": "For kids",
+    "name_en": "For kids",
+    "name_ru": "Для детей",
+    "is_published": true,
+    "unique_name": "dljadetej",
+    "slug": "for-kids"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 9,
+  "fields": {
+    "name": "For adults",
+    "name_en": "For adults",
+    "name_ru": "Для взрослых",
+    "is_published": true,
+    "unique_name": "dljavzroslyh",
+    "slug": "for-adults"
+  }
+},
+{
+  "model": "catalog.tag",
+  "pk": 10,
+  "fields": {
+    "name": "For teenagers",
+    "name_en": "For teenagers",
+    "name_ru": "Для подростков",
+    "is_published": true,
+    "unique_name": "dljapodrostkov",
+    "slug": "for-teenagers"
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 1,
+  "fields": {
+    "name": "Electronics",
+    "name_en": "Electronics",
+    "name_ru": "Электроника",
+    "is_published": true,
+    "unique_name": "elektronika",
+    "slug": "electronics",
+    "weight": 100
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 2,
+  "fields": {
+    "name": "Entertainments",
+    "name_en": "Entertainments",
+    "name_ru": "Развлечения",
+    "is_published": true,
+    "unique_name": "razvlechenija",
+    "slug": "Entertainments",
+    "weight": 100
+  }
+},
+{
+  "model": "catalog.category",
+  "pk": 4,
+  "fields": {
+    "name": "Empty",
+    "name_en": "Empty",
+    "name_ru": "Пустая",
+    "is_published": true,
+    "unique_name": "empty",
+    "slug": "pustaya",
+    "weight": 100
+  }
+},
+{
+  "model": "catalog.mainimage",
+  "pk": 24,
+  "fields": {
+    "main_image": "main_image/2023.11.14/9b06a42d-8bf6-4628-b9c8-dfc1d6bc3767.png"
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 21,
+  "fields": {
+    "name": "Vacuum cleaner",
+    "name_en": "Vacuum cleaner",
+    "name_ru": "Пылесос",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "<p>Perfect</p>",
+    "text_en": "<p>Perfect</p>",
+    "text_ru": "<p>Превосходно</p>",
+    "created_at": "2023-11-03T12:27:06.554Z",
+    "updated_at": "2023-11-03T12:48:28.238Z",
+    "category": 1,
+    "main_image": null,
+    "tags": [
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 22,
+  "fields": {
+    "name": "A set of pencils",
+    "name_en": "A set of pencils",
+    "name_ru": "Набор карандашей",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "<p>Perfect</p>",
+    "text_en": "<p>Perfect</p>",
+    "text_ru": "<p>Плохой набор, не роскошно</p>",
+    "created_at": "2023-11-03T12:38:57.766Z",
+    "updated_at": "2023-11-03T12:41:58.246Z",
+    "category": 2,
+    "main_image": null,
+    "tags": [
+      8,
+      9,
+      10
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 23,
+  "fields": {
+    "name": "Lego Duplo Set",
+    "name_en": "Lego Duplo Set",
+    "name_ru": "Набор Lego Duplo",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "<p>Perfect</p>",
+    "text_en": "<p>Perfect</p>",
+    "text_ru": "<p>Превосходно</p>",
+    "created_at": "2023-11-03T12:43:51.934Z",
+    "updated_at": "2023-11-03T12:43:51.934Z",
+    "category": 2,
+    "main_image": null,
+    "tags": [
+      7,
+      8
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 24,
+  "fields": {
+    "name": "Toaster",
+    "name_en": "Toaster",
+    "name_ru": "Тостер",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "<p>Perfect</p>",
+    "text_en": "<p>Perfect</p>",
+    "text_ru": "<p>Превосходно</p>",
+    "created_at": "2023-11-03T12:44:40.001Z",
+    "updated_at": "2023-11-03T12:44:40.001Z",
+    "category": 1,
+    "main_image": null,
+    "tags": [
+      6,
+      7,
+      9
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 25,
+  "fields": {
+    "name": "Lego Technic Set",
+    "name_en": "Lego Technic Set",
+    "name_ru": "Набор Lego Technic",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "<p>Perfect</p>",
+    "text_en": "<p>Perfect</p>",
+    "text_ru": "<p>Превосходно</p>",
+    "created_at": "2023-11-03T12:45:40.641Z",
+    "updated_at": "2023-11-03T12:45:40.641Z",
+    "category": 2,
+    "main_image": null,
+    "tags": [
+      8,
+      9,
+      10
+    ]
+  }
+},
+{
+  "model": "catalog.item",
+  "pk": 26,
+  "fields": {
+    "name": "Engish title",
+    "name_en": "Engish title",
+    "name_ru": "Русский заголовок",
+    "is_published": true,
+    "is_on_main": true,
+    "text": "<p>This is perfect, PERFECT</p>",
+    "text_en": "<p>This is perfect, PERFECT</p>",
+    "text_ru": "<p>Это превосходно, ПРЕВОСХОДНО</p>",
+    "created_at": "2023-11-03T12:46:59.038Z",
+    "updated_at": "2023-11-14T15:09:08.149Z",
+    "category": 4,
+    "main_image": 24,
+    "tags": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  }
+},
+{
+  "model": "catalog.itemimages",
+  "pk": 30,
+  "fields": {
+    "item": 26,
+    "image": "images/2023.11.14/5758ba06-6385-45cd-8bc2-faaa9e92718a.png"
+  }
+},
+{
+  "model": "catalog.itemimages",
+  "pk": 31,
+  "fields": {
+    "item": 26,
+    "image": "images/2023.11.14/ed18529a-ed20-4f25-973c-8f1c49b3e07d.png"
+  }
+},
+{
+  "model": "catalog.itemimages",
+  "pk": 32,
+  "fields": {
+    "item": 26,
+    "image": "images/2023.11.14/9ea2aa87-7c57-40bc-a0c8-2c54fa3bd018.png"
+  }
+},
+{
+  "model": "catalog.itemimages",
+  "pk": 33,
+  "fields": {
+    "item": 26,
+    "image": "images/2023.11.14/a926505e-bffb-4bdf-9f68-a75358811655.png"
+  }
+}
+]
