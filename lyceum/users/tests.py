@@ -1,6 +1,6 @@
-import os
 import datetime
 from http import HTTPStatus
+import os
 from unittest.mock import patch
 
 from django.contrib.auth.models import User

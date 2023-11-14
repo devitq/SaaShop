@@ -1,7 +1,6 @@
 import re
 
 from django.conf import settings
-from django.utils.functional import SimpleLazyObject
 
 from users.models import User
 
@@ -12,13 +11,10 @@ class UserProxyMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
 
-    def process_request(self, request):
-        def get_user():
-            if not hasattr(request, "_cached_user"):
-                request._cached_user = User.objects.get(pk=request.user.pk)
-            return request._cached_user
-
-        request.user = SimpleLazyObject(get_user)
+    def __call__(self, request):
+        if request.user.is_authenticated:
+            request.user = User.objects.get(pk=request.user.pk)
+        return self.get_response(request)
 
 
 class ReverseRussianMiddleware:
