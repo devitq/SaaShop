@@ -20,7 +20,7 @@ class EmailOrUsernameModelBackend(ModelBackend):
         if username is None:
             username = kwargs.get(user_model.USERNAME_FIELD)
         if password is None or username is None:
-            return
+            return None
         try:
             if "@" in username:
                 email = CustomUser.objects.normalize_email(username)
