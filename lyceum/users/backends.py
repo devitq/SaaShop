@@ -41,9 +41,9 @@ class EmailOrUsernameModelBackend(ModelBackend):
             user.profile.save()
 
             if (
-                 user.profile.attempts_count == settings.MAX_AUTH_ATTEMPTS
-                 and user.is_active is True
-             ):
+                user.profile.attempts_count == settings.MAX_AUTH_ATTEMPTS
+                and user.is_active is True
+            ):
                 user.is_active = False
                 user.save()
                 user.profile.blocked_timestamp = timezone.now()
