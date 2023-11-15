@@ -16,6 +16,8 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(" ")
 
 MAIL = os.getenv("DJANGO_MAIL", "example@mail.com")
 
+MAX_AUTH_ATTEMPTS = int(os.getenv("MAX_AUTH_ATTEMPTS", 3))
+
 if DEBUG:
     DEFAULT_USER_IS_ACTIVE = True
 else:

@@ -67,8 +67,13 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path(
-        "activate/<str:uidb64>/<str:token>/",
+        "activate/<str:token>/",
         users.views.ActivateAccountView.as_view(),
         name="activate_account",
+    ),
+    path(
+        "reactivate/<str:token>/",
+        users.views.ReactivateAccountView.as_view(),
+        name="reactivate_account",
     ),
 ]

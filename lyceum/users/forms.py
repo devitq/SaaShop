@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import auth
 from django.contrib.auth.models import User
 
-from users.models import Profile
+from users.models import CustomUser, Profile
 
 
 __all__ = ()
@@ -61,5 +61,5 @@ class UserSignupForm(auth.forms.UserCreationForm, BaseFormMixin):
         self.set_field_attributes(has_submitted)
 
     class Meta(auth.forms.UserCreationForm.Meta):
-        model = User
+        model = CustomUser
         fields = ("username", "email", "password1", "password2")

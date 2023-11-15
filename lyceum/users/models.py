@@ -13,6 +13,20 @@ class ProfileManager(UserManager):
     def active(self):
         return self.select_related("profile").filter(is_active=True)
 
+    def normalize_email(self, email):
+        email = email.lower()
+        login, domain = email.split("@")
+        if "+" in login:
+            login = login.split("+")[0]
+        domain = domain.replace("ya.ru", "yandex.ru")
+        if domain == "yandex.ru":
+            login = login.replace(".", "-")
+        elif domain == "gmail.com":
+            login = login.replace(".", "")
+        email = f"{login}@{domain}"
+
+        return super().normalize_email(email)
+
 
 class Profile(models.Model):
     def get_path_for_file(self, filename):
@@ -39,6 +53,12 @@ class Profile(models.Model):
         default=0,
         blank=True,
     )
+    attempts_count = models.PositiveIntegerField(
+        "количество попыток входа",
+        editable=False,
+        default=0,
+        blank=True,
+    )
 
     class Meta:
         verbose_name = "профиль"
@@ -51,9 +71,6 @@ class CustomUser(User):
 
     objects = ProfileManager()
 
-    def active(self):
-        return self.is_active
-
 
 def create_profile(sender, instance, created, **kwargs):
     if created:
@@ -61,6 +78,7 @@ def create_profile(sender, instance, created, **kwargs):
 
 
 models.signals.post_save.connect(create_profile, sender=User)
+models.signals.post_save.connect(create_profile, sender=CustomUser)
 
 if "makemigrations" not in sys.argv and "migrate" not in sys.argv:
     User._meta.get_field("email")._unique = True

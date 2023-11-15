@@ -2,14 +2,11 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
+from django.core.signing import BadSignature, SignatureExpired, TimestampSigner
 from django.shortcuts import redirect, render
-from django.template.loader import render_to_string
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
-from django.utils.encoding import force_bytes, force_str
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -22,38 +19,65 @@ from users.forms import (
     UserForm,
     UserSignupForm,
 )
-from users.tokens import account_activation_token
 
 
 __all__ = ()
 
 
 class ActivateAccountView(View):
-    def get(self, request, uidb64, token):
+    def get(self, request, token):
+        signer = TimestampSigner()
         try:
-            uid = force_str(urlsafe_base64_decode(uidb64))
-            user = User.objects.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-            user = None
+            username = signer.unsign(
+                token,
+                max_age=timezone.timedelta(hours=12),
+            )
+            user = User.objects.get(username=username)
+            user.is_active = True
+            user.save()
+            messages.success(
+                request,
+                "Аккаунт успешно активирован",
+            )
+        except SignatureExpired:
+            messages.error(
+                request,
+                "Срок действия ссылки истёк :(",
+            )
+        except BadSignature:
+            messages.error(
+                request,
+                "Сломанная ссылка!",
+            )
 
-        if user is not None and account_activation_token.check_token(
-            user,
-            token,
-        ):
-            if (timezone.now() - user.date_joined).seconds < 43200:
-                user.is_active = True
-                user.save()
-                messages.success(
-                    self.request,
-                    "Your account has been successfully activated.",
-                )
-            else:
-                messages.error(
-                    self.request,
-                    "Activation link has expired. Please register again.",
-                )
-        else:
-            messages.error(self.request, "Invalid activation link.")
+        return redirect("users:login")
+
+
+class ReactivateAccountView(View):
+    def get(self, request, token):
+        signer = TimestampSigner()
+        try:
+            username = signer.unsign(
+                token,
+                max_age=timezone.timedelta(days=7),
+            )
+            user = User.objects.get(username=username)
+            user.is_active = True
+            user.save()
+            messages.success(
+                request,
+                "Аккаунт успешно активирован",
+            )
+        except SignatureExpired:
+            messages.error(
+                request,
+                "Срок действия ссылки истёк :(",
+            )
+        except BadSignature:
+            messages.error(
+                request,
+                "Сломанная ссылка!",
+            )
 
         return redirect("users:login")
 
@@ -69,20 +93,17 @@ class UserSignupView(CreateView):
             user.is_active = settings.DEFAULT_USER_IS_ACTIVE
             user.save()
             self.object = user
-            message = render_to_string(
-                "users/account_activation_email.html",
-                {
-                    "user": user,
-                    "domain": get_current_site(self.request).domain,
-                    "uid": urlsafe_base64_encode(
-                        force_bytes(user.pk),
-                    ),
-                    "token": account_activation_token.make_token(user),
-                },
+            signer = TimestampSigner()
+            token = signer.sign(user.username)
+            url = self.request.build_absolute_uri(
+                reverse(
+                    "users:activate_account",
+                    kwargs={"token": token},
+                ),
             )
             send_mail(
                 "Activate Your Account",
-                message,
+                url,
                 settings.MAIL,
                 [form.cleaned_data.get("email")],
                 fail_silently=False,
