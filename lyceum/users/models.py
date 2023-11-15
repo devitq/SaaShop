@@ -59,6 +59,10 @@ class Profile(models.Model):
         default=0,
         blank=True,
     )
+    blocked_timestamp = models.DateTimeField(
+        verbose_name="время последней блокировки",
+        null=True,
+    )
 
     class Meta:
         verbose_name = "профиль"
