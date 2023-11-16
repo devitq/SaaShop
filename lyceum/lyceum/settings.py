@@ -189,6 +189,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+if not DEBUG:
+    import sentry_sdk
+
+    sentry_sdk.init(
+        dsn=(
+            "https://38f01932ee1648b37247a241cb06f10e@o4506155887558656."
+            "ingest.sentry.io/4506155889262592"
+        ),
+        traces_sample_rate=1.0,
+        profiles_sample_rate=1.0,
+    )
+
 LANGUAGE_CODE = "ru"
 
 LANGUAGES = (
