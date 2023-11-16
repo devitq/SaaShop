@@ -63,3 +63,31 @@ class UserSignupForm(auth.forms.UserCreationForm, BaseFormMixin):
     class Meta(auth.forms.UserCreationForm.Meta):
         model = CustomUser
         fields = ("username", "email", "password1", "password2")
+
+
+class MyLoginForm(auth.forms.AuthenticationForm, BaseFormMixin):
+    def __init__(self, *args, **kwargs):
+        super(MyLoginForm, self).__init__(*args, **kwargs)
+        has_submitted = False
+        self.set_field_attributes(has_submitted)
+
+
+class MyPasswordChangeForm(auth.forms.PasswordChangeForm, BaseFormMixin):
+    def __init__(self, *args, **kwargs):
+        super(MyPasswordChangeForm, self).__init__(*args, **kwargs)
+        has_submitted = False
+        self.set_field_attributes(has_submitted)
+
+
+class MyPasswordResetForm(auth.forms.PasswordResetForm, BaseFormMixin):
+    def __init__(self, *args, **kwargs):
+        super(MyPasswordResetForm, self).__init__(*args, **kwargs)
+        has_submitted = False
+        self.set_field_attributes(has_submitted)
+
+
+class MyPasswordConfirmForm(auth.forms.SetPasswordForm, BaseFormMixin):
+    def __init__(self, *args, **kwargs):
+        super(MyPasswordConfirmForm, self).__init__(*args, **kwargs)
+        has_submitted = False
+        self.set_field_attributes(has_submitted)

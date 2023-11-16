@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% block main %}
+{% load i18n %}
 
 <div class="container">
-    <h1>Вход</h1>
+    <h1>{% translate "login_html" %}</h1>
     <form method="post" action="{% url 'users:login' %}" class="form">
         {% csrf_token %}
         {% include "includes/form.html" %}
-        <input class="btn btn-primary" type="submit" value="Отправить">
+        <input class="btn btn-primary" type="submit" value="{% translate 'send' %}">
     </form>
     <br>
-    <p>Ещё нет аккаунта? <a class="bold" href="{% url 'users:signup' %}">Зарегестрируйтесь</a></p>
-    <a class="bold" href="{% url 'users:password_reset' %}">Забыли пароль?</a>
+    <p>{% translate "dont_have_an_account_yet" %} <a class="bold" href="{% url 'users:signup' %}">{% translate "signup_action" %}</a></p>
+    <a class="bold" href="{% url 'users:password_reset' %}">{% translate "forgot_password" %}</a>
 </div>
 
 {% endblock %}
