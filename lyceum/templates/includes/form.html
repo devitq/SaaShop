@@ -5,13 +5,13 @@
         {% if field.errors %}
             {% for error in field.errors %}
                 <div class="invalid-feedback">
-                    {{ error }}
+                    {{ error|safe }}
                 </div>
             {% endfor %}
         {% endif %}
         {% if field.help_text %}
             <div class="form-text text-muted">
-                <p>{{ field.help_text }}</p>
+                <p>{{ field.help_text|safe }}</p>
             </div>
         {% endif %}
     </div>
@@ -19,7 +19,7 @@
 {% if form.non_field_errors %}
     <div class="alert alert-danger">
         {% for error in form.non_field_errors %}
-            {{ error }}
+            {{ error|safe }}
         {% endfor %}
     </div>
 {% endif %}

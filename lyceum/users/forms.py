@@ -1,6 +1,5 @@
 from django import forms
 from django.contrib import auth
-from django.contrib.auth.models import User
 
 from users.models import CustomUser, Profile
 
@@ -27,7 +26,7 @@ class UserForm(auth.forms.UserChangeForm, BaseFormMixin):
         self.set_field_attributes(has_submitted)
 
     class Meta(auth.forms.UserChangeForm.Meta):
-        model = User
+        model = CustomUser
         fields = ("username", "email", "first_name")
 
 

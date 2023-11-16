@@ -13,6 +13,7 @@ class ProfileInline(admin.TabularInline):
     readonly_fields = (
         Profile.coffee_count.field.name,
         Profile.attempts_count.field.name,
+        Profile.blocked_timestamp.field.name,
     )
 
 

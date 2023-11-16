@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
 {% load static i18n %}
+{% comment %} Note: i keep this because of Danila's tests
 {% if messages %}
     <div class="toast-container toast-custom" aria-live="polite" aria-atomic="true">
         {% for message in messages %}
@@ -16,7 +17,7 @@
             </div>
         {% endfor %}
     </div>
-{% endif %}
+{% endif %} {% endcomment %}
 <div class="container">
     <h1>{% translate "feedback" %}</h1>
     <form method="post" enctype="multipart/form-data">
@@ -29,13 +30,13 @@
                     {% if field.errors %}
                         {% for error in field.errors %}
                             <div class="invalid-feedback">
-                                {{ error }}
+                                {{ error|safe }}
                             </div>
                         {% endfor %}
                     {% endif %}
                     {% if field.help_text %}
                         <div class="form-text text-muted">
-                            <p>{{ field.help_text }}</p>
+                            <p>{{ field.help_text|safe }}</p>
                         </div>
                     {% endif %}
                 </div>
@@ -43,7 +44,7 @@
             {% if form.non_field_errors %}
                 <div class="alert alert-danger">
                     {% for error in form.non_field_errors %}
-                        {{ error }}
+                        {{ error|safe }}
                     {% endfor %}
                 </div>
             {% endif %}
@@ -55,13 +56,13 @@
                 {% if field.errors %}
                     {% for error in field.errors %}
                         <div class="invalid-feedback">
-                            {{ error }}
+                            {{ error|safe }}
                         </div>
                     {% endfor %}
                 {% endif %}
                 {% if field.help_text %}
                     <div class="form-text text-muted">
-                        <p>{{ field.help_text }}</p>
+                        <p>{{ field.help_text|safe }}</p>
                     </div>
                 {% endif %}
             </div>
@@ -69,7 +70,7 @@
         {% if form.non_field_errors %}
             <div class="alert alert-danger">
                 {% for error in form.non_field_errors %}
-                    {{ error }}
+                    {{ error|safe }}
                 {% endfor %}
             </div>
         {% endif %}
@@ -81,13 +82,13 @@
                     {% if field.errors %}
                         {% for error in field.errors %}
                             <div class="invalid-feedback">
-                                {{ error }}
+                                {{ error|safe }}
                             </div>
                         {% endfor %}
                     {% endif %}
                     {% if field.help_text %}
                         <div class="form-text text-muted">
-                            <p>{{ field.help_text }}</p>
+                            <p>{{ field.help_text|safe }}</p>
                         </div>
                     {% endif %}
                 </div>
@@ -95,7 +96,7 @@
             {% if form.non_field_errors %}
                 <div class="alert alert-danger">
                     {% for error in form.non_field_errors %}
-                        {{ error }}
+                        {{ error|safe }}
                     {% endfor %}
                 </div>
             {% endif %}
