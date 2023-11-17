@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.core.signing import BadSignature, SignatureExpired, TimestampSigner
 from django.shortcuts import redirect, render
@@ -19,6 +18,7 @@ from users.forms import (
     UserForm,
     UserSignupForm,
 )
+import users.models
 
 
 __all__ = ()
@@ -32,7 +32,7 @@ class ActivateAccountView(View):
                 token,
                 max_age=timezone.timedelta(hours=12),
             )
-            user = User.objects.get(username=username)
+            user = users.models.User.objects.get(username=username)
             user.is_active = True
             user.save()
             messages.success(
@@ -61,7 +61,7 @@ class ReactivateAccountView(View):
                 token,
                 max_age=timezone.timedelta(days=7),
             )
-            user = User.objects.get(username=username)
+            user = users.models.User.objects.get(username=username)
             user.is_active = True
             user.save()
             messages.success(
@@ -120,25 +120,25 @@ class UserSignupView(CreateView):
 
 class UserListView(ListView):
     template_name = "users/user_list.html"
-    model = User
+    model = users.models.User
     context_object_name = "users"
-    queryset = User.objects.only(
-        User.username.field.name,
+    queryset = users.models.User.objects.only(
+        users.models.User.username.field.name,
     ).all()
 
 
 class UserDetailView(DetailView):
     template_name = "users/user_detail.html"
-    model = User
+    model = users.models.User
     context_object_name = "user"
 
     def get_queryset(self):
-        return User.objects.select_related("profile").only(
-            User.username.field.name,
-            User.email.field.name,
-            User.first_name.field.name,
-            User.last_name.field.name,
-            User.is_active.field.name,
+        return users.models.User.objects.select_related("profile").only(
+            users.models.User.username.field.name,
+            users.models.User.email.field.name,
+            users.models.User.first_name.field.name,
+            users.models.User.last_name.field.name,
+            users.models.User.is_active.field.name,
         )
 
 

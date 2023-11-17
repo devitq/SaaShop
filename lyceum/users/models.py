@@ -69,7 +69,7 @@ class Profile(models.Model):
         verbose_name_plural = "профили"
 
 
-class CustomUser(User):
+class User(User):
     class Meta:
         proxy = True
 
@@ -82,7 +82,6 @@ def create_profile(sender, instance, created, **kwargs):
 
 
 models.signals.post_save.connect(create_profile, sender=User)
-models.signals.post_save.connect(create_profile, sender=CustomUser)
 
 if "makemigrations" not in sys.argv and "migrate" not in sys.argv:
     User._meta.get_field("email")._unique = True

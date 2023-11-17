@@ -251,7 +251,7 @@ EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 
 EMAIL_FILE_PATH = BASE_DIR / "send_mail"
 
-AUTHENTICATION_BACKENDS = ("users.backends.EmailOrUsernameModelBackend",)
+AUTHENTICATION_BACKENDS = ("users.backends.AuthenticationBackend",)
 
 DEPLOYING_ON_HTTPS = os.getenv("DEPLOYING_ON_HTTPS", "false").lower() in (
     "true",

@@ -1,4 +1,4 @@
-from users.models import User
+import users.models
 
 __all__ = ("Users",)
 
@@ -9,5 +9,5 @@ class Users:
 
     def __call__(self, request):
         if request.user.is_authenticated:
-            request.user = User.objects.get(pk=request.user.pk)
+            request.user = users.models.User.objects.get(pk=request.user.pk)
         return self.get_response(request)

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import auth
 
-from users.models import CustomUser, Profile
+from users.models import Profile, User
 
 
 __all__ = ()
@@ -26,7 +26,7 @@ class UserForm(auth.forms.UserChangeForm, BaseFormMixin):
         self.set_field_attributes(has_submitted)
 
     class Meta(auth.forms.UserChangeForm.Meta):
-        model = CustomUser
+        model = User
         fields = ("username", "email", "first_name")
 
 
@@ -60,7 +60,7 @@ class UserSignupForm(auth.forms.UserCreationForm, BaseFormMixin):
         self.set_field_attributes(has_submitted)
 
     class Meta(auth.forms.UserCreationForm.Meta):
-        model = CustomUser
+        model = User
         fields = ("username", "email", "password1", "password2")
 
 

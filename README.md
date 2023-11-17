@@ -26,7 +26,8 @@ Run this git command
 
 ## ER Diagram
 
-ER diagram for db is stored in ER.jpg
+ER diagram for db is stored in ER.jpg or ypu can see it there:
+![ER diagram](ER.jpg)
 
 ## Dev setup
 
@@ -119,7 +120,7 @@ Run this command:
 > python manage.py runserver
 ```
 
-# Prod run
+## Prod run
 
 ```cmd
 > gunicorn lyceum.wsgi
