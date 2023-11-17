@@ -58,8 +58,8 @@ class AuthenticationBackend(ModelBackend):
         token = signer.sign(user.username)
         url = request.build_absolute_uri(
             reverse(
-                    "users:reactivate_account",
-                    kwargs={"token": token},
+                "users:reactivate_account",
+                kwargs={"token": token},
             ),
         )
         send_mail(
