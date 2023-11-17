@@ -26,7 +26,6 @@ Run this git command
 
 ## ER Diagram
 
-ER diagram for db is stored in ER.jpg or ypu can see it there:
 ![ER diagram](ER.jpg)
 
 ## Dev setup
