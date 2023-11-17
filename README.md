@@ -1,6 +1,6 @@
 # SaaShop
 
-[![Pipeline Status](https://gitlab.crja72.ru/django_2023/students/201154-itq-dev-course-967/badges/main/pipeline.svg)](https://gitlab.crja72.ru/django_2023/students/201154-itq-dev-course-967/-/pipelines)
+[![Pipeline Status](./badges/main/pipeline.svg)](./-/pipelines)
 
 ## Cloning project
 
