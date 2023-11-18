@@ -9,7 +9,7 @@ sort-requirements requirements/test.txt
 sort-requirements requirements/lints.txt
 printf "${GREEN}Requirements sorted${NC}\n"
 
-cd lyceum
+cd saashop
 
 black .
 flake8 .

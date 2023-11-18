@@ -9,7 +9,7 @@ application-import-names =
     core,
     about,
     homepage,
-    lyceum,
+    saashop,
     download,
     feedback,
     users,

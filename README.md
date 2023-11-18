@@ -122,5 +122,5 @@ Run this command:
 ## Prod run
 
 ```cmd
-> gunicorn lyceum.wsgi
+> gunicorn saashop.wsgi
 ```

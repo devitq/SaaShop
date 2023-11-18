@@ -2,7 +2,7 @@ sort-requirements requirements/dev.txt
 sort-requirements requirements/prod.txt
 sort-requirements requirements/test.txt
 sort-requirements requirements/lints.txt
-cd lyceum
+cd saashop
 black .
 flake8 .
 python manage.py makemigrations --check --dry-run
