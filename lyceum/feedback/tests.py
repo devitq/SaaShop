@@ -19,9 +19,11 @@ class UploadTests(TestCase):
             reverse("feedback:feedback"),
             data={
                 "files": files,
-                Feedback.text.field.name: "Текст фидбека",
-                PersonalData.name.field.name: "Имя",
-                PersonalData.mail.field.name: "fjid@hf.fsd",
+                f"feedback_form-{Feedback.text.field.name}": "Текст фидбека",
+                f"personal_data_form-{PersonalData.name.field.name}": "Имя",
+                (
+                    "personal_data_form" f"-{PersonalData.mail.field.name}"
+                ): "fjid@hf.fsd",
             },
             follow=True,
         )
@@ -121,9 +123,11 @@ class FormTests(TestCase):
         response = Client().post(
             path=reverse("feedback:feedback"),
             data={
-                Feedback.text.field.name: "Текст фидбека",
-                PersonalData.name.field.name: "Имя",
-                PersonalData.mail.field.name: "fjid@hf.fsd",
+                f"feedback_form-{Feedback.text.field.name}": "Текст фидбека",
+                f"personal_data_form-{PersonalData.name.field.name}": "Имя",
+                (
+                    "personal_data_form" f"-{PersonalData.mail.field.name}"
+                ): "fjid@hf.fsd",
             },
             follow=True,
         )

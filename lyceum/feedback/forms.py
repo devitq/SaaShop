@@ -2,6 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from feedback.models import Feedback, FeedbackFile, PersonalData
+from lyceum.mixins import BaseFormMixin
 
 __all__ = ("FeedbackForm",)
 
@@ -22,24 +23,16 @@ class MultipleFileField(forms.FileField):
         return single_file_clean(data, initial)
 
 
-class FilesForm(forms.ModelForm):
+class FilesForm(forms.ModelForm, BaseFormMixin):
+    def __init__(self, *args, **kwargs):
+        super(FilesForm, self).__init__(*args, **kwargs)
+        self.set_field_attributes()
+
     file = MultipleFileField(
         label=_("files_label"),
         help_text=_("files_help_text"),
         required=False,
     )
-
-    def __init__(self, *args, **kwargs):
-        super(FilesForm, self).__init__(*args, **kwargs)
-        has_submitted = False
-        for field in self.visible_fields():
-            field.field.widget.attrs["class"] = "form-control"
-            if len(field.errors) != 0:
-                field.field.widget.attrs["class"] = "form-control is-invalid"
-                has_submitted = True
-        for field in self.visible_fields():
-            if len(field.errors) != 1 and has_submitted:
-                field.field.widget.attrs["class"] = "form-control is-valid"
 
     class Meta:
         model = FeedbackFile
@@ -49,18 +42,10 @@ class FilesForm(forms.ModelForm):
         ]
 
 
-class PersonalDataForm(forms.ModelForm):
+class PersonalDataForm(forms.ModelForm, BaseFormMixin):
     def __init__(self, *args, **kwargs):
         super(PersonalDataForm, self).__init__(*args, **kwargs)
-        has_submitted = False
-        for field in self.visible_fields():
-            field.field.widget.attrs["class"] = "form-control"
-            if len(field.errors) != 0:
-                field.field.widget.attrs["class"] = "form-control is-invalid"
-                has_submitted = True
-        for field in self.visible_fields():
-            if len(field.errors) != 1 and has_submitted:
-                field.field.widget.attrs["class"] = "form-control is-valid"
+        self.set_field_attributes()
 
     class Meta:
         model = PersonalData
@@ -78,18 +63,10 @@ class PersonalDataForm(forms.ModelForm):
         }
 
 
-class FeedbackForm(forms.ModelForm):
+class FeedbackForm(forms.ModelForm, BaseFormMixin):
     def __init__(self, *args, **kwargs):
         super(FeedbackForm, self).__init__(*args, **kwargs)
-        has_submitted = False
-        for field in self.visible_fields():
-            field.field.widget.attrs["class"] = "form-control"
-            if len(field.errors) != 0:
-                field.field.widget.attrs["class"] = "form-control is-invalid"
-                has_submitted = True
-        for field in self.visible_fields():
-            if len(field.errors) != 1 and has_submitted:
-                field.field.widget.attrs["class"] = "form-control is-valid"
+        self.set_field_attributes()
 
     class Meta:
         model = Feedback

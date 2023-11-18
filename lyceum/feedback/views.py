@@ -1,8 +1,10 @@
+from betterforms.multiform import MultiModelForm
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views import View
 
 from feedback.forms import FeedbackForm, FilesForm, PersonalDataForm
 from feedback.models import FeedbackFile
@@ -10,45 +12,52 @@ from feedback.models import FeedbackFile
 __all__ = ()
 
 
-def feedback(request):
-    feedback_form = FeedbackForm(request.POST or None, auto_id=True)
-    personal_data_form = PersonalDataForm(request.POST or None, auto_id=True)
-    files_form = FilesForm(
-        request.POST or None,
-        request.FILES or None,
-        auto_id=True,
-    )
-    context = {
-        "personal_data_form": personal_data_form,
-        "form": feedback_form,
-        "files_form": files_form,
+class FeedbackMultiForm(MultiModelForm):
+    form_classes = {
+        "personal_data_form": PersonalDataForm,
+        "feedback_form": FeedbackForm,
+        "files_form": FilesForm,
     }
-    if request.method == "POST":
-        if feedback_form.is_valid() and personal_data_form.is_valid():
-            text = feedback_form.cleaned_data.get("text")
-            mail = personal_data_form.cleaned_data.get("mail")
-            personal_data = personal_data_form.save()
-            feedback = feedback_form.save(commit=False)
+
+
+class FeedbackView(View):
+    template_name = "feedback/feedback.html"
+    success_url = reverse_lazy("feedback:feedback")
+
+    def get(self, request):
+        form = FeedbackMultiForm()
+        return render(
+            request,
+            template_name=self.template_name,
+            context={"form": form},
+        )
+
+    def post(self, request):
+        form = FeedbackMultiForm(request.POST, request.FILES)
+        if form.is_valid():
+            text = form["feedback_form"].cleaned_data.get("text")
+            mail = form["personal_data_form"].cleaned_data.get("mail")
+            personal_data = form["personal_data_form"].save()
+            feedback = form["feedback_form"].save(commit=False)
             feedback.author = personal_data
             feedback.save()
             personal_data.feedback = feedback
             personal_data.save()
-            files = request.FILES.getlist("file")
+            files = request.FILES.getlist("files_form-file")
             for file in files:
                 FeedbackFile.objects.create(feedback=feedback, file=file)
             send_mail(
-                "Новый фидбек",
+                "New Feedback",
                 text,
                 settings.MAIL,
                 [mail],
                 fail_silently=False,
             )
-            files = files_form.cleaned_data["file"]
-            messages.success(request, "Форма успешно отправлена")
+            messages.success(request, "Form successfully submitted")
             return redirect(reverse("feedback:feedback"))
 
-    return render(
-        request=request,
-        template_name="feedback/feedback.html",
-        context=context,
-    )
+        return render(
+            request,
+            template_name=self.template_name,
+            context={"form": form},
+        )

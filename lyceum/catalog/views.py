@@ -1,122 +1,98 @@
 from datetime import timedelta
 
 from django.db import models
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import DetailView, ListView
 
 import catalog.models
 
 __all__ = ()
 
 
-def item_list(request):
-    items = catalog.models.Item.objects.published()
-    context = {
-        "items": items,
-        "title": _("all_items"),
-    }
-    return render(
-        request=request,
-        template_name="catalog/item_list.html",
-        context=context,
-    )
+class ItemListView(ListView):
+    template_name = "catalog/item_list.html"
+    context_object_name = "items"
+
+    def get_queryset(self):
+        return catalog.models.Item.objects.published()
 
 
-def new_item_list(request):
-    one_week_ago = timezone.now() - timedelta(days=7)
-    ids = (
-        catalog.models.Item.objects.published()
-        .filter(created_at__gte=one_week_ago)
-        .values_list("id", flat=True)
-        .order_by("?")[:5]
-    )
-    if ids:
-        items = (
+class NewItemListView(ItemListView):
+    template_name = "catalog/item_list.html"
+
+    def get_queryset(self):
+        one_week_ago = timezone.now() - timedelta(days=7)
+        ids = (
             catalog.models.Item.objects.published()
-            .filter(id__in=ids)
-            .order_by("category", "name")
+            .filter(created_at__gte=one_week_ago)
+            .values_list("id", flat=True)
+            .order_by("?")[:5]
         )
-    else:
-        items = None
-    context = {
-        "items": items,
-        "title": _("new_items"),
-    }
-    return render(
-        request=request,
-        template_name="catalog/item_list.html",
-        context=context,
-    )
+        return (
+            (
+                catalog.models.Item.objects.published()
+                .filter(id__in=ids)
+                .order_by("category", "name")
+            )
+            if ids
+            else None
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("new_items")
+        return context
 
 
-def friday_item_list(request):
-    ids = (
-        catalog.models.Item.objects.published()
-        .filter(updated_at__week_day=6)
-        .values_list("id", flat=True)
-        .order_by("-updated_at")[:5]
-    )
-    if ids:
-        items = (
+class FridayItemListView(ItemListView):
+    template_name = "catalog/item_list.html"
+
+    def get_queryset(self):
+        ids = (
             catalog.models.Item.objects.published()
-            .filter(id__in=ids)
-            .order_by("category", "name")
+            .filter(updated_at__week_day=6)
+            .values_list("id", flat=True)
+            .order_by("-updated_at")[:5]
         )
-    else:
-        items = None
-    context = {
-        "items": items,
-        "title": _("friday"),
-    }
-    return render(
-        request=request,
-        template_name="catalog/item_list.html",
-        context=context,
-    )
+        return (
+            (
+                catalog.models.Item.objects.published()
+                .filter(id__in=ids)
+                .order_by("category", "name")
+            )
+            if ids
+            else None
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("friday")
+        return context
 
 
-def unverified_item_list(request):
-    items = catalog.models.Item.objects.published().filter(
-        created_at=models.F("updated_at"),
-    )
-    context = {
-        "items": items,
-        "title": _("unverified"),
-    }
-    return render(
-        request=request,
-        template_name="catalog/item_list.html",
-        context=context,
-    )
+class UnverifiedItemListView(ItemListView):
+    template_name = "catalog/item_list.html"
+
+    def get_queryset(self):
+        return catalog.models.Item.objects.published().filter(
+            created_at=models.F("updated_at"),
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("unverified")
+        return context
 
 
-def item_detail(request, item_id):
-    item = get_object_or_404(
-        catalog.models.Item.objects.item_detail(),
-        pk=item_id,
-    )
-    context = {
-        "item": item,
-    }
-    return render(
-        request=request,
-        template_name="catalog/item.html",
-        context=context,
-    )
+class ItemDetailView(DetailView):
+    template_name = "catalog/item.html"
+    context_object_name = "item"
 
-
-def re_item_detail(request, item_id):
-    return render(
-        request=request,
-        template_name="catalog/item.html",
-        context={},
-    )
-
-
-def convert_item_detail(request, item_id):
-    return render(
-        request=request,
-        template_name="catalog/item.html",
-        context={},
-    )
+    def get_object(self, queryset=None):
+        item_id = self.kwargs.get("pk")
+        return get_object_or_404(
+            catalog.models.Item.objects.published(),
+            pk=item_id,
+        )

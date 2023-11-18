@@ -10,7 +10,7 @@
             </svg>
         {% endif %} {% endcomment %}
         <div class="card-body">
-            <a href="{% url 'catalog:item_detail' item_id=item.id %}">
+            <a href="{% url 'catalog:item_detail' pk=item.id %}">
                 <h5 class="card-title text-white">{{ item.name }}</h5>
                 <p class="card-text">{{ item.text|truncatewords_html:10|striptags|safe }}</p>
                 {% if item.category.name %}

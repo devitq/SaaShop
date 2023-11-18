@@ -5,12 +5,7 @@
   <h1>Мой профиль</h1>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {% with form=user_form %}
     {% include "includes/form.html" %}
-    {% endwith %}
-    {% with form=profile_form %}
-    {% include "includes/form.html" %}
-    {% endwith %}
     <input class="btn btn-primary" type="submit" value="Сохранить">
   </form>
   <hr>

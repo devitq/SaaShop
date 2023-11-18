@@ -1,3 +1,4 @@
+from betterforms.multiform import MultiModelForm
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -6,6 +7,7 @@ from django.core.signing import BadSignature, SignatureExpired, TimestampSigner
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
+from django.utils.decorators import method_decorator
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -15,7 +17,7 @@ from django.views.generic import (
 
 from users.forms import (
     UserChangeForm,
-    UserForm,
+    UserProfileChangeForm,
     UserSignupForm,
 )
 import users.models
@@ -142,27 +144,40 @@ class UserDetailView(DetailView):
         )
 
 
-@login_required
-def profile_edit(request):
-    user_form = UserForm(instance=request.user)
-    profile_form = UserChangeForm(instance=request.user.profile)
+class UserProfileMultiForm(MultiModelForm):
+    form_classes = {
+        "user_form": UserChangeForm,
+        "profile_form": UserProfileChangeForm,
+    }
 
-    if request.method == "POST":
-        user_form = UserForm(request.POST, instance=request.user)
-        profile_form = UserChangeForm(
-            request.POST,
-            request.FILES,
-            instance=request.user.profile,
+
+@method_decorator(login_required, name="dispatch")
+class ProfileEditView(View):
+    template_name = "users/profile.html"
+    form_class = UserProfileMultiForm
+    success_url = reverse_lazy("users:profile")
+
+    def get(self, request, *args, **kwargs):
+        user_form = UserChangeForm(instance=request.user)
+        profile_form = UserProfileChangeForm(instance=request.user.profile)
+        form = UserProfileMultiForm(
+            initial={
+                "user_form": user_form.initial,
+                "profile_form": profile_form.initial,
+            },
+        )
+        return render(
+            request,
+            template_name=self.template_name,
+            context={"form": form},
         )
 
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            messages.success(request, "Profile updated successfully!")
-            return redirect("users:profile")
+    def post(self, request, *args, **kwargs):
+        form = UserProfileMultiForm(request.POST, request.FILES)
+        if form.is_valid():
+            form["user_form"].save()
+            form["profile_form"].save()
 
-    return render(
-        request,
-        "users/profile.html",
-        {"user_form": user_form, "profile_form": profile_form},
-    )
+            messages.success(request, "Profile updated successfully!")
+            return redirect(self.success_url)
+        return render(request, self.template_name, {"form": form})

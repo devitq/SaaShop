@@ -1,106 +1,11 @@
 {% extends "base.html" %}
 {% block main %}
 {% load static i18n %}
-{% comment %} Note: i keep this because of Danila's tests
-{% if messages %}
-    <div class="toast-container toast-custom" aria-live="polite" aria-atomic="true">
-        {% for message in messages %}
-            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <img src="{% static 'img/saas.png' %}" class="bd-placeholder-img rounded me-2" width="20" height="20">
-                    <strong class="me-auto">SaaShop</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    {{ message }}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-{% endif %} {% endcomment %}
 <div class="container">
     <h1>{% translate "feedback" %}</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {% with personal_data_form as form %}
-            {% for field in form %}
-                <div class="form-group mb-3">
-                    <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.errors %}
-                        {% for error in field.errors %}
-                            <div class="invalid-feedback">
-                                {{ error|safe }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                    {% if field.help_text %}
-                        <div class="form-text text-muted">
-                            <p>{{ field.help_text|safe }}</p>
-                        </div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-            {% if form.non_field_errors %}
-                <div class="alert alert-danger">
-                    {% for error in form.non_field_errors %}
-                        {{ error|safe }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
-        {% for field in form %}
-            <div class="form-group mb-3">
-                <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}</label>
-                {{ field }}
-                {% if field.errors %}
-                    {% for error in field.errors %}
-                        <div class="invalid-feedback">
-                            {{ error|safe }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-                {% if field.help_text %}
-                    <div class="form-text text-muted">
-                        <p>{{ field.help_text|safe }}</p>
-                    </div>
-                {% endif %}
-            </div>
-            {% endfor %}
-        {% if form.non_field_errors %}
-            <div class="alert alert-danger">
-                {% for error in form.non_field_errors %}
-                    {{ error|safe }}
-                {% endfor %}
-            </div>
-        {% endif %}
-        {% with files_form as form %}
-            {% for field in form %}
-                <div class="form-group mb-3">
-                    <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.errors %}
-                        {% for error in field.errors %}
-                            <div class="invalid-feedback">
-                                {{ error|safe }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                    {% if field.help_text %}
-                        <div class="form-text text-muted">
-                            <p>{{ field.help_text|safe }}</p>
-                        </div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-            {% if form.non_field_errors %}
-                <div class="alert alert-danger">
-                    {% for error in form.non_field_errors %}
-                        {{ error|safe }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
+        {% include "includes/form.html" %}
         <input class="btn btn-primary" type="submit" value="Отправить">
     </form>
 </div>
