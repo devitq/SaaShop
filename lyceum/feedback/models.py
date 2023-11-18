@@ -133,3 +133,10 @@ class FeedbackFile(models.Model):
     class Meta:
         verbose_name = _("feedback_file_models")
         verbose_name_plural = _("feedback_files_models")
+
+
+def delete_feedback(sender, instance, **kwargs):
+    instance.feedback.delete()
+
+
+models.signals.post_delete.connect(delete_feedback, sender=PersonalData)

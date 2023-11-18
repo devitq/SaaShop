@@ -201,7 +201,7 @@ if not DEBUG:
         profiles_sample_rate=1.0,
     )
 
-LANGUAGE_CODE = "ru"
+LANGUAGE_CODE = os.getenv("DEFAULT_LANGUAGE_CODE", "ru")
 
 LANGUAGES = (
     ("en", _("English")),

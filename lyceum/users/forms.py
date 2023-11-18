@@ -64,6 +64,34 @@ class UserSignupForm(auth.forms.UserCreationForm, BaseFormMixin):
         fields = ("username", "email", "password1", "password2")
 
 
+class EditUserAdminForm(auth.admin.UserChangeForm):
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        email = User.objects.normalize_email(
+            email,
+        )
+        user_exist = User.objects.filter(email=email).exists()
+        if user_exist:
+            raise forms.ValidationError(
+                "Пользователь с такой электронной почтой уже существует",
+            )
+        return self.cleaned_data["email"]
+
+
+class CreateUserAdminForm(auth.admin.UserCreationForm):
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        email = User.objects.normalize_email(
+            email,
+        )
+        user_exist = User.objects.filter(email=email).exists()
+        if user_exist:
+            raise forms.ValidationError(
+                "Пользователь с такой электронной почтой уже существует",
+            )
+        return self.cleaned_data["email"]
+
+
 class MyLoginForm(auth.forms.AuthenticationForm, BaseFormMixin):
     def __init__(self, *args, **kwargs):
         super(MyLoginForm, self).__init__(*args, **kwargs)

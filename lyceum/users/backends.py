@@ -31,6 +31,7 @@ class AuthenticationBackend(ModelBackend):
                 user = users.models.User.objects.get(username=username)
         except users.models.User.DoesNotExist:
             user_model().set_password(password)
+            return None
 
         if user.check_password(password):
             user.profile.attempts_count = 0
