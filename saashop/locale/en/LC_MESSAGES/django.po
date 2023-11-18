@@ -341,11 +341,11 @@ msgstr ""
 "We offer flexible pricing options to ensure the optimal balance of price and "
 "quality for your business."
 
-#: lyceum/settings.py:195
+#: saashop/settings.py:195
 msgid "English"
 msgstr "English"
 
-#: lyceum/settings.py:196
+#: saashop/settings.py:196
 msgid "Russian"
 msgstr "Russian"
 

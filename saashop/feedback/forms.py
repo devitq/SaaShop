@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from feedback.models import Feedback, FeedbackFile, PersonalData
-from lyceum.mixins import BaseFormMixin
+from saashop.mixins import BaseFormMixin
 
 __all__ = ("FeedbackForm",)
 

@@ -343,11 +343,11 @@ msgstr ""
 "Мы предлагаем гибкие варианты ценообразования, чтобы обеспечить оптимальное "
 "соотношение цены и качества для вашего бизнеса."
 
-#: lyceum/settings.py:195
+#: saashop/settings.py:195
 msgid "English"
 msgstr "Английский"
 
-#: lyceum/settings.py:196
+#: saashop/settings.py:196
 msgid "Russian"
 msgstr "Русский"
 

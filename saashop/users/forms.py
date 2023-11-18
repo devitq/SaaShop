@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import auth
 
-from lyceum.mixins import BaseFormMixin
+from saashop.mixins import BaseFormMixin
 from users.models import Profile, User
 
 

@@ -110,7 +110,7 @@ MIDDLEWARE = [
     # Other
     "django.middleware.locale.LocaleMiddleware",
     # Our middleware
-    "lyceum.middleware.ReverseRussianMiddleware",
+    "saashop.middleware.ReverseRussianMiddleware",
     "users.middleware.Users",
 ]
 
@@ -120,7 +120,7 @@ if DEBUG:
 
 INTERNAL_IPS = os.getenv("DJANGO_INTERNAL_IPS", "127.0.0.1").split(" ")
 
-ROOT_URLCONF = "lyceum.urls"
+ROOT_URLCONF = "saashop.urls"
 
 TEMPLATES = [
     {
@@ -138,7 +138,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "lyceum.wsgi.application"
+WSGI_APPLICATION = "saashop.wsgi.application"
 
 DB_NAME = os.getenv("DB_NAME", "sqlite").lower()
 

@@ -1,6 +1,6 @@
 from django import forms
 
-from lyceum.mixins import BaseFormMixin
+from saashop.mixins import BaseFormMixin
 
 __all__ = ("EchoForm",)
 

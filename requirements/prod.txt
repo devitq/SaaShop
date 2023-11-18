@@ -1,5 +1,6 @@
 boto3==1.28.78
 Django==4.2
+django-betterforms==2.0.0
 django-cleanup==8.0.0
 django-modeltranslation==0.18.11
 django-storages==1.14.2
