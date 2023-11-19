@@ -7,7 +7,6 @@ from django.core.validators import (
     MinValueValidator,
 )
 from django.db import models
-from django.db.models import Avg
 from django.utils.html import mark_safe
 from django.utils.translation import gettext_lazy as _
 import django_cleanup
@@ -114,12 +113,6 @@ class MainImage(models.Model):
 
 
 class ItemManager(models.Manager):
-    def average_rating(self, item):
-        queryset = self.get_queryset().filter(item=item)
-        count_of_rating = queryset.count()
-        average_rating = queryset.aggregate(Avg("rating"))["rating__avg"]
-        return (count_of_rating, average_rating)
-
     def on_main(self):
         return (
             self.get_queryset()
@@ -173,9 +166,10 @@ class ItemManager(models.Manager):
             )
         )
 
-    def item_detail(self):
+    def item_detail(self, item_id):
         return (
             self.get_queryset()
+            .filter(id=item_id)
             .select_related(Item.category.field.name)
             .select_related(Item.main_image.field.name)
             .prefetch_related(

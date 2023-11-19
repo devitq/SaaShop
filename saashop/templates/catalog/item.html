@@ -40,6 +40,23 @@
                 {% endfor %}
             </div>
         </div>
+        <div class="row gx-4 gx-lg-5">
+            <h2>Рейтинг:</h2>
+            {% if not avg_rating.count %}
+            <div class="col-sm-6">
+                <h3 class="text-secondary user-select-none">Рейтинга нет</h3>
+            </div>
+            {% else %}
+            <div class="col-sm-6">
+                <h5 class="">Количество отзывов:</h5>
+                <h5 class="">{{ avg_rating.count }}</h5>
+            </div>
+            <div class="col-sm-6">
+                <h5 class="">Средний рейтинг:</h5>
+                <h5 class="">{{ avg_rating.avg }}</h5>
+            </div>
+            {% endif %}
+        </div>
     </div>
 </section>
 <section class="py-3 bg-dark">
@@ -67,5 +84,6 @@
         </div>
     </div>
 </section>
+{% include "includes/comments.html" %}
 <script src="{% static 'js/animation_setup.min.js' %}"></script>
 {% endblock %}

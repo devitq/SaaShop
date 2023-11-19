@@ -1,12 +1,15 @@
 from datetime import timedelta
 
+from django.contrib import messages
 from django.db import models
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, ListView
 
 import catalog.models
+from rating.forms import RatingCreationForm
+from rating.models import Rating
 
 __all__ = ()
 
@@ -88,11 +91,61 @@ class UnverifiedItemListView(ItemListView):
 
 class ItemDetailView(DetailView):
     template_name = "catalog/item.html"
-    context_object_name = "item"
 
-    def get_object(self, queryset=None):
+    def get(self, request, pk):
         item_id = self.kwargs.get("pk")
-        return get_object_or_404(
-            catalog.models.Item.objects.published(),
+        item = get_object_or_404(
+            Rating.objects.get_item_with_rating(pk),
             pk=item_id,
         )
+        user_rating = None
+        if request.user.is_authenticated:
+            user_rating = Rating.objects.get_rating_by_item_and_user(
+                request.user.id,
+                pk,
+            )
+        avg_rating = Rating.objects.average_rating(pk)
+        form = RatingCreationForm(
+            instance=(user_rating.first() if user_rating else None),
+        )
+        context = {
+            "item": item,
+            "avg_rating": avg_rating,
+            "form": form,
+        }
+        return render(
+            request,
+            template_name=self.template_name,
+            context=context,
+        )
+
+    def post(self, request, pk):
+        item_id = self.kwargs.get("pk")
+        item = get_object_or_404(
+            Rating.objects.get_item_with_rating(pk),
+            pk=item_id,
+        )
+        if not request.user.is_authenticated:
+            messages.error(
+                request,
+                "Пользователь не авторизован",
+            )
+            redirect("catalog:item_detail", pk=pk)
+        form = RatingCreationForm(request.POST)
+        user_rating = None
+        if request.user.is_authenticated:
+            user_rating = Rating.objects.get_rating_by_item_and_user(
+                request.user.id,
+                pk,
+            ).first()
+        if form.is_valid():
+            if user_rating:
+                user_rating.text = form.cleaned_data["text"]
+                user_rating.rating = form.cleaned_data["rating"]
+                user_rating.save()
+                return redirect("catalog:item_detail", pk=pk)
+            rating = form.save(commit=False)
+            rating.user = request.user
+            rating.item = item
+            rating.save()
+        return redirect("catalog:item_detail", pk=pk)
