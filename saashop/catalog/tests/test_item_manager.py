@@ -126,7 +126,7 @@ class ItemManagerTests(TestCase):
                 self.assertNotIn(value, category.__dict__)
 
     def test_item_detail_method_fields_pos(self):
-        items = Item.objects.item_detail()
+        items = Item.objects.item_detail(self.item_with_all_fields.id)
         item_necessary_values = [
             "id",
             "name",
@@ -150,7 +150,7 @@ class ItemManagerTests(TestCase):
                 self.assertIn(value, category.__dict__)
 
     def test_item_detail_method_fields_neg(self):
-        items = Item.objects.item_detail()
+        items = Item.objects.item_detail(self.item_with_all_fields.id)
         item_unnecessary_values = [
             "is_published",
             "is_on_main",

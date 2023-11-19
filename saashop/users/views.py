@@ -154,30 +154,32 @@ class UserProfileMultiForm(MultiModelForm):
 @method_decorator(login_required, name="dispatch")
 class ProfileEditView(View):
     template_name = "users/profile.html"
-    form_class = UserProfileMultiForm
-    success_url = reverse_lazy("users:profile")
 
     def get(self, request, *args, **kwargs):
         user_form = UserChangeForm(instance=request.user)
         profile_form = UserProfileChangeForm(instance=request.user.profile)
-        form = UserProfileMultiForm(
-            initial={
-                "user_form": user_form.initial,
-                "profile_form": profile_form.initial,
-            },
-        )
         return render(
             request,
-            template_name=self.template_name,
-            context={"form": form},
+            self.template_name,
+            {"user_form": user_form, "profile_form": profile_form},
         )
 
     def post(self, request, *args, **kwargs):
-        form = UserProfileMultiForm(request.POST, request.FILES)
-        if form.is_valid():
-            form["user_form"].save()
-            form["profile_form"].save()
+        user_form = UserChangeForm(request.POST, instance=request.user)
+        profile_form = UserProfileChangeForm(
+            request.POST,
+            request.FILES,
+            instance=request.user.profile,
+        )
 
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
             messages.success(request, "Profile updated successfully!")
-            return redirect(self.success_url)
-        return render(request, self.template_name, {"form": form})
+            return redirect("users:profile")
+
+        return render(
+            request,
+            self.template_name,
+            {"user_form": user_form, "profile_form": profile_form},
+        )
