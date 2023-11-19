@@ -116,7 +116,9 @@ class ItemDetailView(DetailView):
             "form": form,
         }
         return render(
-            request, template_name=self.template_name, context=context,
+            request,
+            template_name=self.template_name,
+            context=context,
         )
 
     def post(self, request, pk):
@@ -132,7 +134,18 @@ class ItemDetailView(DetailView):
             )
             redirect("catalog:item_detail", pk=pk)
         form = RatingForm(request.POST)
+        user_rating = None
+        if request.user.is_authenticated:
+            user_rating = Rating.objects.get_rating_by_item_and_user(
+                request.user.id,
+                pk,
+            ).first()
         if form.is_valid():
+            if user_rating:
+                user_rating.text = form.cleaned_data["text"]
+                user_rating.rating = form.cleaned_data["rating"]
+                user_rating.save()
+                return redirect("catalog:item_detail", pk=pk)
             rating = form.save(commit=False)
             rating.user = request.user
             rating.item = item
