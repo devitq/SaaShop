@@ -107,7 +107,7 @@ class ItemDetailView(DetailView):
                 pk,
             ).first()
 
-        avg_rating = Rating.objects.average_rating(pk)
+        avg_rating = Rating.objects.average_rating_by_item(pk)
         form = RatingForm(instance=user_rating)
 
         context = {

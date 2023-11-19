@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block main %}
+	{% load average_rating %}
+{% for item in items %}
+	{% with temp=item|average_rating:item.id %}
+		{% if temp.1 %}
+	Name: {{ item.name }}<br>
+		{% for count, average in temp.0.items %}
+			{{ count }} : {{ average }} <br>
+		{% endfor %}
+		Max: {{ temp.1.user.username }}<br>
+		Min: {{ temp.2.user.username }}
+			<br><br>
+		{% endif %}
+	{% endwith %}
+{% endfor %}
+{% endblock %}

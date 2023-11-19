@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block main %}
+	{% load user_ratings %}
+	{% for user in users %}
+		Пользователь: {{ user.username }}<br>
+		{% with user_info=user|user_ratings:user.id %}
+		Самый 🧡Love🧡 товар: {{ user_info.0 }}<br>
+		Самый 🤮Hated🤮 товар: {{ user_info.1 }}<br>
+		Всего оценок сделано: {{ user_info.2 }}<br>
+		Средняя оценка товаров: {{ user_info.3 }}<br><br>
+		{% endwith %}
+	{% endfor %}
+{% endblock %}

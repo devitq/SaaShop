@@ -97,6 +97,7 @@ INSTALLED_APPS = [
     "feedback.apps.FeedbackConfig",
     "users.apps.UsersConfig",
     "rating.apps.RatingConfig",
+    "global_statistics.apps.GlobalStatisticsConfig",
 ]
 
 

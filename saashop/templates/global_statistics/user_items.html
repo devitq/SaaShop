@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block main %}
+	{% load item_ratings %}
+	Товары, которые оценил пользователь {{ user.get_username }}:<br>
+	{% for item in items %}
+		{% if item|item_ratings:item.id %}
+			{{ item }}<br>
+		{% endif %}
+	{% endfor %}
+{% endblock %}

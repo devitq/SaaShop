@@ -11,6 +11,7 @@ urlpatterns = [
     path("download/", include("download.urls")),
     path("feedback/", include("feedback.urls")),
     path("rating/", include("rating.urls")),
+    path("statistics/", include("global_statistics.urls")),
     path("auth/", include("users.urls")),
     path("auth/", include(django.contrib.auth.urls), name="users_default"),
     path("admin/", admin.site.urls),

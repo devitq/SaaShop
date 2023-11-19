@@ -6,8 +6,22 @@ from users.models import User
 
 
 class RatingManager(models.Manager):
-    def average_rating(self, item_id):
+    def average_rating_by_item(self, item_id):
         queryset = self.get_queryset().filter(item_id=item_id)
+        rating_stats = queryset.aggregate(
+            models.Count("id"),
+            models.Avg("rating"),
+        )
+        count_of_rating = rating_stats["id__count"]
+        average_rating = rating_stats["rating__avg"]
+
+        return {
+            "count": count_of_rating,
+            "avg": average_rating,
+        }
+
+    def average_rating_by_user(self, user_id):
+        queryset = self.get_queryset().filter(user_id=user_id)
         rating_stats = queryset.aggregate(
             models.Count("id"),
             models.Avg("rating"),
