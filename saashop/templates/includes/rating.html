@@ -1,0 +1,63 @@
+{% load thumbnail i18n %}
+
+<div class="modal fade" id="ratingEdit{{ rating.id }}" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Редактировать отзыв</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="{% url 'rating:update_rating' pk=rating.id %}">
+                {% csrf_token %}
+                {% include "includes/form.html" %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          <input class="btn btn-primary" type="submit" value="Отправить">
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="ratings_section">
+    <div class="container d-flex justify-content-center mt-10">
+        <div class="row w-100">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="comment-widgets m-b-20">
+                        <div class="d-flex flex-row comment-row">
+                            <div class="p-2">
+                                <span class="round">
+                                    {% thumbnail rating.user.profile.image "50x50" as avatar %}
+                                        <img src="{{ avatar.url }}" alt="User Avatar" width="50px">
+                                    {% empty %}
+                                        <svg height="50px" width="50px" class="round" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Avatar" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                            <title>{% translate "no_image" %}</title>
+                                            <rect width="100%" height="100%" fill="#55595c"></rect>
+                                        </svg>
+                                    {% endthumbnail %}
+                                </span>
+                            </div>
+                            <div class="comment-text w-100">
+                                <h5>{{ rating.user.username }}</h5>
+                                <div class="comment-footer">
+                                    <span class="date">{{ rating.created_at }}</span>
+                                    <span class="action-icons">
+                                        {% if user.id == rating.user.id %}
+                                        <a data-bs-toggle="modal" data-bs-target="#ratingEdit{{ rating.id }}" href="#"><i class="fa fa-pencil"></i></a>
+                                        {% endif %}
+                                        {% if user.id == rating.user.id or user.is_superuser %}
+                                        <a href="{% url 'rating:delete_rating' pk=rating.id %}"><i class="fa fa-trash"></i></a>
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <p class="m-b-5 m-t-10">{{ rating.text|safe|linebreaks }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
