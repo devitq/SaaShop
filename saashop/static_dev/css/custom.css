@@ -97,3 +97,73 @@ body {
 .bold {
     font-weight: 800;
 }
+
+.ratings_section .card-no-border .card {
+    border: 0px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.ratings_section .card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.ratings_section .comment-widgets .comment-row:hover {
+    background: rgba(0, 0, 0, 0.02);
+    cursor: pointer;
+}
+
+.ratings_section .comment-widgets .comment-row {
+    border-bottom: 1px solid rgba(120, 130, 140, 0.13);
+    padding: 15px;
+}
+
+.ratings_section .comment-text:hover {
+    visibility: hidden;
+}
+
+.ratings_section .comment-text:hover {
+    visibility: visible;
+}
+
+.ratings_section .label {
+    padding: 3px 10px;
+    line-height: 13px;
+    color: #ffffff;
+    font-weight: 400;
+    border-radius: 4px;
+    font-size: 75%;
+}
+
+.ratings_section .round img {
+    border-radius: 100%;
+}
+
+.ratings_section .round svg {
+    border-radius: 100%;
+}
+
+.ratings_section .action-icons a {
+    padding-left: 7px;
+    vertical-align: middle;
+    color: #99abb4;
+}
+
+.ratings_section .action-icons a:hover {
+    color: #1976d2;
+}
+
+.ratings_section .mt-10 {
+    margin-top: 10px;
+}
+
+.ratings_section .mb-100 {
+    margin-bottom: 100px;
+}
+
+w-100 {
+    width: 100%;
+}
