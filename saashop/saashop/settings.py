@@ -111,6 +111,7 @@ MIDDLEWARE = [
     "django.middleware.locale.LocaleMiddleware",
     # Our middleware
     "saashop.middleware.ReverseRussianMiddleware",
+    "saashop.middleware.TimezoneMiddleware",
     "users.middleware.Users",
 ]
 
@@ -133,6 +134,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "users.context_processors.birthday_context",
             ],
         },
     },

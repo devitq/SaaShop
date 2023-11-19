@@ -1,0 +1,27 @@
+{% if users_with_birthday %}
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#usersBirthday">
+    Наши именниники
+  </button>
+  <div class="modal fade" id="usersBirthday" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Сегодня празднуют день рождения:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            <ul>
+            {% for user in users_with_birthday %}
+              <li><a href="{% url 'users:user_detail' pk=user.id %}">{{ user.username }}</a></li>
+            {% endfor %}
+            </ul>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
