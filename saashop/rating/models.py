@@ -1,12 +1,44 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from catalog.models import Item
 from users.models import User
 
-__all__ = ()
+
+class RatingManager(models.Manager):
+    def average_rating(self, item_id):
+        queryset = self.get_queryset().filter(item_id=item_id)
+        rating_stats = queryset.aggregate(
+            models.Count("id"),
+            models.Avg("rating"),
+        )
+        count_of_rating = rating_stats["id__count"]
+        average_rating = rating_stats["rating__avg"]
+
+        return {
+            "count": count_of_rating,
+            "avg": average_rating,
+        }
+
+    def get_item_with_rating(self, item_id):
+        return (
+            Item.objects.item_detail(item_id)
+            .select_related(Item.main_image.field.name)
+            .prefetch_related(
+                models.Prefetch(
+                    "ratings",
+                    queryset=self.get_queryset(),
+                ),
+            )
+        )
+
+    def get_rating_by_item_and_user(self, user_id, item_id):
+        return self.get_queryset().filter(user_id=user_id, item_id=item_id)
 
 
 class Rating(models.Model):
+    objects = RatingManager()
+
     ONE_RATING = 1
     TWO_RATING = 2
     THREE_RATING = 3
@@ -19,6 +51,7 @@ class Rating(models.Model):
         (FOUR_RATING, "Обожание"),
         (FIVE_RATING, "Любовь"),
     )
+
     rating = models.PositiveIntegerField(
         "оценка",
         choices=RATING_CHOICES,
@@ -31,8 +64,24 @@ class Rating(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
+        related_name="ratings",
+        related_query_name="ratings",
     )
     item = models.ForeignKey(
         Item,
         on_delete=models.CASCADE,
+        related_name="ratings",
+        related_query_name="ratings",
     )
+    created_at = models.DateTimeField(
+        _("created_at_utc_models"),
+        null=True,
+        auto_now_add=True,
+    )
+
+    class Meta:
+        verbose_name = "Отзыв"
+        verbose_name_plural = "Отзывы"
+
+
+__all__ = ()
