@@ -4,9 +4,9 @@ from rating.models import Rating
 from saashop.mixins import BaseFormMixin
 
 
-class RatingCreationForm(forms.ModelForm, BaseFormMixin):
+class RatingForm(forms.ModelForm, BaseFormMixin):
     def __init__(self, *args, **kwargs):
-        super(RatingCreationForm, self).__init__(*args, **kwargs)
+        super(RatingForm, self).__init__(*args, **kwargs)
         self.set_field_attributes()
 
     class Meta:

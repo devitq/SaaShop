@@ -1,13 +1,1 @@
-<div class="container">
-  {% if user.is_authenticated and not user.is_staff %}
-  <h4>Оставить отзыв:</h4>
-  <form method="post">
-  {% csrf_token %}
-  {% include "includes/form.html" %}
-  <input class="btn btn-primary" type="submit" value="Оставить">
-  </form>
-  {% endif %}
-  {% for rating in item.ratings.all %}
-  {% include "includes/comment.html" with comment=rating %}
-  {% endfor %}
-</div>
+

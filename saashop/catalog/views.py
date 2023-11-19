@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, ListView
 
 import catalog.models
-from rating.forms import RatingCreationForm
+from rating.forms import RatingForm
 from rating.models import Rating
 
 __all__ = ()
@@ -94,29 +94,29 @@ class ItemDetailView(DetailView):
 
     def get(self, request, pk):
         item_id = self.kwargs.get("pk")
+
         item = get_object_or_404(
             Rating.objects.get_item_with_rating(pk),
             pk=item_id,
         )
+
         user_rating = None
         if request.user.is_authenticated:
             user_rating = Rating.objects.get_rating_by_item_and_user(
                 request.user.id,
                 pk,
-            )
+            ).first()
+
         avg_rating = Rating.objects.average_rating(pk)
-        form = RatingCreationForm(
-            instance=(user_rating.first() if user_rating else None),
-        )
+        form = RatingForm(instance=user_rating)
+
         context = {
             "item": item,
             "avg_rating": avg_rating,
             "form": form,
         }
         return render(
-            request,
-            template_name=self.template_name,
-            context=context,
+            request, template_name=self.template_name, context=context,
         )
 
     def post(self, request, pk):
@@ -131,19 +131,8 @@ class ItemDetailView(DetailView):
                 "Пользователь не авторизован",
             )
             redirect("catalog:item_detail", pk=pk)
-        form = RatingCreationForm(request.POST)
-        user_rating = None
-        if request.user.is_authenticated:
-            user_rating = Rating.objects.get_rating_by_item_and_user(
-                request.user.id,
-                pk,
-            ).first()
+        form = RatingForm(request.POST)
         if form.is_valid():
-            if user_rating:
-                user_rating.text = form.cleaned_data["text"]
-                user_rating.rating = form.cleaned_data["rating"]
-                user_rating.save()
-                return redirect("catalog:item_detail", pk=pk)
             rating = form.save(commit=False)
             rating.user = request.user
             rating.item = item
