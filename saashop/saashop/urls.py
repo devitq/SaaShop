@@ -10,6 +10,7 @@ urlpatterns = [
     path("catalog/", include("catalog.urls")),
     path("download/", include("download.urls")),
     path("feedback/", include("feedback.urls")),
+    path("rating/", include("rating.urls")),
     path("auth/", include("users.urls")),
     path("auth/", include(django.contrib.auth.urls), name="users_default"),
     path("admin/", admin.site.urls),

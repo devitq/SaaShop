@@ -4,7 +4,7 @@ exclude =
     __pycache__,
     venv
 import-order-style=google
-application-import-names = 
+application-import-names =
     catalog,
     core,
     about,
@@ -12,5 +12,6 @@ application-import-names =
     saashop,
     download,
     feedback,
+    rating,
     users,
 inline-quotes = "

@@ -6,12 +6,16 @@ from django.db import models
 __all__ = ()
 
 
-class ProfileManager(django.contrib.auth.models.UserManager):
+class UserManager(django.contrib.auth.models.UserManager):
+    def get_queryset(self):
+        # Всегда грузим профиль
+        return super().get_queryset().select_related("profile")
+
     def by_mail(self, email):
-        return self.select_related("profile").get(email=email)
+        return self.get_queryset().get(email=email)
 
     def active(self):
-        return self.select_related("profile").filter(is_active=True)
+        return self.get_queryset().filter(is_active=True)
 
     def normalize_email(self, email):
         if email:
@@ -74,7 +78,7 @@ class User(django.contrib.auth.models.User):
     class Meta:
         proxy = True
 
-    objects = ProfileManager()
+    objects = UserManager()
 
 
 def create_profile(sender, instance, created, **kwargs):

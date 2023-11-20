@@ -30,6 +30,27 @@
             <div class="col-sm-6">
                 <h1 class="display-5 fw-bolder no-margin-top">{{ item.name }}</h1>
                 <p class="lead">{{ item.text|safe }}</p>
+                <h6>{% translate "rating" %}:</h6>
+                {% if avg_rating.count %}
+                    <div class="row">
+                        <div class="col">
+                            Общий
+                        </div>
+                        <div class="col">
+                            {{ avg_rating.avg }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            Отзывы
+                        </div>
+                        <div class="col">
+                            {{ avg_rating.count }}
+                        </div>
+                    </div>
+                {% else %}
+                    <p text-secondary user-select-none>{% translate "empty" %}</p>
+                {% endif %}
                 <h6>{% translate "category" %}:</h6>
                 <span class="badge rounded-pill text-bg-warning">{{ item.category.name }}</span>
                 <h6>{% translate "tags" %}:</h6>
@@ -65,6 +86,24 @@
             <div>
             {% endfor %}
         </div>
+    </div>
+</section>
+<section class="py-5">
+    <div class="container">
+        {% if user.is_authenticated %}
+            {% if form.instance.pk is None %}
+            <h2>Оставить отзыв:</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% include "includes/form.html" %}
+                <input class="btn btn-primary" type="submit" value="Отправить">
+            </form>
+            {% endif %}
+        {% endif %}
+        <h3>Отзывы</h3>
+        {% for rating in item.ratings.all %}
+            {% include "includes/rating.html" %}
+        {% endfor %}
     </div>
 </section>
 <script src="{% static 'js/animation_setup.min.js' %}"></script>

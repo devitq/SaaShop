@@ -166,9 +166,10 @@ class ItemManager(models.Manager):
             )
         )
 
-    def item_detail(self):
+    def item_detail(self, item_id):
         return (
             self.get_queryset()
+            .filter(id=item_id)
             .select_related(Item.category.field.name)
             .select_related(Item.main_image.field.name)
             .prefetch_related(
