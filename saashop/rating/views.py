@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -26,7 +26,7 @@ class RatingDeleteView(View):
                 "Отзыв удалён",
             )
             return redirect("catalog:item_detail", pk=item_id)
-        raise Http404()
+        return HttpResponseForbidden()
 
 
 @method_decorator(login_required, name="dispatch")
@@ -37,7 +37,7 @@ class RatingUpdateView(View):
             pk=pk,
         )
         if not request.user.is_superuser and request.user.id != rating.user.id:
-            raise Http404()
+            return HttpResponseForbidden()
         form = RatingForm(request.POST, instance=rating)
         if form.is_valid():
             if rating:
@@ -49,4 +49,8 @@ class RatingUpdateView(View):
                     "Изменения сохранены",
                 )
                 return redirect("catalog:item_detail", pk=rating.item.id)
-        return Http404()
+        messages.success(
+                request,
+                "Форма заполнена неверно",
+        )
+        return redirect("catalog:item_detail", pk=rating.item.id)
