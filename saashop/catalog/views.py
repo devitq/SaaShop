@@ -9,7 +9,7 @@ from django.views.generic import DetailView, ListView
 
 import catalog.models
 from rating.forms import RatingForm
-from rating.models import Rating
+from rating.models import get_average_rating, Rating
 
 __all__ = ()
 
@@ -100,14 +100,16 @@ class ItemDetailView(DetailView):
             pk=item_id,
         )
 
-        user_rating = None
-        if request.user.is_authenticated:
-            user_rating = Rating.objects.get_rating_by_item_and_user(
-                request.user.id,
-                pk,
-            ).first()
+        ratings = item.ratings.all()
 
-        avg_rating = Rating.objects.average_rating_by_item(pk)
+        avg_rating = get_average_rating(ratings)
+        user_rating = list(
+            filter(
+                lambda r: request.user.id == r.user.id,
+                ratings,
+            ),
+        )
+        user_rating = user_rating[0] if user_rating else None
         form = RatingForm(instance=user_rating)
 
         context = {

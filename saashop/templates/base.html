@@ -11,7 +11,6 @@
         <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.ico' %}">
         <link rel="icon" href="{% static 'img/favicon-32x32.ico' %}">
         <link rel="icon" href="{% static 'img/favicon-16x16.ico' %}">
-        <link rel="manifest" href="{% static 'img/site.webmanifest' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'landing/css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/custom.css' %}">
@@ -23,6 +22,7 @@
         <title>SaaShop</title>
     </head>
     <body class="is-boxed has-animations">
+        {% include "includes/birthday_users.html" %}
         {% include "includes/header.html" %}
         <main>
             {% block main %}{% endblock main %}
@@ -32,5 +32,12 @@
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
         <script src="{% static 'js/yearInFooter.js' %}"></script>
         <a href="#" class="top" id="ScrollToTop"></a>
+        <script>
+            function setSessionCookie(name, value) {
+              document.cookie = name + "=" + value + "; path=/";
+            }
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            setSessionCookie("django_timezone", timezone);
+        </script>          
     </body>
 </html>

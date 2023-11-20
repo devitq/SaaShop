@@ -6,33 +6,18 @@ from users.models import User
 
 
 class RatingManager(models.Manager):
-    def average_rating_by_item(self, item_id):
+    def average_rating(self, item_id):
         queryset = self.get_queryset().filter(item_id=item_id)
-        rating_stats = queryset.aggregate(
-            models.Count("id"),
-            models.Avg("rating"),
+        return get_average_rating(queryset.all())
+
+    def get_rating_with_user(self):
+        return (
+            self.get_queryset()
+            .select_related(Rating.user.field.name)
+            .select_related(
+                f"{Rating.user.field.name}__profile",
+            )
         )
-        count_of_rating = rating_stats["id__count"]
-        average_rating = rating_stats["rating__avg"]
-
-        return {
-            "count": count_of_rating,
-            "avg": average_rating,
-        }
-
-    def average_rating_by_user(self, user_id):
-        queryset = self.get_queryset().filter(user_id=user_id)
-        rating_stats = queryset.aggregate(
-            models.Count("id"),
-            models.Avg("rating"),
-        )
-        count_of_rating = rating_stats["id__count"]
-        average_rating = rating_stats["rating__avg"]
-
-        return {
-            "count": count_of_rating,
-            "avg": average_rating,
-        }
 
     def get_item_with_rating(self, item_id):
         return (
@@ -41,13 +26,30 @@ class RatingManager(models.Manager):
             .prefetch_related(
                 models.Prefetch(
                     "ratings",
-                    queryset=self.get_queryset(),
+                    queryset=self.get_rating_with_user(),
                 ),
             )
         )
 
     def get_rating_by_item_and_user(self, user_id, item_id):
         return self.get_queryset().filter(user_id=user_id, item_id=item_id)
+
+
+def get_average_rating(ratings):
+    count_of_rating = len(ratings)
+    if not count_of_rating:
+        return {
+            "count": 0,
+            "avg": None,
+        }
+    average_rating = round(
+        sum(r.rating for r in ratings) / count_of_rating,
+        1,
+    )
+    return {
+        "count": count_of_rating,
+        "avg": average_rating,
+    }
 
 
 class Rating(models.Model):

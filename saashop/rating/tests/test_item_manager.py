@@ -52,7 +52,7 @@ class ItemManagerTests(TestCase):
         )
 
     def test_average_rating_method(self):
-        avg = Rating.objects.average_rating_by_item(self.item.id)
+        avg = Rating.objects.average_rating(self.item.id)
         self.assertEqual({"count": 2, "avg": 3.5}, avg)
 
     def test_get_item_with_rating_method(self):
