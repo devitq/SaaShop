@@ -8,7 +8,7 @@ from users.models import User
 class RatingManager(models.Manager):
     def average_rating(self, item_id):
         queryset = self.get_queryset().filter(item_id=item_id)
-        return get_average_rating(queryset.all())
+        return get_average_rating_and_ratings_count(queryset.all())
 
     def get_rating_with_user(self):
         return (
@@ -35,7 +35,7 @@ class RatingManager(models.Manager):
         return self.get_queryset().filter(user_id=user_id, item_id=item_id)
 
 
-def get_average_rating(ratings):
+def get_average_rating_and_ratings_count(ratings):
     count_of_rating = len(ratings)
     if not count_of_rating:
         return {
@@ -55,17 +55,12 @@ def get_average_rating(ratings):
 class Rating(models.Model):
     objects = RatingManager()
 
-    ONE_RATING = 1
-    TWO_RATING = 2
-    THREE_RATING = 3
-    FOUR_RATING = 4
-    FIVE_RATING = 5
     RATING_CHOICES = (
-        (ONE_RATING, "Ненависть"),
-        (TWO_RATING, "Неприязнь"),
-        (THREE_RATING, "Нейтрально"),
-        (FOUR_RATING, "Обожание"),
-        (FIVE_RATING, "Любовь"),
+        (1, "Ненависть"),
+        (2, "Неприязнь"),
+        (3, "Нейтрально"),
+        (4, "Обожание"),
+        (5, "Любовь"),
     )
 
     rating = models.PositiveIntegerField(
