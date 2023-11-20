@@ -103,6 +103,8 @@
         <h3>Отзывы</h3>
         {% for rating in item.ratings.all %}
             {% include "includes/rating.html" %}
+            {% empty %}
+            <p class="margin-top-10px">{% translate "empty_plural" %}</p>
         {% endfor %}
     </div>
 </section>
