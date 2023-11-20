@@ -9,7 +9,7 @@ from django.views.generic import DetailView, ListView
 
 import catalog.models
 from rating.forms import RatingForm
-from rating.models import get_average_rating, Rating
+from rating.models import get_average_rating_and_ratings_count, Rating
 
 __all__ = ()
 
@@ -102,14 +102,10 @@ class ItemDetailView(DetailView):
 
         ratings = item.ratings.all()
 
-        avg_rating = get_average_rating(ratings)
-        user_rating = list(
-            filter(
-                lambda r: request.user.id == r.user.id,
-                ratings,
-            ),
-        )
-        user_rating = user_rating[0] if user_rating else None
+        avg_rating = get_average_rating_and_ratings_count(ratings)
+        user_rating = None
+        if request.user.is_authenticated:
+            user_rating = Rating.objects.filter(user=request.user).first()
         form = RatingForm(instance=user_rating)
 
         context = {
@@ -129,19 +125,21 @@ class ItemDetailView(DetailView):
             Rating.objects.get_item_with_rating(pk),
             pk=item_id,
         )
-        if not request.user.is_authenticated:
-            messages.error(
-                request,
-                "Пользователь не авторизован",
-            )
-            redirect("catalog:item_detail", pk=pk)
         form = RatingForm(request.POST)
         user_rating = None
+
         if request.user.is_authenticated:
             user_rating = Rating.objects.get_rating_by_item_and_user(
                 request.user.id,
                 pk,
             ).first()
+        else:
+            messages.error(
+                request,
+                "Пользователь не авторизован",
+            )
+            redirect("catalog:item_detail", pk=pk)
+
         if form.is_valid():
             if user_rating:
                 user_rating.text = form.cleaned_data["text"]
