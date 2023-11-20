@@ -5,11 +5,10 @@
 	{% with temp=item|average_rating:item.id %}
 		{% if temp.1 %}
 	Name: {{ item.name }}<br>
-		{% for count, average in temp.0.items %}
-			{{ count }} : {{ average }} <br>
-		{% endfor %}
-		Max: {{ temp.1.user.username }}<br>
-		Min: {{ temp.2.user.username }}
+		Count: {{ temp.0 }}<br>
+		Avg: {{ temp.1 }}<br>
+		Max: {{ temp.2.user__username }}<br>
+		Min: {{ temp.3.user__username }}
 			<br><br>
 		{% endif %}
 	{% endwith %}

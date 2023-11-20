@@ -20,5 +20,11 @@ class DynamicURLTests(TestCase):
         )
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
+    def test_user_items_redirect(self):
+        response = Client().get(
+            reverse("global_statistics:user_items"),
+        )
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
 
 __all__ = ()

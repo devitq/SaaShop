@@ -1,9 +1,8 @@
 from django import template
-from django.db.models import Max, Min
+from django.db.models import Avg, Count, Max, Min
 
 import catalog.models
 import rating.models
-
 
 register = template.Library()
 
@@ -19,6 +18,7 @@ def user_ratings(value, user_id):
             ratings__user_id=user_id,
             ratings__rating=reactions["rating__max"],
         )
+        .values("name")
         .order_by("-ratings__created_at")
         .first()
     )
@@ -27,15 +27,22 @@ def user_ratings(value, user_id):
             ratings__user_id=user_id,
             ratings__rating=reactions["rating__min"],
         )
+        .values("name")
         .order_by("-ratings__created_at")
         .first()
     )
-    average_dirty = rating.models.Rating.objects.average_rating_by_user(
-        user_id=user_id,
+
+    average = rating.models.Rating.objects.filter(user_id=user_id).aggregate(
+        Count("rating"),
+        Avg("rating"),
     )
-    number_od_ratings = average_dirty["count"]
-    average = average_dirty["avg"]
-    return (highest_rating, lowest_rating, number_od_ratings, average)
+
+    return (
+        highest_rating,
+        lowest_rating,
+        average["rating__count"],
+        str(average["rating__avg"])[:3],
+    )
 
 
 __all__ = ()

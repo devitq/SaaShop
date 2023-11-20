@@ -4,8 +4,8 @@
 	{% for user in users %}
 		Пользователь: {{ user.username }}<br>
 		{% with user_info=user|user_ratings:user.id %}
-		Самый 🧡Love🧡 товар: {{ user_info.0 }}<br>
-		Самый 🤮Hated🤮 товар: {{ user_info.1 }}<br>
+		Самый 🧡Love🧡 товар: {{ user_info.0.name }}<br>
+		Самый 🤮Hated🤮 товар: {{ user_info.1.name }}<br>
 		Всего оценок сделано: {{ user_info.2 }}<br>
 		Средняя оценка товаров: {{ user_info.3 }}<br><br>
 		{% endwith %}
