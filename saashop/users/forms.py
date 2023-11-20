@@ -56,7 +56,11 @@ class EditUserAdminForm(auth.admin.UserChangeForm):
         email = User.objects.normalize_email(
             email,
         )
-        user_exist = User.objects.filter(email=email).exists()
+        user_exist = (
+            User.objects.filter(email=email)
+            .exclude(pk=self.instance.id)
+            .exists()
+        )
         if user_exist:
             raise forms.ValidationError(
                 "Пользователь с такой электронной почтой уже существует",
@@ -70,7 +74,11 @@ class CreateUserAdminForm(auth.admin.UserCreationForm):
         email = User.objects.normalize_email(
             email,
         )
-        user_exist = User.objects.filter(email=email).exists()
+        user_exist = (
+            User.objects.filter(email=email)
+            .exclude(pk=self.instance.id)
+            .exists()
+        )
         if user_exist:
             raise forms.ValidationError(
                 "Пользователь с такой электронной почтой уже существует",

@@ -9,6 +9,7 @@ gunicorn
 Pillow==10.1.0
 psycopg2-binary
 python-dotenv
+pytz
 redis
 sentry-sdk
 sorl.thumbnail==12.10.0
