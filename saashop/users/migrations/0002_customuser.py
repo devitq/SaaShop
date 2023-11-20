@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
             },
             bases=("auth.user",),
             managers=[
-                ("objects", users.models.ProfileManager()),
+                ("objects", users.models.UserManager()),
             ],
         ),
     ]

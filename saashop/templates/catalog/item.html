@@ -30,11 +30,26 @@
             <div class="col-sm-6">
                 <h1 class="display-5 fw-bolder no-margin-top">{{ item.name }}</h1>
                 <p class="lead">{{ item.text|safe }}</p>
-                <h6>{% translate "rating" %}</h6>
+                <h6>{% translate "rating" %}:</h6>
                 {% if avg_rating.count %}
-                    <p>{{ avg_rating.count }}/5, {{ avg_rating.count }} отзывов</p>
+                    <div class="row">
+                        <div class="col">
+                            Общий
+                        </div>
+                        <div class="col">
+                            {{ avg_rating.avg }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            Отзывы
+                        </div>
+                        <div class="col">
+                            {{ avg_rating.count }}
+                        </div>
+                    </div>
                 {% else %}
-                    <p>{% translate "empty" %}</p>
+                    <p text-secondary user-select-none>{% translate "empty" %}</p>
                 {% endif %}
                 <h6>{% translate "category" %}:</h6>
                 <span class="badge rounded-pill text-bg-warning">{{ item.category.name }}</span>

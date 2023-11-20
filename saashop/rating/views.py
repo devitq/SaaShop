@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -25,11 +26,7 @@ class RatingDeleteView(View):
                 "Отзыв удалён",
             )
             return redirect("catalog:item_detail", pk=item_id)
-        messages.error(
-            request,
-            "У вас нет прав на удаление отзыва",
-        )
-        return redirect("catalog:item_detail", pk=item_id)
+        raise Http404()
 
 
 @method_decorator(login_required, name="dispatch")
@@ -39,11 +36,17 @@ class RatingUpdateView(View):
             Rating.objects.all(),
             pk=pk,
         )
+        if not request.user.is_superuser and request.user.id != rating.user.id:
+            raise Http404()
         form = RatingForm(request.POST, instance=rating)
         if form.is_valid():
             if rating:
                 rating.text = form.cleaned_data["text"]
                 rating.rating = form.cleaned_data["rating"]
                 rating.save()
+                messages.success(
+                    request,
+                    "Изменения сохранены",
+                )
                 return redirect("catalog:item_detail", pk=rating.item.id)
-        return redirect("catalog:item_detail", pk=rating.item.id)
+        return Http404()
