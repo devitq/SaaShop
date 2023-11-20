@@ -50,7 +50,7 @@ class RatingUpdateView(View):
                 )
                 return redirect("catalog:item_detail", pk=rating.item.id)
         messages.success(
-                request,
-                "Форма заполнена неверно",
+            request,
+            "Форма заполнена неверно",
         )
         return redirect("catalog:item_detail", pk=rating.item.id)
