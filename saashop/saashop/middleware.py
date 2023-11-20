@@ -1,8 +1,6 @@
 import re
-import zoneinfo
 
 from django.conf import settings
-from django.utils import timezone
 
 __all__ = ("ReverseRussianMiddleware",)
 
@@ -42,20 +40,3 @@ class ReverseRussianMiddleware:
             lambda match: match.group()[::-1],
             s,
         )
-
-
-class TimezoneMiddleware:
-    def __init__(self, get_response):
-        self.get_response = get_response
-
-    def __call__(self, request):
-        try:
-            tzname = request.COOKIES.get("django_timezone")
-            if tzname:
-                timezone.activate(zoneinfo.ZoneInfo(tzname))
-            else:
-                timezone.deactivate()
-        except Exception:
-            timezone.deactivate()
-
-        return self.get_response(request)

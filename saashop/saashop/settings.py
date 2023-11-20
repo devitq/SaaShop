@@ -111,7 +111,6 @@ MIDDLEWARE = [
     "django.middleware.locale.LocaleMiddleware",
     # Our middleware
     "saashop.middleware.ReverseRussianMiddleware",
-    "saashop.middleware.TimezoneMiddleware",
     "users.middleware.Users",
 ]
 

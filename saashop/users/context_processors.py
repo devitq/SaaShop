@@ -10,13 +10,13 @@ def birthday_context(request):
     tzname = request.COOKIES.get("django_timezone", "UTC")
     today = timezone.now().astimezone(pytz.timezone(tzname)).date()
     users_with_birthday = (
-        User.objects.select_related("profile")
+        User.objects
         .filter(
             profile__birthday__day=today.day,
             profile__birthday__month=today.month,
             is_active=True,
         )
-        .only("username", "profile__birthday")
+        .only("username")
     )
 
     return {
