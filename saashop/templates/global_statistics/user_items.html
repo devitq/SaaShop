@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block main %}
+
+<div class="container">
+	<h3>Товары, оценённые вами:</h3><br>
+	<ul>
+		{% for item in items %}
+			<li>
+				<span><a href="{% url 'catalog:item_detail' pk=item.id %}">{{ item }}</a></span>
+				<br>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+
+{% endblock %}

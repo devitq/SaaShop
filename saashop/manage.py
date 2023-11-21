@@ -3,7 +3,7 @@
 import os
 import sys
 
-__all__ = ["main"]
+__all__ = ()
 
 
 def main():

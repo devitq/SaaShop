@@ -5,6 +5,9 @@ from catalog.models import Item
 from users.models import User
 
 
+__all__ = ()
+
+
 class RatingManager(models.Manager):
     def average_rating(self, item_id):
         queryset = self.get_queryset().filter(item_id=item_id)
@@ -93,6 +96,3 @@ class Rating(models.Model):
     class Meta:
         verbose_name = "Отзыв"
         verbose_name_plural = "Отзывы"
-
-
-__all__ = ()

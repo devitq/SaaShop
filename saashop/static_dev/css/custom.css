@@ -54,6 +54,10 @@ label {
     color: #FFFFFF;
 }
 
+.white-text {
+    color: white;
+}
+
 .toast-custom {
     position: fixed;
     top: 0.5rem;

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block main %}
+
+<div class="container">
+	<h1>Статистика по пользователям:</h1>
+	{% for user in users %}
+		<h4>Пользователь: <a class="white-text" href="{% url 'users:user_detail' pk=user.id %}">{{ user.username }}</a></h4>
+		<br>
+		<span>Самый любимый товар: {{ user.highest_rating_item_name|default:"N/A"}}</span>
+		<br>
+		<span>Самый нелюбимый товар: {{ user.lowest_rating_item_name|default:"N/A" }}</span>
+		<br>
+		<span>Всего оценок сделано: {{ user.ratings_count }}</span>
+		<br>
+		<span>Средняя оценка товаров: {{ user.avg_rating|floatformat:2|default:"N/A" }}</span>
+		<br><br>
+	{% endfor %}
+</div>
+
+{% endblock %}
