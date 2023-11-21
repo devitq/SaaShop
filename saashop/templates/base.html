@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="{% static 'fontawesome/css/solid.min.css' %}">
         <script src="{% static 'js/toast.js' %}"></script>
         <script src="{% static 'js/scrollToTop.js' %}"></script>
+        <script scr="{% static 'js/' %}"></script>
         <title>SaaShop</title>
     </head>
     <body class="is-boxed has-animations">
@@ -29,15 +30,9 @@
         </main>
         {% include "includes/footer.html" %}
         {% include "includes/toasts.html" %}
+        <script src="{% static 'js/setLocalTimezone.js' %}"></script>   
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
         <script src="{% static 'js/yearInFooter.js' %}"></script>
-        <a href="#" class="top" id="ScrollToTop"></a>
-        <script>
-            function setSessionCookie(name, value) {
-              document.cookie = name + "=" + value + "; path=/";
-            }
-            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            setSessionCookie("django_timezone", timezone);
-        </script>          
+        <a href="#" class="top" id="ScrollToTop"></a>       
     </body>
 </html>
