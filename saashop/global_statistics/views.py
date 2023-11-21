@@ -14,7 +14,7 @@ __all__ = ()
 
 
 class AllItemsView(View):
-    template_name = "global_statistics/all_items.html"
+    template_name = "global_statistics/items.html"
 
     def get(self, request):
         items = catalog.models.Item.objects.annotate(
@@ -36,7 +36,14 @@ class AllItemsView(View):
                 .order_by("rating")[:1]
                 .values("user__username"),
             ),
-        ).filter(count_ratings__gt=0)
+        ).values(
+            "id",
+            "name",
+            "highest_rating_user",
+            "lowest_rating_user",
+            "count_ratings",
+            "avg_rating",
+        )
 
         context = {"items": items}
         return render(request, self.template_name, context)
@@ -55,12 +62,13 @@ class UserItemsView(ListView):
         return (
             catalog.models.Item.objects.filter(ratings__in=user_ratings)
             .order_by("-ratings__rating")
+            .only("id", "name")
             .distinct()
         )
 
 
 class AllUsersView(View):
-    template_name = "global_statistics/all_users.html"
+    template_name = "global_statistics/users.html"
 
     def get(self, request):
         user_list = users.models.User.objects.annotate(
