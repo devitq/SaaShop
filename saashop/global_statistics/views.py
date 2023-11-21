@@ -22,10 +22,14 @@ class AllItemsView(View):
             avg_rating=Avg("ratings__rating"),
             highest_rating_user=rating.models.Rating.objects.filter(
                 item_id=OuterRef("id"),
-            ).order_by("-rating", "-id")[:1].values("user__username"),
+            )
+            .order_by("-rating", "-id")[:1]
+            .values("user__username"),
             lowest_rating_user=rating.models.Rating.objects.filter(
                 item_id=OuterRef("id"),
-            ).order_by("rating", "-id")[:1].values("user__username"),
+            )
+            .order_by("rating", "-id")[:1]
+            .values("user__username"),
         ).values(
             "id",
             "name",
@@ -64,10 +68,14 @@ class AllUsersView(View):
         user_list = users.models.User.objects.annotate(
             highest_rating_item_name=rating.models.Rating.objects.filter(
                 user_id=OuterRef("id"),
-            ).order_by("-rating", "-id")[:1].values("item__name"),
+            )
+            .order_by("-rating", "-id")[:1]
+            .values("item__name"),
             lowest_rating_item_name=rating.models.Rating.objects.filter(
                 user_id=OuterRef("id"),
-            ).order_by("rating", "-id")[:1].values("item__name"),
+            )
+            .order_by("rating", "-id")[:1]
+            .values("item__name"),
             ratings_count=Count("ratings"),
             avg_rating=Avg("ratings__rating"),
         ).values(
