@@ -49,7 +49,7 @@ class RatingUpdateView(View):
                     "Изменения сохранены",
                 )
                 return redirect("catalog:item_detail", pk=rating.item.id)
-        messages.success(
+        messages.error(
             request,
             "Форма заполнена неверно",
         )

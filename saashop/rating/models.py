@@ -8,7 +8,7 @@ from users.models import User
 class RatingManager(models.Manager):
     def average_rating(self, item_id):
         queryset = self.get_queryset().filter(item_id=item_id)
-        return get_average_rating_and_ratings_count(queryset.all())
+        return get_rating_stats(queryset.all())
 
     def get_rating_with_user(self):
         return (
@@ -35,7 +35,7 @@ class RatingManager(models.Manager):
         return self.get_queryset().filter(user_id=user_id, item_id=item_id)
 
 
-def get_average_rating_and_ratings_count(ratings):
+def get_rating_stats(ratings):
     count_of_rating = len(ratings)
     if not count_of_rating:
         return {
