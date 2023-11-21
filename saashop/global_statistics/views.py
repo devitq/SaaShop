@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.db.models import Avg, Count, F, Max, Min, OuterRef, Subquery
+from django.db.models import Avg, Count, OuterRef
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -18,30 +18,20 @@ class AllItemsView(View):
 
     def get(self, request):
         items = catalog.models.Item.objects.annotate(
-            count_ratings=Count("ratings"),
+            ratings_count=Count("ratings"),
             avg_rating=Avg("ratings__rating"),
-            highest_rating_user=Subquery(
-                rating.models.Rating.objects.filter(
-                    item_id=OuterRef("id"),
-                    user=OuterRef("ratings__user"),
-                )
-                .order_by("-rating")[:1]
-                .values("user__username"),
-            ),
-            lowest_rating_user=Subquery(
-                rating.models.Rating.objects.filter(
-                    item_id=OuterRef("id"),
-                    user=OuterRef("ratings__user"),
-                )
-                .order_by("rating")[:1]
-                .values("user__username"),
-            ),
+            highest_rating_user=rating.models.Rating.objects.filter(
+                item_id=OuterRef("id"),
+            ).order_by("-rating", "-id")[:1].values("user__username"),
+            lowest_rating_user=rating.models.Rating.objects.filter(
+                item_id=OuterRef("id"),
+            ).order_by("rating", "-id")[:1].values("user__username"),
         ).values(
             "id",
             "name",
             "highest_rating_user",
             "lowest_rating_user",
-            "count_ratings",
+            "ratings_count",
             "avg_rating",
         )
 
@@ -72,22 +62,20 @@ class AllUsersView(View):
 
     def get(self, request):
         user_list = users.models.User.objects.annotate(
-            highest_rating_item_name=Max(
-                "ratings__item__name",
-                filter=F("ratings__rating"),
-            ),
-            lowest_rating_item_name=Min(
-                "ratings__item__name",
-                filter=F("ratings__rating"),
-            ),
-            total_ratings=Count("ratings"),
+            highest_rating_item_name=rating.models.Rating.objects.filter(
+                user_id=OuterRef("id"),
+            ).order_by("-rating", "-id")[:1].values("item__name"),
+            lowest_rating_item_name=rating.models.Rating.objects.filter(
+                user_id=OuterRef("id"),
+            ).order_by("rating", "-id")[:1].values("item__name"),
+            ratings_count=Count("ratings"),
             avg_rating=Avg("ratings__rating"),
         ).values(
             "id",
             "username",
             "highest_rating_item_name",
             "lowest_rating_item_name",
-            "total_ratings",
+            "ratings_count",
             "avg_rating",
         )
 

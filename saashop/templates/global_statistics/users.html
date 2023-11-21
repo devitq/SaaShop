@@ -10,7 +10,7 @@
 		<br>
 		<span>Самый нелюбимый товар: {{ user.lowest_rating_item_name|default:"N/A" }}</span>
 		<br>
-		<span>Всего оценок сделано: {{ user.total_ratings }}</span>
+		<span>Всего оценок сделано: {{ user.ratings_count }}</span>
 		<br>
 		<span>Средняя оценка товаров: {{ user.avg_rating|floatformat:2|default:"N/A" }}</span>
 		<br><br>

@@ -6,7 +6,7 @@
 	{% for item in items %}
 		<h4>Товар: <a class="white-text" href="{% url 'catalog:item_detail' pk=item.id %}">{{ item.name }}</a></h4>
 		<br>
-		<span>Количество отзывов: {{ item.count_ratings }}</span>
+		<span>Количество отзывов: {{ item.ratings_count }}</span>
 		<br>
 		<span>Средний рейтинг: {{ item.avg_rating|floatformat:2|default:"N/A" }}</span>
 		<br>
