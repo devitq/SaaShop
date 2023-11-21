@@ -105,7 +105,10 @@ class ItemDetailView(DetailView):
         avg_rating = get_rating_stats(ratings)
         user_rating = None
         if request.user.is_authenticated:
-            user_rating = Rating.objects.filter(user=request.user).first()
+            user_rating = Rating.objects.get_rating_by_item_and_user(
+                request.user.id,
+                pk,
+            ).first()
         form = RatingForm(instance=user_rating)
 
         context = {

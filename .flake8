@@ -14,4 +14,5 @@ application-import-names =
     feedback,
     rating,
     users,
+    global_statistics,
 inline-quotes = "
