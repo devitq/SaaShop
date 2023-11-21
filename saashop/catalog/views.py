@@ -9,7 +9,7 @@ from django.views.generic import DetailView, ListView
 
 import catalog.models
 from rating.forms import RatingForm
-from rating.models import get_average_rating_and_ratings_count, Rating
+from rating.models import get_rating_stats, Rating
 
 __all__ = ()
 
@@ -102,7 +102,7 @@ class ItemDetailView(DetailView):
 
         ratings = item.ratings.all()
 
-        avg_rating = get_average_rating_and_ratings_count(ratings)
+        avg_rating = get_rating_stats(ratings)
         user_rating = None
         if request.user.is_authenticated:
             user_rating = Rating.objects.filter(user=request.user).first()
