@@ -3,6 +3,8 @@ from django import forms
 from rating.models import Rating
 from saashop.mixins import BaseFormMixin
 
+__all__ = ()
+
 
 class RatingForm(forms.ModelForm, BaseFormMixin):
     def __init__(self, *args, **kwargs):
@@ -29,6 +31,3 @@ class RatingForm(forms.ModelForm, BaseFormMixin):
                 },
             ),
         }
-
-
-__all__ = ()

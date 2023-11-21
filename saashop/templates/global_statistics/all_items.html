@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 {% block main %}
-	{% load average_rating %}
+
 {% for item in items %}
-	{% with temp=item|average_rating:item.id %}
-		{% if temp.1 %}
-	Name: {{ item.name }}<br>
-		Count: {{ temp.0 }}<br>
-		Avg: {{ temp.1 }}<br>
-		Max: {{ temp.2.user__username }}<br>
-		Min: {{ temp.3.user__username }}
-			<br><br>
-		{% endif %}
-	{% endwith %}
+    {% if item.count_ratings > 0 %}
+        Name: {{ item.name }}<br>
+        Count: {{ item.count_ratings }}<br>
+        Avg: {{ item.avg_rating|default:"N/A" }}<br>
+        Max: {{ item.highest_rating_user }}<br>
+        Min: {{ item.lowest_rating_user }}
+        <br><br>
+    {% endif %}
 {% endfor %}
+
 {% endblock %}

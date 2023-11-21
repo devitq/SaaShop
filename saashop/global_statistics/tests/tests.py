@@ -4,6 +4,8 @@ from django.test import Client, TestCase
 from django.urls import reverse
 import parameterized
 
+__all__ = ()
+
 
 class DynamicURLTests(TestCase):
     @parameterized.parameterized.expand(
@@ -25,6 +27,3 @@ class DynamicURLTests(TestCase):
             reverse("global_statistics:user_items"),
         )
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
-
-
-__all__ = ()

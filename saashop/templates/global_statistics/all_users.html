@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block main %}
-	{% load user_ratings %}
+
+<div class="container">
 	{% for user in users %}
 		Пользователь: {{ user.username }}<br>
-		{% with user_info=user|user_ratings:user.id %}
-		Самый 🧡Love🧡 товар: {{ user_info.0.name }}<br>
-		Самый 🤮Hated🤮 товар: {{ user_info.1.name }}<br>
-		Всего оценок сделано: {{ user_info.2 }}<br>
-		Средняя оценка товаров: {{ user_info.3 }}<br><br>
-		{% endwith %}
+		Самый любимый товар: {{ user.highest_rating_item_name }}<br>
+		Самый нелюбимый товар: {{ user.lowest_rating_item_name }}<br>
+		Всего оценок сделано: {{ user.total_ratings }}<br>
+		Средняя оценка товаров: {{ user.avg_rating }}<br><br>
 	{% endfor %}
+</div>
+
 {% endblock %}
