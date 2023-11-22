@@ -31,3 +31,21 @@ class RatingForm(forms.ModelForm, BaseFormMixin):
                 },
             ),
         }
+
+
+class RatingAdminForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = "__all__"
+
+    def clean(self):
+        cleaned_data = super().clean()
+        user = cleaned_data.get("user")
+        item = cleaned_data.get("item")
+
+        existing_rating = Rating.objects.filter(user=user, item=item).first()
+
+        if existing_rating:
+            raise forms.ValidationError(
+                "Пользователь уже оставлял свой отзыв на этот товар",
+            )
