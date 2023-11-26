@@ -67,19 +67,19 @@ And change .env for your needs
 
 ### Installing requirements
 
-Prod requirements installation
+#### Prod requirements installation
 
 ```cmd
 > pip install -r requirements/prod.txt
 ```
 
-Dev requirements installation
+#### Dev requirements installation
 
 ```cmd
 > pip install -r requirements/dev.txt
 ```
 
-Test requirements installation
+#### Test requirements installation
 
 ```cmd
 > pip install -r requirements/test.txt
@@ -99,15 +99,19 @@ Test requirements installation
 > python manage.py loaddata fixtures/data.json
 ```
 
-### Using bult in command
+### Using bult-in command
 
 ```cmd
 > python manage.py initdata
 ```
 
-## Collecting static
+#### Parametrs
 
-Run this command:
+```cmd
+
+```
+
+## Collecting static
 
 ```cmd
 > python manage.py collectstatic

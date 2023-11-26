@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-19 16:45+0300\n"
+"POT-Creation-Date: 2023-11-26 10:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,398 +16,398 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: catalog/admin.py:11
+#: .\catalog\admin.py:11
 msgid "saashop_admin_panel_header"
 msgstr "Админ панель SaaShop"
 
-#: catalog/admin.py:12
+#: .\catalog\admin.py:12
 msgid "saashop_admin_panel_title"
 msgstr "Админ панель SaaShop"
 
-#: catalog/admin.py:13
+#: .\catalog\admin.py:13
 msgid "saashop_admin_panel_index_title"
 msgstr "Админ панель SaaShop"
 
-#: catalog/admin.py:59 catalog/models.py:101 catalog/models.py:297
-#: templates/catalog/item.html:24 templates/includes/rating.html:16
+#: .\catalog\admin.py:59 .\catalog\models.py:101 .\catalog\models.py:297
+#: .\templates\catalog\item.html:24 .\templates\includes\rating.html:39
 msgid "no_image"
 msgstr "Изображение отсутствует"
 
-#: catalog/admin.py:61 catalog/models.py:103 catalog/models.py:299
+#: .\catalog\admin.py:61 .\catalog\models.py:103 .\catalog\models.py:299
 msgid "preview"
 msgstr "превью"
 
-#: catalog/apps.py:10
+#: .\catalog\apps.py:10
 msgid "catalog_app"
 msgstr "Каталог"
 
-#: catalog/models.py:42 catalog/models.py:55
+#: .\catalog\models.py:42 .\catalog\models.py:55
 msgid "slug_models"
 msgstr "слаг"
 
-#: catalog/models.py:49
+#: .\catalog\models.py:49
 msgid "tag_models"
 msgstr "тег"
 
-#: catalog/models.py:50 catalog/models.py:236
+#: .\catalog\models.py:50 .\catalog\models.py:236
 msgid "tags_models"
 msgstr "теги"
 
-#: catalog/models.py:61
+#: .\catalog\models.py:61
 msgid "weight_models"
 msgstr "вес"
 
-#: catalog/models.py:67 catalog/models.py:245
+#: .\catalog\models.py:67 .\catalog\models.py:245
 msgid "category_models"
 msgstr "категория"
 
-#: catalog/models.py:68
+#: .\catalog\models.py:68
 msgid "categories_models"
 msgstr "категории"
 
-#: catalog/models.py:73 catalog/models.py:275
+#: .\catalog\models.py:73 .\catalog\models.py:275
 msgid "image_models"
 msgstr "изображение"
 
-#: catalog/models.py:107 catalog/models.py:111 catalog/models.py:253
+#: .\catalog\models.py:107 .\catalog\models.py:111 .\catalog\models.py:253
 msgid "main_image_models"
 msgstr "главное изображение"
 
-#: catalog/models.py:112
+#: .\catalog\models.py:112
 msgid "main_images_models"
 msgstr "главные изображения"
 
-#: catalog/models.py:211
+#: .\catalog\models.py:211
 msgid "show_on_main_models"
 msgstr "отображать на главной"
 
-#: catalog/models.py:213 feedback/models.py:28
+#: .\catalog\models.py:213 .\feedback\models.py:28
 msgid "text_models"
 msgstr "текст"
 
-#: catalog/models.py:222
+#: .\catalog\models.py:222
 msgid "text_should_contain"
 msgstr "Текст должен содержать слово 'превосходно' или 'роскошно'"
 
-#: catalog/models.py:225 feedback/models.py:31 rating/models.py:72
+#: .\catalog\models.py:225 .\feedback\models.py:31 .\rating\models.py:91
 msgid "created_at_utc_models"
 msgstr "дата создания (UTC)"
 
-#: catalog/models.py:230
+#: .\catalog\models.py:230
 msgid "updated_at_utc_models"
 msgstr "дата изменения (UTC)"
 
-#: catalog/models.py:239
+#: .\catalog\models.py:239
 msgid "choose_tags_non_required"
 msgstr "Выберите теги(необязательно)"
 
-#: catalog/models.py:249
+#: .\catalog\models.py:249
 msgid "choose_category_non_required"
 msgstr "Выберите категорию(необязательно)"
 
-#: catalog/models.py:261 catalog/models.py:271
+#: .\catalog\models.py:261 .\catalog\models.py:271
 msgid "item_models"
 msgstr "товар"
 
-#: catalog/models.py:262
+#: .\catalog\models.py:262
 msgid "items_models"
 msgstr "товары"
 
-#: catalog/models.py:303 catalog/models.py:307
+#: .\catalog\models.py:303 .\catalog\models.py:307
 msgid "item_image_models"
 msgstr "изображение товара"
 
-#: catalog/models.py:308
+#: .\catalog\models.py:308
 msgid "item_images_models"
 msgstr "изображения товара"
 
-#: catalog/views.py:48
+#: .\catalog\views.py:48
 msgid "new_items"
 msgstr "Новинки"
 
-#: catalog/views.py:74
+#: .\catalog\views.py:74
 msgid "friday"
 msgstr "Пятница"
 
-#: catalog/views.py:88
+#: .\catalog\views.py:88
 msgid "unverified"
 msgstr "Непроверенное"
 
-#: core/models.py:17 feedback/admin.py:51 feedback/admin.py:71
+#: .\core\models.py:17 .\feedback\admin.py:51 .\feedback\admin.py:71
 msgid "title_models"
 msgstr "название"
 
-#: core/models.py:20
+#: .\core\models.py:20
 msgid "no_more_than_150"
 msgstr "Не больше 150 символов"
 
-#: core/models.py:22
+#: .\core\models.py:22
 msgid "published_models"
 msgstr "опубликовано"
 
-#: core/models.py:33
+#: .\core\models.py:33
 msgid "unique_name_models"
 msgstr "уникальное имя"
 
-#: core/models.py:37
+#: .\core\models.py:37
 msgid "generated_name_for_unique"
 msgstr "Сгенерированное имя для унификации"
 
-#: core/models.py:64
+#: .\core\models.py:64
 msgid "item_with_similar_name_exist"
 msgstr "Элемент с похожим именем уже существуетя"
 
-#: feedback/apps.py:10 templates/feedback/feedback.html:5
-#: templates/includes/header.html:18
+#: .\feedback\apps.py:10 .\templates\feedback\feedback.html:5
+#: .\templates\includes\header.html:18
 msgid "feedback"
 msgstr "Обратная связь"
 
-#: feedback/forms.py:32
+#: .\feedback\forms.py:32
 msgid "files_label"
 msgstr "Файлы"
 
-#: feedback/forms.py:33
+#: .\feedback\forms.py:33
 msgid "files_help_text"
 msgstr "Сюда можно загрузить файлы для лучшей обратной связи"
 
-#: feedback/forms.py:57
+#: .\feedback\forms.py:57
 msgid "mail_label"
 msgstr "Почта"
 
-#: feedback/forms.py:58
+#: .\feedback\forms.py:58
 msgid "name_label"
 msgstr "Имя"
 
-#: feedback/forms.py:61
+#: .\feedback\forms.py:61
 msgid "mail_help_text"
 msgstr "Почта, по которой мы свяжемся с вами"
 
-#: feedback/forms.py:62
+#: .\feedback\forms.py:62
 msgid "name_help_text"
 msgstr "Ваше имя"
 
-#: feedback/forms.py:79
+#: .\feedback\forms.py:79
 msgid "text_label"
 msgstr "Текст"
 
-#: feedback/forms.py:82
+#: .\feedback\forms.py:82
 msgid "text_help_text"
 msgstr "Ваш отзыв"
 
-#: feedback/models.py:17
+#: .\feedback\models.py:17
 msgid "received"
 msgstr "получено"
 
-#: feedback/models.py:18
+#: .\feedback\models.py:18
 msgid "processing"
 msgstr "в обработке"
 
-#: feedback/models.py:19
+#: .\feedback\models.py:19
 msgid "answered"
 msgstr "ответ дан"
 
-#: feedback/models.py:22
+#: .\feedback\models.py:22
 msgid "status_feedback_models"
 msgstr "статус обработки"
 
-#: feedback/models.py:37 feedback/models.py:42 feedback/models.py:58
-#: feedback/models.py:80 feedback/models.py:120
+#: .\feedback\models.py:37 .\feedback\models.py:42 .\feedback\models.py:58
+#: .\feedback\models.py:80 .\feedback\models.py:120
 msgid "feedback_models"
 msgstr "обратная связь"
 
-#: feedback/models.py:38
+#: .\feedback\models.py:38
 msgid "from_in_text_models"
 msgstr "от"
 
-#: feedback/models.py:43
+#: .\feedback\models.py:43
 msgid "feedbacks_models"
 msgstr "отзывы"
 
-#: feedback/models.py:48
+#: .\feedback\models.py:48
 msgid "name_models"
 msgstr "Имя"
 
-#: feedback/models.py:54
+#: .\feedback\models.py:54
 msgid "mail_models"
 msgstr "почта"
 
-#: feedback/models.py:68
+#: .\feedback\models.py:68
 msgid "personal_data_models"
 msgstr "персональные данные"
 
-#: feedback/models.py:69
+#: .\feedback\models.py:69
 msgid "personal_datas_models"
 msgstr "персональные данные"
 
-#: feedback/models.py:75
+#: .\feedback\models.py:75
 msgid "author"
 msgstr "автор"
 
-#: feedback/models.py:84
+#: .\feedback\models.py:84
 msgid "from_status_models"
 msgstr "из статуса"
 
-#: feedback/models.py:91
+#: .\feedback\models.py:91
 msgid "to_status_models"
 msgstr "в статус"
 
-#: feedback/models.py:102 feedback/models.py:107
+#: .\feedback\models.py:102 .\feedback\models.py:107
 msgid "status_log_models"
 msgstr "изменение статуса"
 
-#: feedback/models.py:103
+#: .\feedback\models.py:103
 msgid "for_in_text_models"
 msgstr "для"
 
-#: feedback/models.py:108
+#: .\feedback\models.py:108
 msgid "status_logs_models"
 msgstr "изменения статуса"
 
-#: feedback/models.py:124
+#: .\feedback\models.py:124
 msgid "file_models"
 msgstr "файл"
 
-#: feedback/models.py:130 feedback/models.py:134
+#: .\feedback\models.py:130 .\feedback\models.py:134
 msgid "feedback_file_models"
 msgstr "файл обратной связи"
 
-#: feedback/models.py:135
+#: .\feedback\models.py:135
 msgid "feedback_files_models"
 msgstr "файлы обратной связи"
 
-#: homepage/views.py:20
+#: .\homepage\views.py:20
 msgid "feature_1_title"
 msgstr "Широкий выбор ИТ-решений"
 
-#: homepage/views.py:20
+#: .\homepage\views.py:20
 msgid "feature_1_content"
 msgstr ""
 "Наш каталог включает готовые ИТ-решения, подходящие для различных "
 "потребностей бизнеса."
 
-#: homepage/views.py:21
+#: .\homepage\views.py:21
 msgid "feature_2_title"
 msgstr "Гибкая интеграция"
 
-#: homepage/views.py:21
+#: .\homepage\views.py:21
 msgid "feature_2_content"
 msgstr ""
 "Легкая интеграция наших ИТ-решений с существующими системами бизнеса, "
 "упрощает внедрение новых технологий."
 
-#: homepage/views.py:22
+#: .\homepage\views.py:22
 msgid "feature_3_title"
 msgstr "Поддержка и обновления"
 
-#: homepage/views.py:22
+#: .\homepage\views.py:22
 msgid "feature_3_content"
 msgstr ""
 "Постоянная поддержка и обновления, чтобы ваш бизнес всегда оставался на "
 "передовой в мире технологий."
 
-#: homepage/views.py:23
+#: .\homepage\views.py:23
 msgid "feature_4_title"
 msgstr "Безопасность и надежность"
 
-#: homepage/views.py:23
+#: .\homepage\views.py:23
 msgid "feature_4_content"
 msgstr ""
 "Ваша безопасность и надежность у нас в приоритете - мы предлагаем только "
 "надежные и проверенные ИТ-решения."
 
-#: homepage/views.py:24
+#: .\homepage\views.py:24
 msgid "feature_5_title"
 msgstr "Эффективное управление бизнесом"
 
-#: homepage/views.py:24
+#: .\homepage\views.py:24
 msgid "feature_5_content"
 msgstr ""
 "Наши ИТ-решения помогут улучшить управление бизнесом, оптимизировать "
 "процессы и повысить производительность."
 
-#: homepage/views.py:25
+#: .\homepage\views.py:25
 msgid "feature_6_title"
 msgstr "Гибкая ценообразование"
 
-#: homepage/views.py:25
+#: .\homepage\views.py:25
 msgid "feature_6_content"
 msgstr ""
 "Мы предлагаем гибкие варианты ценообразования, чтобы обеспечить оптимальное "
 "соотношение цены и качества для вашего бизнеса."
 
-#: saashop/settings.py:208
+#: .\saashop\settings.py:210
 msgid "English"
 msgstr "Английский"
 
-#: saashop/settings.py:209
+#: .\saashop\settings.py:211
 msgid "Russian"
 msgstr "Русский"
 
-#: templates/about/about.html:5 templates/catalog/item_list.html:13
-#: templates/homepage/main.html:28 templates/includes/header.html:16
+#: .\templates\about\about.html:5 .\templates\catalog\item_list.html:13
+#: .\templates\homepage\main.html:28 .\templates\includes\header.html:16
 msgid "about"
 msgstr "О проекте"
 
-#: templates/about/about.html:6
+#: .\templates\about\about.html:6
 msgid "about_text"
 msgstr "Лучший в мире каталог готовых ИТ-решений для вашего бизнеса."
 
-#: templates/catalog/item.html:33
+#: .\templates\catalog\item.html:33
 msgid "rating"
 msgstr "Рейтинг"
 
-#: templates/catalog/item.html:37
+#: .\templates\catalog\item.html:52
 msgid "empty"
 msgstr "отсутствует"
 
-#: templates/catalog/item.html:39 templates/includes/item_card.html:18
+#: .\templates\catalog\item.html:54 .\templates\includes\item_card.html:18
 msgid "category"
 msgstr "Категория"
 
-#: templates/catalog/item.html:41 templates/includes/item_card.html:23
+#: .\templates\catalog\item.html:56 .\templates\includes\item_card.html:23
 msgid "tags"
 msgstr "Теги"
 
-#: templates/catalog/item.html:45 templates/catalog/item.html:70
-#: templates/includes/item_card.html:28
+#: .\templates\catalog\item.html:60 .\templates\catalog\item.html:85
+#: .\templates\catalog\item.html:107 .\templates\includes\item_card.html:28
 msgid "empty_plural"
 msgstr "Отсутствуют"
 
-#: templates/catalog/item.html:53
+#: .\templates\catalog\item.html:68
 msgid "images"
 msgstr "Изображения"
 
-#: templates/catalog/item_list.html:10
+#: .\templates\catalog\item_list.html:10
 msgid "item_list_lead_text"
 msgstr ""
 "Здесь вы можете ознакомиться с нашими работами и подобрать себе то, что вам "
 "нужно"
 
-#: templates/catalog/item_list.html:12 templates/includes/header.html:15
+#: .\templates\catalog\item_list.html:12 .\templates\includes\header.html:15
 msgid "home"
 msgstr "Главная"
 
-#: templates/catalog/item_list.html:30 templates/homepage/main.html:129
+#: .\templates\catalog\item_list.html:30 .\templates\homepage\main.html:129
 msgid "no_cards"
 msgstr "Товары отсутствуют"
 
-#: templates/homepage/main.html:27
+#: .\templates\homepage\main.html:27
 msgid "landing_lead_text"
 msgstr "Лучший в мире каталог готовых ИТ-решений для вашего бизнеса."
 
-#: templates/homepage/main.html:28 templates/includes/header.html:17
+#: .\templates\homepage\main.html:28 .\templates\includes\header.html:17
 msgid "item_list"
 msgstr "Список товаров"
 
-#: templates/homepage/main.html:74
+#: .\templates\homepage\main.html:74
 msgid "subscription_title"
 msgstr "Программа \"Привилегии SaaShop\""
 
-#: templates/homepage/main.html:75
+#: .\templates\homepage\main.html:75
 msgid "subscription_description"
 msgstr ""
 "Программа \"Привилегии SaaShop\" - это специальная программа лояльности для "
@@ -416,94 +416,94 @@ msgstr ""
 "более выгодным и приятным. Присоединяйтесь сегодня и начните получать "
 "дополнительные привилегии!"
 
-#: templates/homepage/main.html:84
+#: .\templates\homepage\main.html:84
 msgid "subscription_features_title"
 msgstr "Преимущества:"
 
-#: templates/homepage/main.html:87
+#: .\templates\homepage\main.html:87
 msgid "subscription_feature_1"
 msgstr "Бонусные баллы за каждую покупку."
 
-#: templates/homepage/main.html:90
+#: .\templates\homepage\main.html:90
 msgid "subscription_feature_2"
 msgstr "Эксклюзивные предложения и акции для участников программы."
 
-#: templates/homepage/main.html:93
+#: .\templates\homepage\main.html:93
 msgid "subscription_feature_3"
 msgstr "Персональное обслуживание и приоритетная поддержка клиентов."
 
-#: templates/homepage/main.html:96
+#: .\templates\homepage\main.html:96
 msgid "subscription_feature_4"
 msgstr "Доступ к бета-версиям новых продуктов и функций."
 
-#: templates/homepage/main.html:101
+#: .\templates\homepage\main.html:101
 msgid "subscription_order_button_text"
 msgstr "Оформить (в разработке)"
 
-#: templates/homepage/main.html:113
+#: .\templates\homepage\main.html:113
 msgid "not_sure_in_buying"
 msgstr "Не знаете что купить?"
 
-#: templates/homepage/main.html:115
+#: .\templates\homepage\main.html:115
 msgid "discover_new_items"
 msgstr "Изучите наши новинки"
 
-#: templates/homepage/main.html:124
+#: .\templates\homepage\main.html:124
 msgid "landing_item_list"
 msgstr "Лучшие товары"
 
-#: templates/includes/footer.html:18
+#: .\templates\includes\footer.html:18
 msgid "all_rights_reserved"
 msgstr "все права защищены"
 
-#: templates/includes/header.html:20 templates/users/signup.html:13
+#: .\templates\includes\header.html:20 .\templates\users\signup.html:13
 msgid "login"
 msgstr "Войти"
 
-#: templates/includes/header.html:22
+#: .\templates\includes\header.html:22
 msgid "logout"
 msgstr "Выйти"
 
-#: templates/includes/header.html:25
+#: .\templates\includes\header.html:25
 msgid "admin_panel"
 msgstr "Админ панель"
 
-#: templates/includes/item_card.html:35
+#: .\templates\includes\item_card.html:35
 msgid "edit"
 msgstr "Редактировать"
 
-#: templates/users/login.html:6
+#: .\templates\users\login.html:6
 msgid "login_html"
 msgstr "Вход"
 
-#: templates/users/login.html:10 templates/users/signup.html:10
+#: .\templates\users\login.html:10 .\templates\users\signup.html:10
 msgid "send"
 msgstr "Отправить"
 
-#: templates/users/login.html:13
+#: .\templates\users\login.html:13
 msgid "dont_have_an_account_yet"
 msgstr "Ещё нет аккаунта?"
 
-#: templates/users/login.html:13
+#: .\templates\users\login.html:13
 msgid "signup_action"
 msgstr "Зарегистрируйтесь"
 
-#: templates/users/login.html:14
+#: .\templates\users\login.html:14
 msgid "forgot_password"
 msgstr "Забыли пароль?"
 
-#: templates/users/password_reset.html:6
+#: .\templates\users\password_reset.html:6
 msgid "reset_password"
 msgstr "Сброс пароля"
 
-#: templates/users/password_reset.html:10
+#: .\templates\users\password_reset.html:10
 msgid "reset_password_action"
 msgstr "Сбросить пароль"
 
-#: templates/users/signup.html:6
+#: .\templates\users\signup.html:6
 msgid "registration"
 msgstr "Регистрация"
 
-#: templates/users/signup.html:13
+#: .\templates\users\signup.html:13
 msgid "already_have_an_account"
 msgstr "Уже есть аккаунт?"
